@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pitasc.model_interface &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pitasc.parameter_model" href="pitasc_parameter_model.html" />
+    <link rel="prev" title="pitasc.model" href="pitasc_model.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#model-access">Model access</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pitasc_model.html">pitasc.model</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pitasc.model_interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pitasc.model_interface.SimpleInterface"><code class="docutils literal notranslate"><span class="pre">SimpleInterface</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pitasc_parameter_model.html">pitasc.parameter_model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pitasc_model_element.html">pitasc.model_element</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#runtime-access">Runtime access</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python API reference</a></li>
+      <li class="breadcrumb-item active">pitasc.model_interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api_reference/python/pitasc_model_interface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pitasc.model_interface">
+<span id="pitasc-model-interface"></span><h1>pitasc.model_interface<a class="headerlink" href="#module-pitasc.model_interface" title="Permalink to this heading"></a></h1>
+<p>Convenience tools for accessing and modifying pitasc models more easily.</p>
+<p>Models can be imported or created via the <a class="reference internal" href="#pitasc.model_interface.SimpleInterface" title="pitasc.model_interface.SimpleInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleInterface</span></code></a> class.
+Complex model elements like dictionaries or lists are represented by the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">PitascModelElement</span></code> class. Simple data like <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>
+or <code class="docutils literal notranslate"><span class="pre">csv:*</span></code> are represented by basic python types like <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code>, or <code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pitasc.model_interface</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleInterface</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">SimpleInterface</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">import_ros_file</span><span class="p">(</span><span class="s2">&quot;pitasc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;examples/rosless/simple_move_rosless.xml&quot;</span><span class="p">)</span>
+<span class="go"># lots of [ Info  ] prints</span>
+<span class="go">(True, &quot;Successfully loaded &#39;/path/to/pitasc_common/examples/rosless/simple_move_rosless.xml&#39; in X.XXX sec&quot;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">update_rate</span>  <span class="c1"># access primitive value</span>
+<span class="go">125.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">update_rate</span> <span class="o">=</span> <span class="mi">250</span>  <span class="c1"># set primitive value</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">apps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># access list element</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pitasc.model_interface.</span></span><span class="sig-name descname"><span class="pre">SimpleInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface" title="Permalink to this definition"></a></dt>
+<dd><p>Simplifies adaptation of a pitasc model and getting/setting member values.</p>
+<p><code class="docutils literal notranslate"><span class="pre">SimpleInterface</span></code> acts as a wrapper around <code class="docutils literal notranslate"><span class="pre">pitasc.model.Model</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="pitasc_model.html#pitasc.model.Model" title="pitasc.model.Model"><em>Model</em></a><em>, </em><em>optional</em>) – Model that shall be adapted.
+If None, a new model will be created internally.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface._model">
+<span class="sig-name descname"><span class="pre">_model</span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface._model" title="Permalink to this definition"></a></dt>
+<dd><p>Model instance being manipulated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="pitasc_model.html#pitasc.model.Model" title="pitasc.model.Model">Model</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.add_element">
+<span class="sig-name descname"><span class="pre">add_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_type_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.add_element" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.apps">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apps</span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.apps" title="Permalink to this definition"></a></dt>
+<dd><p>Represents the list of applications (application skills) of the project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="pitasc_model_element.html#pitasc.model_element.PitascModelElement" title="pitasc.model_element.PitascModelElement">PitascModelElement</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.configuration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configuration</span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.configuration" title="Permalink to this definition"></a></dt>
+<dd><p>Represents the configuration of the project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="pitasc_model_element.html#pitasc.model_element.PitascModelElement" title="pitasc.model_element.PitascModelElement">PitascModelElement</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.environment">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">environment</span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.environment" title="Permalink to this definition"></a></dt>
+<dd><p>Represents the environment of the project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="pitasc_model_element.html#pitasc.model_element.PitascModelElement" title="pitasc.model_element.PitascModelElement">PitascModelElement</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.get_file_path">
+<span class="sig-name descname"><span class="pre">get_file_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.get_file_path" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.get_model_info">
+<span class="sig-name descname"><span class="pre">get_model_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_type_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.get_model_info" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.get_models_of_type">
+<span class="sig-name descname"><span class="pre">get_models_of_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prototype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.get_models_of_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.get_package">
+<span class="sig-name descname"><span class="pre">get_package</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.get_package" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.get_package_path">
+<span class="sig-name descname"><span class="pre">get_package_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.get_package_path" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.get_parameter_info">
+<span class="sig-name descname"><span class="pre">get_parameter_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.get_parameter_info" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.get_relative_file_path">
+<span class="sig-name descname"><span class="pre">get_relative_file_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.get_relative_file_path" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.import_file">
+<span class="sig-name descname"><span class="pre">import_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.import_file" title="Permalink to this definition"></a></dt>
+<dd><p>Load a pitasc XML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Absolute or relative file path of the existing XML file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.import_ros_file">
+<span class="sig-name descname"><span class="pre">import_ros_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.import_ros_file" title="Permalink to this definition"></a></dt>
+<dd><p>Load a pitasc XML file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Does not raise an exception on error.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Alias for <code class="docutils literal notranslate"><span class="pre">load_project</span></code>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>package</strong> (<em>str</em>) – Package name in which the XML file exists.</p></li>
+<li><p><strong>file_name</strong> (<em>str</em>) – Relative file path of the existing XML file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>success flag, response message</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple(bool, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.inspect_model">
+<span class="sig-name descname"><span class="pre">inspect_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_type_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="pitasc_model_element.html#pitasc.model_element.PitascModelElement" title="pitasc.model_element.PitascModelElement"><span class="pre">PitascModelElement</span></a></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.inspect_model" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves information about a model that is available as a prototype, e.g. those defined in pitasc_library.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model_type_name</strong> (<em>str</em>) – Model name that you want to retrieve information about.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Representation of the (prototype) model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="pitasc_model_element.html#pitasc.model_element.PitascModelElement" title="pitasc.model_element.PitascModelElement">PitascModelElement</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.load_project">
+<span class="sig-name descname"><span class="pre">load_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">existing_package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.load_project" title="Permalink to this definition"></a></dt>
+<dd><p>Load an existing project (corresponding to an existing pitasc XML file).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Does not raise an exception on error.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Alias for <code class="docutils literal notranslate"><span class="pre">import_ros_file</span></code>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>existing_package</strong> (<em>str</em>) – Package name in which the XML file exists.</p></li>
+<li><p><strong>existing_file_name</strong> (<em>str</em>) – File path of the existing XML file relative to existing_package.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>success flag, response message</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple(bool, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.model">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.model" title="Permalink to this definition"></a></dt>
+<dd><p>Model instance being manipulated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="pitasc_model.html#pitasc.model.Model" title="pitasc.model.Model">Model</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.monitors">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">monitors</span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.monitors" title="Permalink to this definition"></a></dt>
+<dd><p>List of available monitor types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.move_element">
+<span class="sig-name descname"><span class="pre">move_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.move_element" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.project_from_existing">
+<span class="sig-name descname"><span class="pre">project_from_existing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">existing_package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">existing_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pitasc_common'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.project_from_existing" title="Permalink to this definition"></a></dt>
+<dd><p>Create a new project based on an existing pitasc XML file.</p>
+<p>The new project corresponds to a new pitasc XML file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Does not raise an exception on error.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>existing_package</strong> (<em>str</em>) – Package name in which the template XML file exists.</p></li>
+<li><p><strong>existing_file_name</strong> (<em>str</em>) – File path of the template XML file relative to existing_package.</p></li>
+<li><p><strong>package</strong> (<em>str</em>) – Package name in which the new project should be saved.</p></li>
+<li><p><strong>file_name</strong> (<em>str</em>) – File path of the new project XML file relative to package.
+If set to None, it will auto-generate the file name as “apps/%Y%m%d_%H%M%S.xml”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>success flag, response message</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple(bool, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.project_from_template">
+<span class="sig-name descname"><span class="pre">project_from_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ur'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pitasc_common'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.project_from_template" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a new project based on an empty template containing only a robot.</p>
+<p>Currently, the only available template contains a UR robot.
+The new project corresponds to a new pitasc XML file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Does not raise an exception on error.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<em>str</em><em>, </em><em>optional</em>) – Robot type to use for the project. Possible values: “ur”.</p></li>
+<li><p><strong>package</strong> (<em>str</em><em>, </em><em>optional</em>) – Package name in which the new project should be saved.</p></li>
+<li><p><strong>file_name</strong> (<em>str</em><em>, </em><em>optional</em>) – File path of the new project XML file relative to the package.
+If set to None, it will auto-generate the file name as “apps/%Y%m%d_%H%M%S.xml”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>success flag, response message</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple(bool, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.remove_element">
+<span class="sig-name descname"><span class="pre">remove_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.remove_element" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.save" title="Permalink to this definition"></a></dt>
+<dd><p>Saves the current project under the name / path given during project creation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.save_as">
+<span class="sig-name descname"><span class="pre">save_as</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.save_as" title="Permalink to this definition"></a></dt>
+<dd><p>Saves the current project under a new file name (file_name), which is relative to the given package_name.
+If no package_name is given, file_name can be an absolute path or relative, which is interpret relative
+to the current working directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> (<em>str</em>) – File path relative to the package path, relative to the current working directory or absolute.</p></li>
+<li><p><strong>package_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Package name under which the file will be saved.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.scripts">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scripts</span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.scripts" title="Permalink to this definition"></a></dt>
+<dd><p>List of available script types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.set_parameter_value">
+<span class="sig-name descname"><span class="pre">set_parameter_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.set_parameter_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.set_reference_of_element">
+<span class="sig-name descname"><span class="pre">set_reference_of_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.set_reference_of_element" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.model_interface.SimpleInterface.skills">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">skills</span></span><a class="headerlink" href="#pitasc.model_interface.SimpleInterface.skills" title="Permalink to this definition"></a></dt>
+<dd><p>List of available skill types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pitasc_model.html" class="btn btn-neutral float-left" title="pitasc.model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pitasc_parameter_model.html" class="btn btn-neutral float-right" title="pitasc.parameter_model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

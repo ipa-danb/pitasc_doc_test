@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parameters &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Skills" href="skill.html" />
+    <link rel="prev" title="Fundamentals" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Fundamentals</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-structure"><strong>General structure</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-type-vs-prototype"><strong>data_type vs prototype</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameter-basic-types"><strong>Parameter basic types</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#restrictions"><strong>Restrictions</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lists-naming"><strong>Lists &amp; Naming</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="skill.html">Skills</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script.html">Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="monitor.html">Monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transition.html">Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application.html">Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Fundamentals</a></li>
+      <li class="breadcrumb-item active">Parameters</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/user_guide/fundamentals/parameter.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="parameters">
+<h1>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h1>
+<p>Skills, scripts, monitors, even the application, everything is a parameter. By inheriting from other parameters and
+including sub-parameters inside them, everything is able to be represented.</p>
+<p>Defined at file <code class="docutils literal notranslate"><span class="pre">models/parameters.xml</span></code> in package <strong>pitasc_library</strong>.</p>
+<section id="general-structure">
+<h2><strong>General structure</strong><a class="headerlink" href="#general-structure" title="Permalink to this heading"></a></h2>
+<p>Chain of prototype based inheritance. <em>base</em> is the basic parameter prototype, which contains the meta data <em>description</em> and <em>visibility</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">any_parameter</span> <span class="o">--&gt;</span> <span class="n">base</span> <span class="o">--&gt;</span> <span class="n">descriptive</span>
+</pre></div>
+</div>
+<p>All parameters are inheriting from ‘base’.</p>
+<p>Basic parameters contain the following attributes inside the <code class="docutils literal notranslate"><span class="pre">&lt;type&gt;</span></code> tag.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Attributes inside <code class="docutils literal notranslate"><span class="pre">&lt;type&gt;</span></code> tag</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>Needs to be locally unique to allow identification, If not unique, a incrementing element e.g., “_no0”, “_no1”, “_no2”, … will be added</p></td>
+</tr>
+<tr class="row-odd"><td><p>data_type</p></td>
+<td><p>Data type of the parameter, can’t be changed once set</p></td>
+</tr>
+<tr class="row-even"><td><p>prototype</p></td>
+<td><p>The base type the parameter “inherits” from, e.g. “string_parameter”.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Basic parameters contain the following parameters inside the <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span></code> tag by default.</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Members inside <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span></code> tag</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>description</p></th>
+<th class="head"><p>Description of the parameter</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>visibility</p></td>
+<td><p>Visibility of the parameter (one of: required, basic, expert, hidden)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The xml definition of a parameter basically looks like the following:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;type</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;{Choose unique id}&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;{Add parent id}&quot;</span><span class="w"> </span><span class="na">data_type=</span><span class="s">&quot;{Choose data type}&quot;</span><span class="nt">&gt;</span><span class="w">  </span><span class="cm">&lt;!-- reference would be added here --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span><span class="w"> </span>{Choose<span class="w"> </span>meaningful<span class="w"> </span>description}<span class="w"> </span><span class="nt">&lt;/member&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;visibility&quot;</span><span class="nt">&gt;</span><span class="w"> </span>{Choose<span class="w"> </span>enum}<span class="w"> </span><span class="nt">&lt;/member&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;data&gt;</span><span class="w"> </span>{data<span class="w"> </span>depending<span class="w"> </span>on<span class="w"> </span>parameter<span class="w"> </span>type}<span class="w"> </span><span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/type&gt;</span>
+</pre></div>
+</div>
+<p>For example, this is the definition of a frame parameter (from the pitasc library):</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;type</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;frame&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;string_parameter&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>A<span class="w"> </span>frame<span class="w"> </span>(coordinate<span class="w"> </span>system)<span class="nt">&lt;/member&gt;</span>
+<span class="w">        </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;restrictions&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;blacklist&quot;</span><span class="nt">&gt;</span><span class="w"> </span><span class="nt">&lt;/clone&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/clone&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
+<span class="nt">&lt;/type&gt;</span>
+</pre></div>
+</div>
+<p>The blacklist restriction with a space defines that the value of the parameter must not be empty. See below for more information on restrictions.</p>
+</section>
+<section id="data-type-vs-prototype">
+<h2><strong>data_type vs prototype</strong><a class="headerlink" href="#data-type-vs-prototype" title="Permalink to this heading"></a></h2>
+<p><em>data_type</em> describes the actual representation of the data of the parameter. It can only be one of the following:</p>
+<ul class="simple">
+<li><p>int</p></li>
+<li><p>bool</p></li>
+<li><p>float</p></li>
+<li><p>string</p></li>
+<li><p>csv:int, csv:bool, csv:float, csv:string</p></li>
+<li><p>dict</p></li>
+<li><p>list:{parameter type} ({parameter type can be any pitasc parameter type, e.g. list:frame)</p></li>
+<li><p>parameter (this is basically saying “don’t know yet, will be defined in inherting parameters”)</p></li>
+<li><p>parameter:{parameter type} ({parameter type can be any pitasc parameter type, e.g. parameter:monitor)</p></li>
+</ul>
+<p><em>prototype</em> needs to be an existing pitasc parameter type, defined with <code class="docutils literal notranslate"><span class="pre">&lt;type</span> <span class="pre">id=&quot;...&quot;</span></code>. Usually a pitasc parameter type sets the <em>data_type</em> already, so if you derive from anything else than <code class="docutils literal notranslate"><span class="pre">prototype=&quot;base&quot;</span></code>, you do not need to set the <em>data_type</em>. However if you want to set it, e.g., because you want to create a parameter containing a list of frames, you need to set it and set the prototype to <em>base</em> (<code class="docutils literal notranslate"><span class="pre">data_type=&quot;list:frame&quot;</span> <span class="pre">prototype=&quot;base&quot;</span></code>)</p>
+</section>
+<section id="parameter-basic-types">
+<h2><strong>Parameter basic types</strong><a class="headerlink" href="#parameter-basic-types" title="Permalink to this heading"></a></h2>
+<p>Basic type parameters can be used though inheritance. The following parameter basic types are available.</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">List of basic parameter prototypes</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Prototype</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bool_parameter</p></td>
+<td><p>A boolean parameter</p></td>
+</tr>
+<tr class="row-odd"><td><p>int_parameter</p></td>
+<td><p>An integer parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>float_parameter</p></td>
+<td><p>A floating point number parameter</p></td>
+</tr>
+<tr class="row-odd"><td><p>dictionary</p></td>
+<td><p>A dictionary parameter (assoziative array)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">List of string datatypes</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Prototype</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>string_like_parameter</p></td>
+<td><p>A parameter that behaves like a string</p></td>
+</tr>
+<tr class="row-odd"><td><p>string_concatenation</p></td>
+<td><p>A list of strings that is concatenated to a single string (children of string_like_parameter)</p></td>
+</tr>
+<tr class="row-even"><td><p>string_parameter</p></td>
+<td><p>A string parameter (children of string_like_parameter)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">List of string list datatypes</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Prototype</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>string_list_like_parameter</p></td>
+<td><p>A parameter that behaves like a string or string list</p></td>
+</tr>
+<tr class="row-odd"><td><p>string_list_concatenation</p></td>
+<td><p>A list of strings and string lists that is concatenated to a single string list (children of string_list_like_parameter)</p></td>
+</tr>
+<tr class="row-even"><td><p>string_list</p></td>
+<td><p>A list of strings (children of string_list_like_parameter)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">List of csv datatypes</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Prototype</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bool_csv</p></td>
+<td><p>A comma-separated list of booleans</p></td>
+</tr>
+<tr class="row-odd"><td><p>int_csv</p></td>
+<td><p>A comma-separated list of integers</p></td>
+</tr>
+<tr class="row-even"><td><p>float_csv</p></td>
+<td><p>A comma-separated list of floats</p></td>
+</tr>
+<tr class="row-odd"><td><p>string_csv</p></td>
+<td><p>A comma-separated list of strings</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="restrictions">
+<h2><strong>Restrictions</strong><a class="headerlink" href="#restrictions" title="Permalink to this heading"></a></h2>
+<div class="line-block">
+<div class="line">Restrictions are used to restrict the values a parameter can assume.</div>
+<div class="line">The following restrictions are available.</div>
+</div>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">List of possible restrictions</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Restriction type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>enum</p></td>
+<td><p>An enumeration of strings allowed for this parameter</p></td>
+</tr>
+<tr class="row-odd"><td><p>blacklist</p></td>
+<td><p>An enumeration of strings <em>not</em> allowed for this parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>int_max</p></td>
+<td><p>Upper boundary for a int parameter</p></td>
+</tr>
+<tr class="row-odd"><td><p>int_min</p></td>
+<td><p>Lower boundary for a int parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>int_csv_max</p></td>
+<td><p>Upper boundaries for the values of a csv int list</p></td>
+</tr>
+<tr class="row-odd"><td><p>int_csv_min</p></td>
+<td><p>Lower boundaries for the values of a csv int list</p></td>
+</tr>
+<tr class="row-even"><td><p>float_max</p></td>
+<td><p>Upper boundary for a float parameter</p></td>
+</tr>
+<tr class="row-odd"><td><p>float_min</p></td>
+<td><p>Lower boundary for a float parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>float_csv_max</p></td>
+<td><p>Upper boundaries for the values of a csv float list</p></td>
+</tr>
+<tr class="row-odd"><td><p>float_csv_min</p></td>
+<td><p>Lower boundaries for the values of a csv float list</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Add restrictions to a parameter by adding them inside the <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span></code> tag.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;restrictions&quot;</span><span class="nt">&gt;</span><span class="w">                        </span><span class="cm">&lt;!-- list of restrictions --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;enum&quot;</span><span class="nt">&gt;</span>x,<span class="w"> </span>y,<span class="w"> </span>z,<span class="w"> </span>a,<span class="w"> </span>b,<span class="w"> </span>c<span class="nt">&lt;/clone&gt;</span><span class="w">    </span><span class="cm">&lt;!-- example restriction --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="lists-naming">
+<h2><strong>Lists &amp; Naming</strong><a class="headerlink" href="#lists-naming" title="Permalink to this heading"></a></h2>
+<div class="line-block">
+<div class="line"><strong>Naming</strong></div>
+<div class="line">In lists, it can happen that two elements would get the same name (id). Consider the following example:</div>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skills&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/member&gt;</span>
+</pre></div>
+</div>
+<p>In this case, pitasc changes the id of the skills such that they are unique. The assigned ids of the skills are then</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skills&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skill_lin&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skill_lin_no0&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skill_lin_no1&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/member&gt;</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Replacing</strong></div>
+<div class="line">Currently, it is not possible to remove entries from a list by using xml syntax. So, if a prototype adds something to a list, e.g. a controller to <cite>controllers</cite>, and you want to add your own controller, you need to re-define the whole skill to have only your controller in its <code class="docutils literal notranslate"><span class="pre">controller</span></code> members (below <code class="docutils literal notranslate"><span class="pre">tasks.tracking</span></code>).</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See also <a class="reference internal" href="../how-to/advanced/How_to_add_a_parameter_to_a_skill_monitor_etc.html"><span class="doc">How to add a parameter to a skill, monitor, …</span></a></p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Fundamentals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="skill.html" class="btn btn-neutral float-right" title="Skills" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

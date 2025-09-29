@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="skills/skill_cartesian.xml"/>
+
+        <type id="skill_lin_time_optimal" prototype="skill_cartesian">
+            <meta>
+                <member id="description">LIN movement from the current pose to the target. Follows a time-optimal trajectory with constant acceleration.</member>
+                <member id="visibility">basic</member>
+            </meta>
+
+            <data>
+                <!-- Task description -->
+                <type id="axes" prototype="string_csv">
+                    <meta>
+                        <member id="description">List of axes to be aligned.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z, a, b, c</clone>
+                        </clone>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>x, y, z, a, b, c</data>
+                </type>
+                <type id="target_offsets" prototype="float_csv">
+                    <meta>
+                        <member id="description">Offsets of the axes to be aligned. Must be the same number of values as for 'axes'. If no value is provided, 0 is used for all axes.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_csv_min">-10.0, -10.0, -10.0, -3.14, -3.14, -3.14</clone>
+                            <clone prototype="float_csv_max">10.0, 10.0, 10.0, 3.14, 3.14, 3.14</clone>
+                        </clone>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data></data>
+                </type>
+
+                <!-- Setpoint generation -->
+                <type id="trajectory_duration" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Duration of the trajectory in [s]. '0' means as fast as possible. Is expanded accordingly if in conflict with maximal linear veloctiy.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>0</data>
+                </type>
+
+                <!-- Control -->
+                <type id="max_linear_velocity" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Max linear velocity.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.0</data>
+                </type>
+                <type id="max_angular_velocity" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Max angular velocity.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.5</data>
+                </type>
+                <type id="max_linear_acceleration" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Max linear acceleration.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.0</data>
+                </type>
+                <type id="max_angular_acceleration" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Max angular acceleration.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>3.0</data>
+                </type>
+                <type id="linear_controller_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Specifies the approx. linear gain of the controller transfer function for Cartesian positions (i.e. x,y and z).</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>3</data>
+                </type>
+                <type id="angular_controller_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Specifies the approx. angular gain of the controller transfer function for Cartesian angles (i.e. a,b and c).</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>3</data>
+                </type>
+                <type id="linear_ff_controller_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Specifies the linear velocity feed-forward gain of the controller</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>0.7</data>
+                </type>
+                <type id="angular_ff_controller_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Specifies the angular velocity feed-forward gain of the controller</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>0.7</data>
+                </type>
+
+                <type id="positioning_accuracy" prototype="float_csv">
+                    <meta>
+                        <member id="description">Positioning accuracy for x y z a b c in m resp. rad</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>0.001, 0.001, 0.001, 0.005, 0.005, 0.005</data>
+                </type>
+
+                <!-- Coordination -->
+                <type id="positioning_monitor" prototype="monitor_distance">
+                    <meta>
+                        <member id="description">Checks whether the target frame has been reached.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>
+                        <member id="reference_frame" reference_id="target_frame"/>
+                        <member id="target_offsets" reference_id="target_offsets"/>
+                        <member id="frame" reference_id="tool_frame"/>
+                        <member id="coordinates" reference_id="axes"/>
+                        <member id="distance_coordinates">x, y, z, a, b, c</member>
+                        <member id="distances" reference_id="positioning_accuracy" />
+                        <member id="operator">absolute_less</member>
+
+                    </data>
+                </type>
+
+                <member id="positioning_monitor.distance_coordinates.meta.visibility">expert</member>
+                <member id="positioning_monitor.operator.meta.visibility">hidden</member>
+
+                <member id="monitors">
+                    <reference reference_id="positioning_monitor"/>
+                </member>
+
+                <!-- Implementation details below: -->
+
+                <member id="tasks">
+                    <clone id="tracking" prototype="task"> <!-- how to specify visibility here? leave on hidden? -->
+                        <member id="coordinates" reference_id="axes"/>
+                        <member id="prefix" reference_id="collections.target_to_tool.prefix"/>
+
+                        <member id="setpoint_generators">
+                            <clone id="setpoint" prototype="time_optimal_setpoint">
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]"/>
+                                </member>
+                                <member id="desired" reference_id="target_offsets"/>
+                                <member id="coordinates" reference_id="coordinates"/>
+                                <member id="prefix" reference_id="prefix"/>
+                                <member id="duration" reference_id="trajectory_duration"/>
+                                <member id="max_vel_groups">
+                                    <reference reference_id="max_linear_velocity"/>
+                                    <reference reference_id="max_angular_velocity"/>
+                                </member>
+                                <member id="max_acc_groups">
+                                    <reference reference_id="max_linear_acceleration"/>
+                                    <reference reference_id="max_angular_acceleration"/>
+                                </member>
+                                <member id="symbol_groups">
+                                    <clone id="position_coordinates" prototype="string_csv">x, y, z</clone>
+                                    <clone id="orientation_coordinates" prototype="string_csv">a, b, c</clone>
+                                </member>
+
+                            </clone>
+                        </member>
+
+                        <member id="controllers">
+                        <!-- position controller -->
+                            <clone prototype="trajectory_p_controller">
+                                <!-- <member id="limit" reference_id="max_linear_velocity"/> -->
+                                <member id="gain" reference_id="linear_controller_gain"/>
+                                <member id="limit">10.0</member>
+                                <member id="ff_gain" reference_id="linear_ff_controller_gain"/>
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]"/>
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference reference_id="setpoint_generators.setpoint"/>
+                                </member>
+                                <member id="coordinates" reference_id="setpoint_generators.setpoint.symbol_groups.position_coordinates"/>
+                                <member id="prefix" reference_id="prefix"/>
+                            </clone>
+
+                            <!-- orientation controller -->
+                            <clone prototype="trajectory_p_controller">
+                                <!-- <member id="limit" reference_id="max_angular_velocity"/>-->
+                                <member id="gain" reference_id="angular_controller_gain"/>
+                                <member id="limit">30.0</member>
+                                <member id="ff_gain" reference_id="angular_ff_controller_gain"/>
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]"/>
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference reference_id="setpoint_generators.setpoint"/>
+                                </member>
+                                <member id="coordinates" reference_id="setpoint_generators.setpoint.symbol_groups.orientation_coordinates"/>
+                                <member id="prefix" reference_id="prefix"/>
+                            </clone>
+                        </member>
+                    </clone>
+                </member>
+                <member id="tasks.meta.visibility">hidden</member>
+
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

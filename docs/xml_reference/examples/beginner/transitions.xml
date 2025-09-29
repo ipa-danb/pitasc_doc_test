@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the usage of a skill sequence.
+ptp -> lin -> idle -> approach
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">2.0</member>
+                <member id="robot_driver.max_acceleration">3.0</member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_sequence">
+
+                <!-- Use this robot for this skill and all its subskills -->
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <!-- Add skills -->
+                <member id="skills">
+
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">target1</member>
+                    </clone>
+
+                    <clone prototype="skill_sequence">
+                        <member id="skills">
+                            <clone prototype="skill_sequence">
+                                <member id="skills">
+                                    <clone prototype="skill_lin">
+                                        <member id="tool_frame">tool</member>
+                                        <member id="target_frame">target2</member>
+                                        <member id="positioning_monitor.event">custom_event</member>
+                                    </clone>
+
+                                    <clone id="should_not_be_executed" prototype="skill_lin">
+                                        <member id="tool_frame">tool</member>
+                                        <member id="target_frame">target3</member>
+                                    </clone>
+                                </member>
+                            </clone>
+
+                            <clone id="should_not_be_executed" prototype="skill_lin">
+                                <member id="tool_frame">tool</member>
+                                <member id="target_frame">target3</member>
+                            </clone>
+                        </member>
+                        <member id="transitions">
+                            <clone prototype="transition">
+                                <member id="event">custom_event</member>
+                                <member id="target">should_be_executed</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <clone id="should_be_executed" prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">target1</member>
+                    </clone>
+
+                    <clone prototype="skill_sequence">
+                        <member id="skills">
+                            <clone prototype="skill_sequence">
+                                <member id="skills">
+                                    <clone prototype="skill_lin">
+                                        <member id="tool_frame">tool</member>
+                                        <member id="target_frame">target2</member>
+                                        <member id="transitions">
+                                            <clone prototype="transition">
+                                                <member id="event">succeeded</member>
+                                                <member id="target">succeeded</member>
+                                            </clone>
+                                        </member>
+                                    </clone>
+
+                                    <clone id="should_not_be_executed" prototype="skill_lin">
+                                        <member id="tool_frame">tool</member>
+                                        <member id="target_frame">target3</member>
+                                    </clone>
+                                </member>
+                            </clone>
+
+                            <clone id="should_be_executed" prototype="skill_lin">
+                                <member id="tool_frame">tool</member>
+                                <member id="target_frame">target1</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <!-- Idle for 1 second -->
+                    <clone prototype="skill_idle_duration">
+                        <member id="duration">1.0</member>
+                    </clone>
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+
+        <type id="skill_idle" prototype="skill_single_robot">
+            <meta>
+                <member id="description">A skill that does nothing</member>
+                <member id="categories">single_robot, logic</member>
+            </meta>
+
+            <data/>
+        </type>
+
+    </models>
+
+</pitasc>

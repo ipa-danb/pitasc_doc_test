@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the usage of monitors.
+
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">$(0.15 + 0.85)</member>
+                <member id="robot_driver.max_acceleration">3.0</member>
+            </clone>
+            <clone id="starting_nr" prototype="string_parameter">2</clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_sequence">
+
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <member id="skills">
+
+                    <clone id="move_1" prototype="skill_cartesian_tracking">
+                        <!-- The formula interpreter only allows certain types to be referenced -->
+                        <!-- e.g. in a number paramter only float or int are allowed, no string -->
+                        <member id="skill_name">$("move_" + "1")</member>
+                        <member id="tool_frame">tool</member>
+                        <!-- You can reference elements within the "project" scope with normal notation -->
+                        <member id="target_frame">$("target" + environment.starting_nr)</member>
+                        <!-- With skip notation ('..') you can skip members in between, if the path is unique -->
+                        <member id="max_linear_velocity">$(2.0 * environment..max_velocity)</member>
+                        <!-- You can also set parts of a CSV as a formula -->
+                        <member id="target_offsets">$(0.05*2), 0.0, 0.0, $(pi/8), 0, 0</member>
+                       
+                        <member id="monitors">
+                            <clone prototype="monitor_duration">
+                                <!-- You can do a global search here with skip connections -->
+                                <!-- It fetches all members, that fit the signature [..]robot_ur5[..]max_velocity -->
+                                <!-- i.e. that means is searches for any parameter 'robot_ur5' -->
+                                <member id="duration">$(..robot_ur5..max_velocity * 1)</member>
+                            </clone>
+                        </member>
+
+                    </clone>
+
+                     <clone prototype="skill_cartesian_tracking">
+                        <member id="skill_name">move_2</member>
+                        <!-- You can do relative references by defining the input hook -->
+                        <!-- The algorithm looks in the path for the first element ('skills') -->
+                        <!-- And then you can reference the sub-skills from there -->
+                        <member id="tool_frame">$(skills.move_1.tool_frame + "0")</member>
+                        <member id="target_frame">marker</member>
+                        <member id="max_linear_velocity">$(environment..max_velocity * 0.1)</member>
+
+                        <member id="monitors">
+                            <clone prototype="monitor_duration">
+                                <member id="duration">$(..robot_ur5..max_velocity * 5)</member>
+                            </clone>
+                        </member>
+
+                    </clone>
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

@@ -1,0 +1,30 @@
+{%- if current_version %}
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: {{ current_version.name }}
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Versions</dt>
+      {%- if versions.branches %}
+      {%- for item in versions.branches %}
+      <dd><a href="{{ item.url }}">{{ item.name }}</a></dd>
+      {%- endfor %}
+      {%- endif %}
+      {%- if versions.tags %}
+      {%- for item in versions.tags %}
+      <dd><a href="{{ item.url }}">{{ item.name }}</a></dd>
+      {%- endfor %}
+      {%- endif %}
+    </dl>
+    <dl>
+      <dt>Additional links</dt>
+      <dd><a href="https://www.pitasc.fraunhofer.de/en.html">Project home</a></dd>
+      <dd><a href="https://gitlab.cc-asp.fraunhofer.de/ipa325_public/packages">Packages</a></dd>
+      <dd><a href="https://gitlab.cc-asp.fraunhofer.de/pitasc/pitasc">On Gitlab</a></dd>
+    </dl>
+  </div>
+</div>
+{%- endif %}

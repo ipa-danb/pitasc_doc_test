@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Getting started" href="getting_started.html" />
+    <link rel="prev" title="pitasc" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system-requirements">System requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-installer">Using the installer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ros-based-version">ROS-based version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ros-less-rl-version-for-ubuntu-20-04-lts">ROS-less (RL) version for Ubuntu 20.04 (LTS)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#post-installation-steps">Post-installation steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#recommended-configure-the-newly-extracted-version-as-the-current-version">Recommended: Configure the newly-extracted version as the current version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-enable-pitasc-by-default-for-the-current-user">Optional: Enable pitasc by default for the current user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-a-license">Set up a license</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#activate-pitasc">Activate pitasc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uninstall-pitasc">Uninstall pitasc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<p>To be able to use pitasc, make sure you <a class="reference internal" href="#sys-req"><span class="std std-ref">meet the system requirements</span></a>, then <a class="reference internal" href="#install"><span class="std std-ref">install pitasc</span></a>.</p>
+<section id="system-requirements">
+<span id="sys-req"></span><h2>System requirements<a class="headerlink" href="#system-requirements" title="Permalink to this heading"></a></h2>
+<p>pitasc is available for the following 64-bit versions of Ubuntu:</p>
+<ul class="simple">
+<li><p>Ubuntu Focal 20.04 (LTS)</p></li>
+</ul>
+<p>pitasc comes in 2 flavors: 1) is based on <a class="reference external" href="https://www.ros.org/">ROS</a>, 2) is a ROS-less version, e.g., for Reinforcement Learning applications.</p>
+<p>For a ROS-based installation, you need to set it up first:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://wiki.ros.org/noetic/Installation/Ubuntu">ROS Noetic</a> for Ubuntu 20.04</p></li>
+</ul>
+<p id="install">The following hardware requirements have to be met when setting up industrial pcs for robot cells.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Hardware requirements</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Min</p></th>
+<th class="head"><p>Recommended</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PC</p></td>
+<td><p>PC with disabled thermal energy saving</p></td>
+<td><p>IPC</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPU</p></td>
+<td><p>6th Gen i5 Intel</p></td>
+<td><p>9th Gen i7 Intel</p></td>
+</tr>
+<tr class="row-even"><td><p>RAM</p></td>
+<td><p>4 GB</p></td>
+<td><p>16 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hard disk</p></td>
+<td><p>SSD mit minimium 32GB (SATA or NVMe)</p></td>
+<td><p>SSD mit minimium 256GB (SATA or NVMe)</p></td>
+</tr>
+<tr class="row-even"><td><p>Connectivity</p></td>
+<td><p>Ethernet Switch connecting all items</p></td>
+<td><p>Direct ethernet connection from robot to PC</p></td>
+</tr>
+<tr class="row-odd"><td><p>OS</p></td>
+<td><p>Ubuntu 20.04 with admin rights</p></td>
+<td><p>Ubuntu 20.04 with Realtime patch (included e.g. in Ubuntu Pro) and admin rights</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="using-the-installer">
+<h2>Using the installer<a class="headerlink" href="#using-the-installer" title="Permalink to this heading"></a></h2>
+<p>To install pitasc, you need to download the installer or retrieve it from the <a class="reference external" href="mailto:pitasc&#37;&#52;&#48;ipa&#46;fraunhofer&#46;de">pitasc team</a>.</p>
+<ol class="arabic">
+<li><p>Download the installer</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://gitlab.cc-asp.fraunhofer.de/ipa325_public/packages/-/packages/48228">From Gitlab</a></p></li>
+<li><p>Just download the lastest (first) file <cite>without</cite> <code class="docutils literal notranslate"><span class="pre">rl</span></code> in the name, eg. <code class="docutils literal notranslate"><span class="pre">pitasc-noetic_4.1.0-r127_2024-02-05_amd64.tar.xz</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Install pitasc by extracting the archive file you just downloaded (preferably to your home folder, i.e., “~”; otherwise, adapt the following paths):</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The “<cite>$</cite>” sign denotes, that the following line(s) should be executed in a terminal.</p>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>tar<span class="w"> </span>--directory<span class="o">=</span><span class="nv">$HOME</span><span class="w"> </span>-xJf<span class="w"> </span>~/Downloads/pitasc-VERSION_TAG.tar.xz
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Install the dependencies according to the respective subsection</p></li>
+</ol>
+<section id="ros-based-version">
+<h3>ROS-based version<a class="headerlink" href="#ros-based-version" title="Permalink to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rosdep<span class="w"> </span>install<span class="w"> </span>--from-path<span class="w"> </span>~/pitasc/newest<span class="w"> </span>-iy
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As noetic is EOL, you need to run <code class="docutils literal notranslate"><span class="pre">rosdep</span> <span class="pre">update</span> <span class="pre">--include-eol-distros</span></code> first.</p>
+</div>
+</section>
+<section id="ros-less-rl-version-for-ubuntu-20-04-lts">
+<h3>ROS-less (RL) version for Ubuntu 20.04 (LTS)<a class="headerlink" href="#ros-less-rl-version-for-ubuntu-20-04-lts" title="Permalink to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>xz-utils<span class="w"> </span>libyaml-cpp0.6<span class="w"> </span>liborocos-kdl1.4<span class="w"> </span>liburdfdom-world<span class="w"> </span>libcrypto++6<span class="w"> </span>liburdfdom-model
+</pre></div>
+</div>
+<p>Optionally, useful for some reinforcement learning or simulation code:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3-pykdl
+<span class="gp">$ </span>pip3<span class="w"> </span>install<span class="w"> </span>urdf_parser_py
+</pre></div>
+</div>
+</section>
+</section>
+<section id="post-installation-steps">
+<h2>Post-installation steps<a class="headerlink" href="#post-installation-steps" title="Permalink to this heading"></a></h2>
+<p>Setup the PITASC_FOLDER variable, depending on the pitasc-flavor you installed (Ros-based or not):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">PITASC_FOLDER</span><span class="o">=</span>~/pitasc
+</pre></div>
+</div>
+<p>and for RL:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">PITASC_FOLDER</span><span class="o">=</span>~/pitasc-rl
+</pre></div>
+</div>
+<section id="recommended-configure-the-newly-extracted-version-as-the-current-version">
+<h3>Recommended: Configure the newly-extracted version as the current version<a class="headerlink" href="#recommended-configure-the-newly-extracted-version-as-the-current-version" title="Permalink to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>bash<span class="w"> </span><span class="si">${</span><span class="nv">PITASC_FOLDER</span><span class="si">}</span>/select_version.sh
+</pre></div>
+</div>
+</section>
+<section id="optional-enable-pitasc-by-default-for-the-current-user">
+<h3>Optional: Enable pitasc by default for the current user<a class="headerlink" href="#optional-enable-pitasc-by-default-for-the-current-user" title="Permalink to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;source </span><span class="si">${</span><span class="nv">PITASC_FOLDER</span><span class="si">}</span><span class="s2">/current/setup.bash  #autosetup at pitasc install&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="gp">$ </span><span class="nb">source</span><span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+</pre></div>
+</div>
+</section>
+<section id="set-up-a-license">
+<h3>Set up a license<a class="headerlink" href="#set-up-a-license" title="Permalink to this heading"></a></h3>
+<p>pitasc requires a license key to run. There are two possibilities. Your contact from the pitasc team will let
+you know which to use. Execute the corresponding command below in a terminal:</p>
+<ol class="arabic">
+<li><p>Machine specific license (preferred)</p>
+<blockquote>
+<div><p>For a machine specific license, execute the following command and follow the
+instructions:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>bash<span class="w"> </span><span class="si">${</span><span class="nv">PITASC_FOLDER</span><span class="si">}</span>/current/lib/pitasc/setup_license_file
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Floating license (fallback, mainly for Docker containers)</p>
+<blockquote>
+<div><p>To use a floating license, execute the commmand below and replace <code class="docutils literal notranslate"><span class="pre">&lt;LICENSE_SERVER_ADDRESS&gt;</span></code> with the IP
+address of the license server:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>bash<span class="w"> </span><span class="si">${</span><span class="nv">PITASC_FOLDER</span><span class="si">}</span>/current/lib/pitasc/use_license_server<span class="w"> </span>&lt;LICENSE_SERVER_ADDRESS&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+</section>
+<section id="activate-pitasc">
+<h2>Activate pitasc<a class="headerlink" href="#activate-pitasc" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>If you did not enable the auto-activation of pitasc, you need to execute
+<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/pitasc/current/setup.bash</span></code> or <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/pitasc-rl/current/setup.bash</span></code> before the commands of pitasc.</p>
+</div></blockquote>
+</section>
+<section id="uninstall-pitasc">
+<h2>Uninstall pitasc<a class="headerlink" href="#uninstall-pitasc" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Remove the pitasc installation folder in “~/pitasc/” and/or “~/pitasc-rl/”. You can delete all versions of pitasc by deleting “~/pitasc” and/or “~/pitasc-rl”.</p></li>
+<li><p>Disable the automatic activation of pitasc:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;source </span><span class="nv">$HOME</span><span class="s2">/pitasc/current/setup.bash  #autosetup at pitasc install&quot;</span><span class="w"> </span><span class="nv">$HOME</span>/.bashrc<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;source </span><span class="nv">$HOME</span><span class="s2">/pitasc-rl/current/setup.bash  #autosetup at pitasc install&quot;</span><span class="w"> </span><span class="nv">$HOME</span>/.bashrc<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="pitasc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the usage of a group skill.
+
+Runs a statemachine with: move0 -> move1 -> move3 -> move2
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">2.0</member>
+                <member id="robot_driver.max_acceleration">3.0</member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_statechart">
+
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <!-- Optionally: set the name of the first skill to execute (otherwise the first in the list will be taken) -->
+                <member id="initial_skill">move0</member>
+
+                <!-- Add skills -->
+                <member id="skills">
+
+                    <!-- Move ptp -->
+                    <clone prototype="skill_ptp">
+                        <member id="skill_name">move0</member>
+
+                        <member id="target_joint_state">0, -1.57, 1.57, 0, -1.57, -1.57</member>
+
+                        <!-- Specify the next skill to execute -->
+                        <member id="transitions">
+                            <clone prototype="transition">
+                                <member id="event">succeeded</member>
+                                <member id="target">move1</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <!-- Move to target1 -->
+                    <clone prototype="skill_lin">
+                        <member id="skill_name">move1</member>
+
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">target1</member>
+
+                        <!-- Specify the next skill to execute -->
+                        <member id="transitions">
+                            <clone prototype="transition">
+                                <member id="event">succeeded</member>
+                                <member id="target">move3</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <!-- Move to target2 (will be run after move3) -->
+                    <clone prototype="skill_lin">
+                        <member id="skill_name">move2</member>
+
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">target2</member>
+
+                        <!-- Specify the next skill to execute -->
+                        <member id="transitions">
+                            <clone prototype="transition">
+                                <member id="event">succeeded</member>
+                                <member id="target">succeeded</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <!-- Move to target3 -->
+                    <clone prototype="skill_lin">
+                        <member id="skill_name">move3</member>
+
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">target3</member>
+
+                        <!-- Specify the next skill to execute -->
+                        <member id="transitions">
+                            <clone prototype="transition">
+                                <member id="event">succeeded</member>
+                                <member id="target">move2</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

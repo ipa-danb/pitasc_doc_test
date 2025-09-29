@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="skills/skill_lin.xml"/>
+        <include package="pitasc_library" file="skills/skill_hold_pose.xml"/>
+
+        <type id="skill_partial_lin" prototype="skill_concurrency">
+            <meta>
+                <member id="description">A skill that moves to a target frame only in specified axes and holds the other axes in place</member>
+                <member id="categories">single_robot, position_controlled</member>
+            </meta>
+
+            <data>
+
+                <type id="tool_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Name of the tool frame.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="target_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Name of the target frame.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="axes" prototype="string_csv">
+                    <meta>
+                        <member id="description">List of axes to be aligned.</member>
+                        <member id="visibility">basic</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z, a, b, c</clone>
+                        </clone>
+                    </meta>
+                    <data>x, y, z, a, b, c</data>
+                </type>
+
+                <type id="target_offsets" prototype="float_csv">
+                    <meta>
+                        <member id="description">Offsets of the axes to be aligned. Must be the same number of values as for 'axes'.</member>
+                        <member id="visibility">basic</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_csv_min">-10.0, -10.0, -10.0, -3.14, -3.14, -3.14</clone>
+                            <clone prototype="float_csv_max">10.0, 10.0, 10.0, 3.14, 3.14, 3.14</clone>
+                        </clone>
+                    </meta>
+                    <data>0, 0, 0, 0, 0, 0</data>
+                </type>
+
+                <type id="thresholds" prototype="float_csv">
+                    <meta>
+                        <member id="description">Offsets of the axes to be aligned. Must be the same number of values as for 'axes'.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>0.001, 0.001, 0.001, 0.005, 0.005, 0.005</data>
+                </type>
+
+                <type id="max_linear_velocity" prototype="float_parameter">
+                    <meta>
+                        <member id="description">
+                            Max linear velocity.
+                        </member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.0</data>
+                </type>
+
+                <type id="max_angular_velocity" prototype="float_parameter">
+                    <meta>
+                        <member id="description">
+                            Max angular velocity.
+                        </member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.5</data>
+                </type>
+
+                <type id="linear_controller_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">
+                            Equivalent proportional controller in linear region.
+                        </member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>3</data>
+                </type>
+
+                <type id="angular_controller_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">
+                            Equivalent proportional controller in angular region.
+                        </member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>3</data>
+                </type>
+
+                <!-- Implementation details below: -->
+
+                <clone id="lin_skill" prototype="skill_lin">
+                    <member id="tool_frame" reference_id="tool_frame"/>
+                    <member id="target_frame" reference_id="target_frame"/>
+                    <member id="target_offsets" reference_id="target_offsets"/>
+                    <member id="max_linear_velocity" reference_id="max_linear_velocity"/>
+                    <member id="max_angular_velocity" reference_id="max_angular_velocity"/>
+                    <member id="linear_controller_gain" reference_id="linear_controller_gain"/>
+                    <member id="angular_controller_gain" reference_id="angular_controller_gain"/>
+                    <member id="positioning_monitor.distances" reference_id="thresholds"/>
+                    <member id="axes" reference_id="axes"/>
+                </clone>
+                <member id="lin_skill.meta.visibility">expert</member>
+
+                <clone id="hold_skill" prototype="skill_hold_pose">
+                    <member id="tool_frame" reference_id="tool_frame"/>
+                </clone>
+                <member id="hold_skill.meta.visibility">expert</member>
+
+                <member id="skills">
+                    <reference reference_id="lin_skill"/>
+                    <reference reference_id="hold_skill"/>
+                </member>
+                <member id="skills.meta.visibility">expert</member>
+
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

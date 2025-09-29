@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="strings.xml" href="advanced/strings_xml.html" />
+    <link rel="prev" title="script_topic_logger" href="../scripts/script_topic_logger.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#advanced">advanced</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced/strings_xml.html">strings.xml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#beginner">beginner</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="beginner/forces_xml.html">forces.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/forces_feedforward_xml.html">forces_feedforward.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/free_drive_xml.html">free_drive.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/move_math_parser_xml.html">move_math_parser.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/multiple_apps_xml.html">multiple_apps.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/rosservice_calls_xml.html">rosservice_calls.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/scrollable_multiple_apps_xml.html">scrollable_multiple_apps.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/simple_count_xml.html">simple_count.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/simple_idle_xml.html">simple_idle.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/simple_move_xml.html">simple_move.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/skill_concurrency_xml.html">skill_concurrency.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/skill_parallel_xml.html">skill_parallel.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/skill_sequence_xml.html">skill_sequence.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/skill_statechart_xml.html">skill_statechart.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/track_frame_xml.html">track_frame.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/track_frame_500hz_xml.html">track_frame_500hz.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="beginner/transitions_xml.html">transitions.xml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#customized-robots">customized_robots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="customized_robots/linear_axis_xml.html">linear_axis.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customized_robots/mimic_gripper_xml.html">mimic_gripper.xml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dual-robot">dual_robot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dual_robot/bounds_dual_robot_xml.html">bounds_dual_robot.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dual_robot/dual_robot_forces_xml.html">dual_robot_forces.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dual_robot/simple_dual_robot_xml.html">simple_dual_robot.xml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#monitors">monitors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monitors/geometry_xml.html">geometry.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitors/io_xml.html">io.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitors/measurements_xml.html">measurements.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitors/multiple_events_in_same_skill_xml.html">multiple_events_in_same_skill.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitors/switch_skill_with_rosservice_xml.html">switch_skill_with_rosservice.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitors/sync_xml.html">sync.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitors/user_confirm_xml.html">user_confirm.xml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#rosless">rosless</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rosless/forces_rosless_xml.html">forces_rosless.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rosless/simple_move_rosless_xml.html">simple_move_rosless.xml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#scripts">scripts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scripts/frame_editor_xml.html">frame_editor.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/io_xml.html">io.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/logging_xml.html">logging.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/temp_frame_xml.html">temp_frame.xml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#skills">skills</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="skills/blacklist_xml.html">blacklist.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skills/bound_example_xml.html">bound_example.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skills/conical_helix_xml.html">conical_helix.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skills/cylindrical_helix_xml.html">cylindrical_helix.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skills/forces_pid_xml.html">forces_pid.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skills/lin_time_optimal_xml.html">lin_time_optimal.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skills/lin_trajectory_xml.html">lin_trajectory.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skills/partial_lin_xml.html">partial_lin.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skills/position_pid_xml.html">position_pid.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skills/ptp_trajectory_xml.html">ptp_trajectory.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skills/spherical_velocity_xml.html">spherical_velocity.xml</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/xml_reference/examples/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="advanced">
+<h2>advanced<a class="headerlink" href="#advanced" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="advanced/strings_xml.html"><span class="doc">strings.xml</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="beginner">
+<h2>beginner<a class="headerlink" href="#beginner" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="beginner/forces_xml.html"><span class="doc">forces.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/forces_feedforward_xml.html"><span class="doc">forces_feedforward.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/free_drive_xml.html"><span class="doc">free_drive.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/move_math_parser_xml.html"><span class="doc">move_math_parser.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/multiple_apps_xml.html"><span class="doc">multiple_apps.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/rosservice_calls_xml.html"><span class="doc">rosservice_calls.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/scrollable_multiple_apps_xml.html"><span class="doc">scrollable_multiple_apps.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/simple_count_xml.html"><span class="doc">simple_count.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/simple_idle_xml.html"><span class="doc">simple_idle.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/simple_move_xml.html"><span class="doc">simple_move.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/skill_concurrency_xml.html"><span class="doc">skill_concurrency.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/skill_parallel_xml.html"><span class="doc">skill_parallel.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/skill_sequence_xml.html"><span class="doc">skill_sequence.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/skill_statechart_xml.html"><span class="doc">skill_statechart.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/track_frame_xml.html"><span class="doc">track_frame.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/track_frame_500hz_xml.html"><span class="doc">track_frame_500hz.xml</span></a></p></li>
+<li><p><a class="reference internal" href="beginner/transitions_xml.html"><span class="doc">transitions.xml</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="customized-robots">
+<h2>customized_robots<a class="headerlink" href="#customized-robots" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="customized_robots/linear_axis_xml.html"><span class="doc">linear_axis.xml</span></a></p></li>
+<li><p><a class="reference internal" href="customized_robots/mimic_gripper_xml.html"><span class="doc">mimic_gripper.xml</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="dual-robot">
+<h2>dual_robot<a class="headerlink" href="#dual-robot" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="dual_robot/bounds_dual_robot_xml.html"><span class="doc">bounds_dual_robot.xml</span></a></p></li>
+<li><p><a class="reference internal" href="dual_robot/dual_robot_forces_xml.html"><span class="doc">dual_robot_forces.xml</span></a></p></li>
+<li><p><a class="reference internal" href="dual_robot/simple_dual_robot_xml.html"><span class="doc">simple_dual_robot.xml</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="monitors">
+<h2>monitors<a class="headerlink" href="#monitors" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="monitors/geometry_xml.html"><span class="doc">geometry.xml</span></a></p></li>
+<li><p><a class="reference internal" href="monitors/io_xml.html"><span class="doc">io.xml</span></a></p></li>
+<li><p><a class="reference internal" href="monitors/measurements_xml.html"><span class="doc">measurements.xml</span></a></p></li>
+<li><p><a class="reference internal" href="monitors/multiple_events_in_same_skill_xml.html"><span class="doc">multiple_events_in_same_skill.xml</span></a></p></li>
+<li><p><a class="reference internal" href="monitors/switch_skill_with_rosservice_xml.html"><span class="doc">switch_skill_with_rosservice.xml</span></a></p></li>
+<li><p><a class="reference internal" href="monitors/sync_xml.html"><span class="doc">sync.xml</span></a></p></li>
+<li><p><a class="reference internal" href="monitors/user_confirm_xml.html"><span class="doc">user_confirm.xml</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="rosless">
+<h2>rosless<a class="headerlink" href="#rosless" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="rosless/forces_rosless_xml.html"><span class="doc">forces_rosless.xml</span></a></p></li>
+<li><p><a class="reference internal" href="rosless/simple_move_rosless_xml.html"><span class="doc">simple_move_rosless.xml</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="scripts">
+<h2>scripts<a class="headerlink" href="#scripts" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="scripts/frame_editor_xml.html"><span class="doc">frame_editor.xml</span></a></p></li>
+<li><p><a class="reference internal" href="scripts/io_xml.html"><span class="doc">io.xml</span></a></p></li>
+<li><p><a class="reference internal" href="scripts/logging_xml.html"><span class="doc">logging.xml</span></a></p></li>
+<li><p><a class="reference internal" href="scripts/temp_frame_xml.html"><span class="doc">temp_frame.xml</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="skills">
+<h2>skills<a class="headerlink" href="#skills" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="skills/blacklist_xml.html"><span class="doc">blacklist.xml</span></a></p></li>
+<li><p><a class="reference internal" href="skills/bound_example_xml.html"><span class="doc">bound_example.xml</span></a></p></li>
+<li><p><a class="reference internal" href="skills/conical_helix_xml.html"><span class="doc">conical_helix.xml</span></a></p></li>
+<li><p><a class="reference internal" href="skills/cylindrical_helix_xml.html"><span class="doc">cylindrical_helix.xml</span></a></p></li>
+<li><p><a class="reference internal" href="skills/forces_pid_xml.html"><span class="doc">forces_pid.xml</span></a></p></li>
+<li><p><a class="reference internal" href="skills/lin_time_optimal_xml.html"><span class="doc">lin_time_optimal.xml</span></a></p></li>
+<li><p><a class="reference internal" href="skills/lin_trajectory_xml.html"><span class="doc">lin_trajectory.xml</span></a></p></li>
+<li><p><a class="reference internal" href="skills/partial_lin_xml.html"><span class="doc">partial_lin.xml</span></a></p></li>
+<li><p><a class="reference internal" href="skills/position_pid_xml.html"><span class="doc">position_pid.xml</span></a></p></li>
+<li><p><a class="reference internal" href="skills/ptp_trajectory_xml.html"><span class="doc">ptp_trajectory.xml</span></a></p></li>
+<li><p><a class="reference internal" href="skills/spherical_velocity_xml.html"><span class="doc">spherical_velocity.xml</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../scripts/script_topic_logger.html" class="btn btn-neutral float-left" title="script_topic_logger" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="advanced/strings_xml.html" class="btn btn-neutral float-right" title="strings.xml" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

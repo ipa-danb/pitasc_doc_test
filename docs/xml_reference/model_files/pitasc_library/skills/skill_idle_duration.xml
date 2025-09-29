@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="skills/skill_idle.xml"/>
+
+        <type id="skill_idle_duration" prototype="skill_idle">
+            <meta>
+                <member id="description">A skill that keeps the robot position for a given duration</member>
+            </meta>
+
+            <data>
+
+                <type id="duration" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Skill duration in [s].</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.0</data>
+                </type>
+
+                <member id="monitors">
+                    <clone prototype="monitor_duration">
+                        <member id="event">succeeded</member>
+                        <member id="duration" reference_id="duration"/>
+                    </clone>
+                </member>
+
+            </data>
+        </type>
+
+        <type id="skill_idle_once" prototype="skill_idle_duration">
+            <meta>
+                <member id="description">Idles for one cycle, e.g. to execute a script</member>
+            </meta>
+            <data>
+                <member id="duration">0.001</member>
+            </data>
+        </type>
+
+        <type id="skill_counter_condition" prototype="skill_idle">
+            <meta>
+                <member id="description">Branches after a certain number of iterations</member>
+            </meta>
+            <data>
+                <type id="repeat_target" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of Target skill when condition is NOT reached</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data></data>
+                </type>
+
+                <type id="condition_target" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of Target skill when condition is reached</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>succeeded</data>
+                </type>
+
+                <type id="count" prototype="int_parameter">
+                    <meta>
+                        <member id="description">Number of executions before triggering</member>
+                        <member id="visibility">required</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="int_min">1</clone>
+                        </clone>
+                    </meta>
+                </type>
+
+                <member id="monitors">
+                    <clone prototype="monitor_execution_counter">
+                        <member id="event">yay</member>
+                        <member id="reject_event">nope</member>
+                        <member id="fire_on_reject">True</member>
+                        <member id="count" reference_id="count" />
+                    </clone>
+                </member>
+                <member id="transitions">
+                    <clone prototype="transition">
+                        <member id="event">nope</member>
+                        <member id="target" reference_id="repeat_target" />
+                    </clone>
+                    <clone prototype="transition">
+                        <member id="event">yay</member>
+                        <member id="target" reference_id="condition_target" />
+                    </clone>
+                </member>
+
+
+            </data>
+        </type>
+
+
+        <type id="skill_preempt" prototype="skill_idle_once">
+            <meta>
+                <member id="description">Triggers a preempt event</member>
+            </meta>
+            <data>
+                <member id="monitors.monitor_duration.event">preempted</member>
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

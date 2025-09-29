@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the usage of some force skills.
+Move to a target, establishes a contact, pushes for some seconds,
+keeps on pushing while moving in another direction (slide), returns to the initial target
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml" />
+        <include package="pitasc_library" file="models/skills.xml" />
+
+        <include package="pitasc_library" file="universal_robots/ur.xml" />
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration" />
+        </member>
+
+        <member id="environment">
+            <clone id="robot" prototype="robot_ur5">
+                <member id="robot_driver">
+                    <clone prototype="simple_robot_driver">
+                        <member id="joint_names" reference_id="joint_names" />
+                        <member id="urdf_package">pitasc_common</member>
+                        <member id="urdf_file">urdf/ur5_rosless.urdf</member>
+                        <member id="max_velocity">2.0</member>
+                        <member id="max_acceleration">3.0</member>
+                    </clone>
+                </member>
+                <member id="components">
+                    <clone id="force_sensor" prototype="force_sensor_base">
+                        <clone id="wrench_driver" prototype="simple_wrench_driver">
+                            <member id="sensor_frame">tool0</member>
+                        </clone>
+                    </clone>
+                </member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_sequence">
+
+                <member id="robot" reference_id="environment.robot" />
+
+                <!-- Skills -->
+                <member id="skills">
+
+                    <!-- First move to start position -->
+                    <clone prototype="skill_relative_ptp">
+                        <member id="relative_joint_state">0, 0, 0, -0.01, 0, 0</member>
+                    </clone>
+
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                    <!-- Moves along z until it hits something-->
+                    <clone prototype="skill_guarded_approach">
+                        <member id="tool_frame">tool</member>
+                        <member id="control_frame">start_position</member>
+                        <member id="tool_frame">tool</member>
+                        <member id="axes">z</member>
+                        <member id="velocities">0.02</member>
+                        <member id="max_forces">10.0</member>
+                    </clone>
+
+                    <!-- Moves along z until it hits something-->
+                    <clone prototype="skill_push">
+                        <member id="tool_frame">tool</member>
+                        <member id="force_frame">start_position</member>
+                        <member id="axes">z</member>
+                        <member id="target_forces">7</member>
+                        <member id="compliance">0.0005</member>
+                        <member id="corner_frequency">7</member>
+
+                        <!-- transition -->
+                        <member id="monitors">
+                            <clone prototype="monitor_duration">
+                                <member id="duration">1.0</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <clone prototype="skill_push_duration">
+                        <member id="tool_frame">tool</member>
+                        <member id="force_frame">start_position</member>
+                        <member id="axes">z</member>
+                        <member id="target_forces">30</member>
+                        <member id="compliance">0.0005</member>
+                        <member id="corner_frequency">7</member>
+
+                        <member id="duration">1</member>
+                    </clone>
+
+                    <clone prototype="skill_push_settle">
+                        <member id="tool_frame">tool</member>
+                        <member id="force_frame">start_position</member>
+                        <member id="axes">z</member>
+                        <member id="target_forces">5</member>
+                        <member id="compliance">0.0005</member>
+                        <member id="corner_frequency">7</member>
+
+                        <member id="thresholds">1.0</member>
+                        <member id="samples">25</member>
+                    </clone>
+
+                    <!-- Position, velocity AND force control! -->
+                    <!-- Move in y, push in z and keep the rest -->
+                    <clone prototype="skill_guarded_slide">
+                        <member id="tool_frame">tool</member>
+                        <member id="control_frame">start_position</member>
+
+                        <!-- moving -->
+                        <member id="move_axes">y</member>
+                        <member id="velocities">0.02</member>
+
+                        <!-- pushing -->
+                        <member id="force_axes">z</member>
+                        <member id="target_forces">5.0</member>
+
+                        <member id="max_forces">10</member>
+
+                        <!-- transition -->
+                        <member id="monitors">
+                            <clone prototype="monitor_duration">
+                                <member id="duration">1.0</member>
+                            </clone>
+                        </member>
+
+                    </clone>
+
+                    <!-- Back to start position -->
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                    <!-- Guarded lin -->
+                    <clone prototype="skill_guarded_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                        <member id="target_offsets">0, 0, 0.1, 0, 0, 0</member>
+                        <member id="max_forces">5.0</member>
+                        <member id="monitor_axes">z</member>
+                        <member id="max_linear_velocity">0.02</member>
+
+                        <!-- Raises an exception when a force occurs -->
+                        <member id="transitions">
+                            <clone prototype="transition">
+                                <member id="event">exception</member>
+                                <member id="target">back</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <clone prototype="skill_insert">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">marker</member>
+
+                        <member id="force_axes">x, y, z</member>
+
+                        <member id="track_axes">a,b,c</member>
+                        <member id="track_offsets">0,0,0</member>
+
+                        <member id="target_forces">0, 0, 18</member>
+                        <member id="compliance">0.001</member>
+                        <member id="corner_frequency">7</member>
+
+                        <member id="monitors">
+                            <clone prototype="monitor_duration">
+                                <member id="duration">1.0</member>
+                                <!-- <member id="event">succeded</member> -->
+                            </clone>
+                            <!-- <clone prototype="monitor_distance">
+                                <member id="reference_frame">start_position</member>
+                                <member id="frame">tool</member>
+                                <member id="coordinates">x</member>
+                                <member id="distances">0.01</member>
+                                <member id="operator">greater</member>
+                            </clone> -->
+                        </member>
+                    </clone>
+
+                    <!-- Back to start position -->
+                    <clone id="back" prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

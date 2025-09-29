@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the usage of rostopic monitors.
+
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">0.5</member>
+                <member id="robot_driver.max_acceleration">2.0</member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_sequence">
+                <member id="robot" reference_id="environment.robot_ur5"/>
+                <member id="skills">
+
+
+                    <!-- needed, because pitasc does not create the robot publisher otherwise -->
+                    <clone prototype="skill_relative_ptp">
+                        <member id="relative_joint_state">0, 0, 0, 0, 0, 0</member>
+                    </clone>
+
+                    <!-- To trigger the monitor, publish a std_msgs/Bool message with value False on the given topic: -->
+                    <!-- rostopic pub /monitor_test_namespace/monitor_test_bool std_msgs/Bool "data: false" -->
+                    <clone prototype="skill_idle_duration">
+                        <member id="duration">20</member>
+                        <member id="monitors">
+                            <clone prototype="monitor_ros_bool_topic">
+                                <member id="namespace">monitor_test_namespace</member>
+                                <member id="topic">monitor_test_bool</member>
+                                <member id="value">False</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <!-- To trigger the monitor, publish a std_msgs/Int8 message with value 20 on the given topic: -->
+                    <!-- rostopic pub /monitor_test_namespace/monitor_test_int8 std_msgs/Int8 "data: 20" -->
+                    <clone prototype="skill_idle_duration">
+                        <member id="duration">20</member>
+                        <member id="monitors">
+                            <clone prototype="monitor_ros_int8_topic">
+                                <member id="namespace">monitor_test_namespace</member>
+                                <member id="topic">monitor_test_int8</member>
+                                <member id="value">20</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <!-- To trigger the monitor, publish a std_msgs/Int16 message with a value less than 20 on the given topic: -->
+                    <!-- rostopic pub /monitor_test_namespace/monitor_test_int16 std_msgs/Int8 "data: 19" -->
+                    <clone prototype="skill_idle_duration">
+                        <member id="duration">20</member>
+                        <member id="monitors">
+                            <clone prototype="monitor_ros_int16_topic">
+                                <member id="namespace">monitor_test_namespace</member>
+                                <member id="topic">monitor_test_int16</member>
+                                <member id="value">20</member>
+                                <member id="operator">less</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <clone prototype="skill_idle_duration">
+                        <member id="duration">20</member>
+                        <member id="monitors">
+                            <clone prototype="monitor_ros_float32_topic">
+                                <member id="namespace">monitor_test_namespace</member>
+                                <member id="topic">monitor_test_float32</member>
+                                <member id="value">20</member>
+                                <member id="operator">less</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <clone prototype="skill_idle_duration">
+                        <member id="duration">20</member>
+                        <member id="monitors">
+                            <clone prototype="monitor_ros_string_topic">
+                                <member id="namespace">monitor_test_namespace</member>
+                                <member id="topic">monitor_test_string</member>
+                                <member id="value">narf</member>
+                                <member id="operator">equal</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <!-- The input on the fireevent monitor decides which event is fired. On value 10, it succeeds, on 0 it preempts. -->
+                    <clone prototype="skill_idle">
+                        <member id="monitors">
+                            <clone prototype="monitor_ros_fireevent_rostopic">
+                                <member id="namespace">monitor_test_namespace</member>
+                                <member id="topic">monitor_test_fireevent</member>
+                                <member id="values">
+                                    <clone prototype="value_event_pair">
+                                        <member id="event">succeeded</member>
+                                        <member id="value">10</member>
+                                    </clone>
+                                    <clone prototype="value_event_pair">
+                                        <member id="event">preempted</member>
+                                        <member id="value">0</member>
+                                    </clone>
+                                </member>
+                                <member id="type">std_msgs/Int16</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

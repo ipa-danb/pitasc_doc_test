@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example project shows how to use multipe apps in one project.
+
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <!-- Create a project -->
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">2.0</member>
+                <member id="robot_driver.max_acceleration">3.0</member>
+            </clone>
+        </member>
+
+        <member id="applications">
+
+            <!-- Add an application... -->
+            <clone id="my_application" prototype="skill_sequence">
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <member id="skills">
+                    <clone id="ptp" prototype="skill_ptp">
+                        <member id="target_joint_state">0, -1.57, 1.57, 0, -1.57, -1.57</member>
+                    </clone>
+                </member>
+            </clone>
+
+            <!-- ... and another one -->
+            <clone id="another_application" prototype="skill_sequence">
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <member id="skills">
+                    <clone id="move_to" prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">target1</member>
+                    </clone>
+                    <clone id="approach" prototype="skill_approach">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">target1</member>
+                        <member id="approach_offsets">0, 0, -0.1, 0, 0, 0</member>
+                    </clone>
+                </member>
+            </clone>
+
+            <clone id="app_01" prototype="skill_idle">
+            </clone>
+            <clone id="app_02" prototype="skill_idle">
+            </clone>
+            <clone id="app_03" prototype="skill_idle">
+            </clone>
+            <clone id="app_04" prototype="skill_idle">
+            </clone>
+            <clone id="app_05" prototype="skill_idle">
+            </clone>
+            <clone id="app_06" prototype="skill_idle">
+            </clone>
+            <clone id="app_07" prototype="skill_idle">
+            </clone>
+            <clone id="app_08" prototype="skill_idle">
+            </clone>
+            <clone id="app_09" prototype="skill_idle">
+            </clone>
+            <clone id="app_10" prototype="skill_idle">
+            </clone>
+            <clone id="app_11" prototype="skill_idle">
+            </clone>
+            <clone id="app_12" prototype="skill_idle">
+            </clone>
+            <clone id="app_13" prototype="skill_idle">
+            </clone>
+            <clone id="app_14" prototype="skill_idle">
+            </clone>
+            <clone id="app_15" prototype="skill_idle">
+            </clone>
+            <clone id="app_16" prototype="skill_idle">
+            </clone>
+            <clone id="app_17" prototype="skill_idle">
+            </clone>
+            <clone id="app_18" prototype="skill_idle">
+            </clone>
+            <clone id="app_19" prototype="skill_idle">
+            </clone>
+            <clone id="app_20" prototype="skill_idle">
+            </clone>
+            <clone id="app_01" prototype="skill_idle">
+            </clone>
+            <clone id="app_02" prototype="skill_idle">
+            </clone>
+            <clone id="app_03" prototype="skill_idle">
+            </clone>
+            <clone id="app_04" prototype="skill_idle">
+            </clone>
+            <clone id="app_05" prototype="skill_idle">
+            </clone>
+            <clone id="app_06" prototype="skill_idle">
+            </clone>
+            <clone id="app_07" prototype="skill_idle">
+            </clone>
+            <clone id="app_08" prototype="skill_idle">
+            </clone>
+            <clone id="app_09" prototype="skill_idle">
+            </clone>
+            <clone id="app_10" prototype="skill_idle">
+            </clone>
+            <clone id="app_11" prototype="skill_idle">
+            </clone>
+            <clone id="app_12" prototype="skill_idle">
+            </clone>
+            <clone id="app_13" prototype="skill_idle">
+            </clone>
+            <clone id="app_14" prototype="skill_idle">
+            </clone>
+            <clone id="app_15" prototype="skill_idle">
+            </clone>
+            <clone id="app_16" prototype="skill_idle">
+            </clone>
+            <clone id="app_17" prototype="skill_idle">
+            </clone>
+            <clone id="app_18" prototype="skill_idle">
+            </clone>
+            <clone id="app_19" prototype="skill_idle">
+            </clone>
+            <clone id="app_20" prototype="skill_idle">
+            </clone>
+                        <clone id="app_01" prototype="skill_idle">
+            </clone>
+            <clone id="app_02" prototype="skill_idle">
+            </clone>
+            <clone id="app_03" prototype="skill_idle">
+            </clone>
+            <clone id="app_04" prototype="skill_idle">
+            </clone>
+            <clone id="app_05" prototype="skill_idle">
+            </clone>
+            <clone id="app_06" prototype="skill_idle">
+            </clone>
+            <clone id="app_07" prototype="skill_idle">
+            </clone>
+            <clone id="app_08" prototype="skill_idle">
+            </clone>
+            <clone id="app_09" prototype="skill_idle">
+            </clone>
+            <clone id="app_10" prototype="skill_idle">
+            </clone>
+            <clone id="app_11" prototype="skill_idle">
+            </clone>
+            <clone id="app_12" prototype="skill_idle">
+            </clone>
+            <clone id="app_13" prototype="skill_idle">
+            </clone>
+            <clone id="app_14" prototype="skill_idle">
+            </clone>
+            <clone id="app_15" prototype="skill_idle">
+            </clone>
+            <clone id="app_16" prototype="skill_idle">
+            </clone>
+            <clone id="app_17" prototype="skill_idle">
+            </clone>
+            <clone id="app_18" prototype="skill_idle">
+            </clone>
+            <clone id="app_19" prototype="skill_idle">
+            </clone>
+            <clone id="app_20" prototype="skill_idle">
+            </clone>
+                        <clone id="app_01" prototype="skill_idle">
+            </clone>
+            <clone id="app_02" prototype="skill_idle">
+            </clone>
+            <clone id="app_03" prototype="skill_idle">
+            </clone>
+            <clone id="app_04" prototype="skill_idle">
+            </clone>
+            <clone id="app_05" prototype="skill_idle">
+            </clone>
+            <clone id="app_06" prototype="skill_idle">
+            </clone>
+            <clone id="app_07" prototype="skill_idle">
+            </clone>
+            <clone id="app_08" prototype="skill_idle">
+            </clone>
+            <clone id="app_09" prototype="skill_idle">
+            </clone>
+            <clone id="app_10" prototype="skill_idle">
+            </clone>
+            <clone id="app_11" prototype="skill_idle">
+            </clone>
+            <clone id="app_12" prototype="skill_idle">
+            </clone>
+            <clone id="app_13" prototype="skill_idle">
+            </clone>
+            <clone id="app_14" prototype="skill_idle">
+            </clone>
+            <clone id="app_15" prototype="skill_idle">
+            </clone>
+            <clone id="app_16" prototype="skill_idle">
+            </clone>
+            <clone id="app_17" prototype="skill_idle">
+            </clone>
+            <clone id="app_18" prototype="skill_idle">
+            </clone>
+            <clone id="app_19" prototype="skill_idle">
+            </clone>
+            <clone id="app_20" prototype="skill_idle">
+            </clone>
+                        <clone id="app_01" prototype="skill_idle">
+            </clone>
+            <clone id="app_02" prototype="skill_idle">
+            </clone>
+            <clone id="app_03" prototype="skill_idle">
+            </clone>
+            <clone id="app_04" prototype="skill_idle">
+            </clone>
+            <clone id="app_05" prototype="skill_idle">
+            </clone>
+            <clone id="app_06" prototype="skill_idle">
+            </clone>
+            <clone id="app_07" prototype="skill_idle">
+            </clone>
+            <clone id="app_08" prototype="skill_idle">
+            </clone>
+            <clone id="app_09" prototype="skill_idle">
+            </clone>
+            <clone id="app_10" prototype="skill_idle">
+            </clone>
+            <clone id="app_11" prototype="skill_idle">
+            </clone>
+            <clone id="app_12" prototype="skill_idle">
+            </clone>
+            <clone id="app_13" prototype="skill_idle">
+            </clone>
+            <clone id="app_14" prototype="skill_idle">
+            </clone>
+            <clone id="app_15" prototype="skill_idle">
+            </clone>
+            <clone id="app_16" prototype="skill_idle">
+            </clone>
+            <clone id="app_17" prototype="skill_idle">
+            </clone>
+            <clone id="app_18" prototype="skill_idle">
+            </clone>
+            <clone id="app_19" prototype="skill_idle">
+            </clone>
+            <clone id="app_20" prototype="skill_idle">
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

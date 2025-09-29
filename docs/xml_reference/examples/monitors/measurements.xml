@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the usage of monitors.
+
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">1.0</member>
+                <member id="robot_driver.max_acceleration">2.0</member>
+                <member id="components">
+                    <clone prototype="force_sensor">
+                        <member id="wrench_topic">wrench</member>
+                    </clone>
+                </member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_sequence">
+
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <member id="skills">
+
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                    <!-- monitor_wrench is not implemented yet -->
+                    <!-- <clone prototype="skill_partial_velocity">
+                        <member id="tool_frame">tool</member>
+                        <member id="velocity_frame">start_position</member>
+                        <member id="axes">z</member>
+                        <member id="velocities">0.01</member>
+                        <member id="monitors">
+
+                            <clone prototype="monitor_wrench">
+                                <member id="coordinate">z</member>
+                                <member id="operator">absolute_greater</member>
+                                <member id="threshold">10.0</member>
+                                <member id="topic">/wrench</member>
+                                <member id="frame">start_position</member>
+                            </clone>
+
+                        </member>
+                    </clone> -->
+                    <!-- but, monitor_threshold can observe wrenches as well with a little modification (concurrent skill_force): -->
+                    <clone prototype="skill_concurrency">
+                        <member id="skills">
+                            <clone prototype="skill_partial_velocity">
+                                <member id="tool_frame">tool</member>
+                                <member id="axes">z</member>
+                                <member id="velocities">0.02</member>
+                                <member id="velocity_frame">start_position</member>
+                            </clone>
+                            <!-- create a force chain using a skill_force. This skill does not apply any forces (like skill_apply_force),
+                                  but creates the force chain that is used by the monitor -->
+                            <clone id="force_skill" prototype="skill_force">
+                                <member id="force_frame">start_position</member> <!-- this is the reference frame for the wrench -->
+                                <!-- it is possible to use a different than the default force sensor: -->
+                                <member id="force_sensor" reference_id="environment.robot_ur5.components.force_sensor"/>
+                            </clone>
+                        </member>
+
+                        <member id="monitors">
+                            <clone id="force_threshold" prototype="monitor_threshold">
+                                <member id="provider" reference_id="skills.force_skill.collections.force_chain.chains[0]"/>
+                                <member id="prefix" reference_id="skills.force_skill.collections.force_chain.prefix"/>
+                                <member id="coordinates">z</member>
+                                <member id="operator">absolute_greater</member>
+                                <member id="thresholds">10</member>
+                                <member id="samples">20</member> <!-- number of consecutive measurements which have to meet the threshold condition -->
+                            </clone>
+                        </member>
+
+                    </clone>
+
+
+                    <!-- <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone> -->
+
+                    <!-- monitor_topic_threshold is not implemented yet -->
+                    <!-- <clone prototype="skill_partial_velocity">
+                        <member id="tool_frame">tool</member>
+                        <member id="velocity_frame">start_position</member>
+                        <member id="axes">z</member>
+                        <member id="velocities">0.01</member>
+                        <member id="monitors">
+
+                            <clone prototype="monitor_topic_threshold">
+                                <member id="topic">/wrench</member>
+                                <member id="field">wrench.force.x</member>
+                                <member id="operator">absolute_greater</member>
+                                <member id="threshold">10.0</member>
+                            </clone>
+
+                        </member>
+                    </clone> -->
+
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                    <clone id="threshold_x" prototype="skill_partial_velocity">
+                        <member id="tool_frame">tool</member>
+                        <member id="velocity_frame">start_position</member>
+                        <member id="axes">x</member>
+                        <member id="velocities">0.08</member>
+
+                        <!-- Quit when the x-cooridnate exceeds 0.1[m] -->
+                        <member id="monitors">
+                            <clone prototype="monitor_threshold">
+                                <member id="provider" reference_id="skills.move_skill.collections.target_to_tool.chains[0]"/>
+                                <member id="coordinates">x</member>
+                                <member id="prefix" reference_id="skills.move_skill.collections.target_to_tool.prefix"/>
+                                <member id="operator">absolute_greater</member>
+                                <member id="thresholds">0.1</member>
+                            </clone>
+                        </member>
+
+                    </clone>
+
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                    <clone id="threshold_xy_single" prototype="skill_partial_velocity">
+                        <member id="tool_frame">tool</member>
+                        <member id="velocity_frame">start_position</member>
+                        <member id="axes">x,y</member>
+                        <member id="velocities">0.08, 0.04</member>
+
+                        <!-- Quit when one of the  x- and y- cooridnate exceed 0.1[m] -->
+                        <member id="monitors">
+                            <clone prototype="monitor_threshold">
+                                <member id="provider" reference_id="skills.move_skill.collections.target_to_tool.chains[0]"/>
+                                <member id="coordinates">x,y</member>
+                                <member id="prefix" reference_id="skills.move_skill.collections.target_to_tool.prefix"/>
+                                <member id="operator">absolute_greater</member>
+                                <member id="thresholds">0.1</member>                                <!-- you can use different thresholds for each axis as well -->
+                                <member id="multi_coordinates_handling">single_element</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                    <clone id="threshold_xy_norm" prototype="skill_partial_velocity">
+                        <member id="tool_frame">tool</member>
+                        <member id="velocity_frame">start_position</member>
+                        <member id="axes">x,y</member>
+                        <member id="velocities">0.08, 0.04</member>
+
+                        <!-- Quit when the vector norm of (x,y) exceeds 0.1[m] -->
+                        <member id="monitors">
+                            <clone prototype="monitor_threshold">
+                                <member id="provider" reference_id="skills.move_skill.collections.target_to_tool.chains[0]"/>
+                                <member id="coordinates">x,y</member>
+                                <member id="prefix" reference_id="skills.move_skill.collections.target_to_tool.prefix"/>
+                                <member id="operator">absolute_greater</member>
+                                <member id="thresholds">0.1</member>
+                                <member id="multi_coordinates_handling">vector_norm</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                    <clone id="threshold_xy_all" prototype="skill_partial_velocity">
+                        <member id="tool_frame">tool</member>
+                        <member id="velocity_frame">start_position</member>
+                        <member id="axes">x,y</member>
+                        <member id="velocities">0.08, 0.04</member>
+
+                        <!-- Quit when the x- AND y- cooridnate exceed 0.1[m] -->
+                        <member id="monitors">
+                            <clone prototype="monitor_threshold">
+                                <member id="provider" reference_id="skills.move_skill.collections.target_to_tool.chains[0]"/>
+                                <member id="coordinates">x,y</member>
+                                <member id="prefix" reference_id="skills.move_skill.collections.target_to_tool.prefix"/>
+                                <member id="operator">absolute_greater</member>
+                                <member id="thresholds">0.1</member>
+                                <member id="multi_coordinates_handling">all_elements</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

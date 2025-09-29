@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the usage of scripts.
+
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">0.5</member>
+                <member id="robot_driver.max_acceleration">2.0</member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_sequence">
+                <member id="robot" reference_id="environment.robot_ur5"/>
+                <member id="skills">
+
+                    <clone prototype="skill_sequence">
+                        <member id="skills">
+
+                            <!-- needed, because pitasc does not create the robot publisher otherwise -->
+                            <clone prototype="skill_relative_ptp">
+                                <member id="relative_joint_state">0, 0, 0, 0, 0, 0</member>
+                            </clone>
+
+                            <clone prototype="skill_idle_duration">
+                                <member id="duration">0.5</member>
+                                <member id="scripts">
+                                    <!-- Call Empty service -->
+                                    <clone prototype="script_call_empty_srvs">
+                                        <member id="namespace">monitor_test_namespace</member>
+                                        <member id="service_name">/monitor_test_empty</member>
+                                        <member id="wait_for_service">True</member>
+                                        <member id="on_start">False</member>
+                                    </clone>
+                                </member>
+                            </clone>
+                            <clone prototype="skill_idle"/>
+                        </member>
+
+                        <member id="monitors">
+                            <!-- Wait for Empty service -->
+                            <clone prototype="monitor_ros_empty_service">
+                                <member id="namespace">monitor_test_namespace</member>
+                                <member id="service_name">/monitor_test_empty</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+
+                    <clone prototype="skill_sequence">
+                        <member id="skills">
+                            <clone prototype="skill_idle_duration">
+                                <member id="duration">0.5</member>
+                                <member id="scripts">
+                                    <!-- Call Trigger service -->
+                                    <clone prototype="script_call_trigger_srvs">
+                                        <member id="namespace">monitor_test_namespace</member>
+                                        <member id="service_name">/monitor_test_trigger</member>
+                                        <member id="wait_for_service">True</member>
+                                        <member id="on_start">False</member>
+                                    </clone>
+                                </member>
+                            </clone>
+                            <clone prototype="skill_idle"/>
+                        </member>
+
+                        <member id="monitors">
+                            <!-- Wait for Trigger service -->
+                            <clone prototype="monitor_ros_trigger_service">
+                                <member id="namespace">monitor_test_namespace</member>
+                                <member id="service_name">/monitor_test_trigger</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+
+                    <clone prototype="skill_sequence">
+                        <member id="skills">
+                            <clone prototype="skill_idle_duration">
+                                <member id="duration">0.5</member>
+                                <member id="scripts">
+                                    <!-- Call SetBool service -->
+                                    <clone prototype="script_call_setbool_srvs">
+                                        <member id="namespace">monitor_test_namespace</member>
+                                        <member id="service_name">/monitor_test_setbool</member>
+                                        <member id="wait_for_service">True</member>
+                                        <member id="on_start">False</member>
+                                        <member id="value">True</member>
+                                    </clone>
+                                </member>
+                            </clone>
+                            <clone prototype="skill_idle"/>
+                        </member>
+
+                        <member id="monitors">
+                            <!-- Wait for SetBool service -->
+                            <clone prototype="monitor_ros_setbool_service">
+                                <member id="namespace">monitor_test_namespace</member>
+                                <member id="service_name">/monitor_test_setbool</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

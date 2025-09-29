@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pitasc.parameter_model &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pitasc.model_element" href="pitasc_model_element.html" />
+    <link rel="prev" title="pitasc.model_interface" href="pitasc_model_interface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#model-access">Model access</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pitasc_model.html">pitasc.model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pitasc_model_interface.html">pitasc.model_interface</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pitasc.parameter_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pitasc.parameter_model.Parameter"><code class="docutils literal notranslate"><span class="pre">Parameter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pitasc.parameter_model.ParameterBasic"><code class="docutils literal notranslate"><span class="pre">ParameterBasic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pitasc.parameter_model.ParameterDict"><code class="docutils literal notranslate"><span class="pre">ParameterDict</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pitasc.parameter_model.ParameterList"><code class="docutils literal notranslate"><span class="pre">ParameterList</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pitasc.parameter_model.ParameterModel"><code class="docutils literal notranslate"><span class="pre">ParameterModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pitasc.parameter_model.ParameterNone"><code class="docutils literal notranslate"><span class="pre">ParameterNone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pitasc.parameter_model.ParameterOrderedDict"><code class="docutils literal notranslate"><span class="pre">ParameterOrderedDict</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pitasc_model_element.html">pitasc.model_element</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#runtime-access">Runtime access</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python API reference</a></li>
+      <li class="breadcrumb-item active">pitasc.parameter_model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api_reference/python/pitasc_parameter_model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pitasc.parameter_model">
+<span id="pitasc-parameter-model"></span><h1>pitasc.parameter_model<a class="headerlink" href="#module-pitasc.parameter_model" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pitasc.parameter_model.Parameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pitasc.parameter_model.</span></span><span class="sig-name descname"><span class="pre">Parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prototype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'not_set'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.Parameter" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.Parameter.create_data_deepcopy">
+<span class="sig-name descname"><span class="pre">create_data_deepcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.Parameter.create_data_deepcopy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.Parameter.get_child">
+<span class="sig-name descname"><span class="pre">get_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.Parameter.get_child" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.Parameter.get_child_count">
+<span class="sig-name descname"><span class="pre">get_child_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.Parameter.get_child_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.Parameter.get_child_index">
+<span class="sig-name descname"><span class="pre">get_child_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.Parameter.get_child_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterBasic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pitasc.parameter_model.</span></span><span class="sig-name descname"><span class="pre">ParameterBasic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prototype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'not_set'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterBasic" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterBasic.create_data_deepcopy">
+<span class="sig-name descname"><span class="pre">create_data_deepcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterBasic.create_data_deepcopy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterBasic.get_child">
+<span class="sig-name descname"><span class="pre">get_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterBasic.get_child" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterBasic.get_child_count">
+<span class="sig-name descname"><span class="pre">get_child_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterBasic.get_child_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterBasic.get_child_index">
+<span class="sig-name descname"><span class="pre">get_child_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterBasic.get_child_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pitasc.parameter_model.</span></span><span class="sig-name descname"><span class="pre">ParameterDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prototype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'not_set'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterDict" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterDict.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterDict.append" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterList">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pitasc.parameter_model.</span></span><span class="sig-name descname"><span class="pre">ParameterList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prototype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'not_set'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterList" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterList.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterList.append" title="Permalink to this definition"></a></dt>
+<dd><p>Appends a new parameter to the list.</p>
+<p>Maintains the order of parameters.</p>
+<p>Parameters will be automatically named uniquely by adding a suffix, e.g.
+‘_no0’, ‘_no1’,… to the id, if id is already in the list.</p>
+<p>This is a O(n) operation, with n being the number of entries with the
+same id, which is usually very small (1-100)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pitasc.parameter_model.</span></span><span class="sig-name descname"><span class="pre">ParameterModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prototype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'not_set'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel" title="Permalink to this definition"></a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Change</span></span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.child">
+<span class="sig-name descname"><span class="pre">child</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">24</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.child" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.child_created">
+<span class="sig-name descname"><span class="pre">child_created</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.child_created" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.child_deleted">
+<span class="sig-name descname"><span class="pre">child_deleted</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.child_deleted" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.created">
+<span class="sig-name descname"><span class="pre">created</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.created" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.data_type">
+<span class="sig-name descname"><span class="pre">data_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.data_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.deleted">
+<span class="sig-name descname"><span class="pre">deleted</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.deleted" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.description" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.parameter_id">
+<span class="sig-name descname"><span class="pre">parameter_id</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.parameter_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.parent">
+<span class="sig-name descname"><span class="pre">parent</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">512</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.parent" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.prototype">
+<span class="sig-name descname"><span class="pre">prototype</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.prototype" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.reference">
+<span class="sig-name descname"><span class="pre">reference</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1024</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.reference" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.Change.unchanged">
+<span class="sig-name descname"><span class="pre">unchanged</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.Change.unchanged" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.add_referencer">
+<span class="sig-name descname"><span class="pre">add_referencer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.add_referencer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.clear_reference_cache">
+<span class="sig-name descname"><span class="pre">clear_reference_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.clear_reference_cache" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.create_data_deepcopy">
+<span class="sig-name descname"><span class="pre">create_data_deepcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.create_data_deepcopy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.create_deepcopy">
+<span class="sig-name descname"><span class="pre">create_deepcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.create_deepcopy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.create_parameter">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prototype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'not_set'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.create_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Factory method: Creates and returns a parameter based on data_type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.create_root_parameter">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_root_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.create_root_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Creates and returns the root parameter for a model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.create_sub_parameter">
+<span class="sig-name descname"><span class="pre">create_sub_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.create_sub_parameter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.find_id">
+<span class="sig-name descname"><span class="pre">find_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.find_id" title="Permalink to this definition"></a></dt>
+<dd><p>Traverses upwards to find a parameter by id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.find_model">
+<span class="sig-name descname"><span class="pre">find_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.find_model" title="Permalink to this definition"></a></dt>
+<dd><p>Traverses upwards to find a parameter type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.find_models">
+<span class="sig-name descname"><span class="pre">find_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prototype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checked</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.find_models" title="Permalink to this definition"></a></dt>
+<dd><p>Traverses updwards and finds all parameters with a certain prototype</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.find_reference">
+<span class="sig-name descname"><span class="pre">find_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.find_reference" title="Permalink to this definition"></a></dt>
+<dd><p>Traverses upwards by id and then downwards by path to find a parameter.</p>
+<p>Parameters in the data field are prioritized over models in case both exist.
+Doesn’t prevent cycles, only self referencing!</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_child">
+<span class="sig-name descname"><span class="pre">get_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_child" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_child_count">
+<span class="sig-name descname"><span class="pre">get_child_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_child_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_child_index">
+<span class="sig-name descname"><span class="pre">get_child_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_child_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_children">
+<span class="sig-name descname"><span class="pre">get_children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_children" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_index">
+<span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_model">
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_model" title="Permalink to this definition"></a></dt>
+<dd><p>Check all own models and all own include files for the requested model type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_or_create_includes">
+<span class="sig-name descname"><span class="pre">get_or_create_includes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_or_create_includes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_or_create_meta">
+<span class="sig-name descname"><span class="pre">get_or_create_meta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_or_create_meta" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_or_create_models">
+<span class="sig-name descname"><span class="pre">get_or_create_models</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_or_create_models" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_original">
+<span class="sig-name descname"><span class="pre">get_original</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_original" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_path">
+<span class="sig-name descname"><span class="pre">get_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_path" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.get_prototype_chain">
+<span class="sig-name descname"><span class="pre">get_prototype_chain</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.get_prototype_chain" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.includes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">includes</span></span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.includes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.init_data">
+<span class="sig-name descname"><span class="pre">init_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.init_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.is_a">
+<span class="sig-name descname"><span class="pre">is_a</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.is_a" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.meta">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.meta" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.models">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">models</span></span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.models" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.reference">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reference</span></span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.reference" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.reference_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reference_id</span></span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.reference_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterModel.remove_referencer">
+<span class="sig-name descname"><span class="pre">remove_referencer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterModel.remove_referencer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterNone">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pitasc.parameter_model.</span></span><span class="sig-name descname"><span class="pre">ParameterNone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prototype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'not_set'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterNone" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterNone.create_data_deepcopy">
+<span class="sig-name descname"><span class="pre">create_data_deepcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterNone.create_data_deepcopy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterNone.get_child">
+<span class="sig-name descname"><span class="pre">get_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterNone.get_child" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterNone.get_child_count">
+<span class="sig-name descname"><span class="pre">get_child_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterNone.get_child_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterNone.get_child_index">
+<span class="sig-name descname"><span class="pre">get_child_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterNone.get_child_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pitasc.parameter_model.</span></span><span class="sig-name descname"><span class="pre">ParameterOrderedDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prototype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'not_set'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict.create_data_deepcopy">
+<span class="sig-name descname"><span class="pre">create_data_deepcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict.create_data_deepcopy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict.get_child">
+<span class="sig-name descname"><span class="pre">get_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict.get_child" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict.get_child_count">
+<span class="sig-name descname"><span class="pre">get_child_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict.get_child_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict.get_child_index">
+<span class="sig-name descname"><span class="pre">get_child_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict.get_child_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict.get_children">
+<span class="sig-name descname"><span class="pre">get_children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict.get_children" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict.init_data">
+<span class="sig-name descname"><span class="pre">init_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict.init_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict.insert" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict.move" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict.pop" title="Permalink to this definition"></a></dt>
+<dd><p>Removes the last parameter in the list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pitasc.parameter_model.ParameterOrderedDict.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pitasc.parameter_model.ParameterOrderedDict.remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pitasc_model_interface.html" class="btn btn-neutral float-left" title="pitasc.model_interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pitasc_model_element.html" class="btn btn-neutral float-right" title="pitasc.model_element" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

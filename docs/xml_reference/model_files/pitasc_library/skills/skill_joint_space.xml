@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+
+        <type id="skill_joint_space" prototype="skill_single_robot">
+            <meta>
+                <member id="description">Models a loop for joint space control</member>
+                <member id="categories">single_robot, position_controlled</member>
+            </meta>
+
+            <data>
+
+                <!-- Kinematics -->
+                <member id="collections">
+                    <clone id="base_to_eef" prototype="pose_relationship">
+                        <member id="chain_name">base_to_eef</member>
+                        <member id="from_frame" reference_id="robot.base_link"/>
+                        <member id="to_frame" reference_id="robot.ee_link"/>
+                    </clone>
+                </member>
+                <member id="collections.meta.visibility">hidden</member>
+
+                <member id="loops">
+                    <clone prototype="kinematic_loop">
+                        <member id="loop_name">viaTarget</member>
+                        <member id="robot_chains">
+                            <reference prototype="kinematic_chain_base" reference_id="robot.chains[0]"/>
+                        </member>
+                        <member id="feature_chains">
+                            <reference prototype="kinematic_chain_base" reference_id="collections.base_to_eef.chains[0]"/>
+                        </member>
+                    </clone>
+                </member>
+                <member id="loops.meta.visibility">hidden</member>
+
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

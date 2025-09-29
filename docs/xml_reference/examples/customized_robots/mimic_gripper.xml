@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the behaviour of pitasc with limited mimic joints
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="urdf_ee_link">finger_left</member>
+                <member id="urdf_joint_names">
+                    shoulder_pan_joint,
+                    shoulder_lift_joint,
+                    elbow_joint,
+                    wrist_1_joint,
+                    wrist_2_joint,
+                    wrist_3_joint,
+                    finger_left_joint
+                </member>
+                <member id="robot_driver.max_velocity">2.0</member>
+                <member id="robot_driver.max_acceleration">3.0</member>
+                <member id="components">
+                    <clone prototype="force_sensor">
+                        <member id="wrench_topic">wrench</member>
+                    </clone>
+                </member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_sequence">
+
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <!-- Skills -->
+                <member id="skills">
+
+                    <!-- First move open gripper directly via joint -->
+                    <clone prototype="skill_relative_ptp">
+                        <member id="relative_joint_state">0, 0, 0, 0, 0, 0, 0.02</member>
+                    </clone>
+
+                    <clone prototype="skill_relative_ptp">
+                        <member id="relative_joint_state">0, 0, 0, 0, 0, 0, +0.08</member>
+                    </clone>
+
+                    <!-- Then move to position while respecting the joint limits -->
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">finger_left</member>
+                        <member id="target_frame">target2</member>
+                    </clone>
+
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

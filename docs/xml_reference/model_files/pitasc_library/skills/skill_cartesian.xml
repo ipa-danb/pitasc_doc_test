@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="skills/loop_target.xml"/>
+
+        <type id="skill_cartesian" prototype="loop_target">
+            <meta>
+                <member id="description">Models a loop via tool frame and target frame</member>
+                <member id="categories">single_robot, position_controlled</member>
+                <member id="visibility">expert</member>
+            </meta>
+            <data>
+                <member id="collections">
+                    <clone id="target_to_tool" prototype="pose_relationship">
+                        <member id="chain_name">target_to_tool</member>
+                        <member id="from_frame" reference_id="target_frame"/>
+                        <member id="to_frame" reference_id="tool_frame"/>
+                    </clone>
+                </member>
+                <member id="collections.meta.visibility">hidden</member>
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

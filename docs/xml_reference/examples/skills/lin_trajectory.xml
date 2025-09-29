@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows how to run a linear trajectory through several waypoints with blending.
+
+A UR5 moves to start position, then he performs the trajectory. Then, he does it again with higher velocity. Then the application terminates.
+-->
+
+<pitasc>
+
+    <models>
+        <!-- Include pitasc -->
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+
+        <!-- Include the UR5 -->
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+
+        <!-- Include the skills -->
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+    </models>
+
+    <!-- Create a project -->
+    <clone prototype="project">
+
+        <member id="configuration">
+            <!-- Use the default configuration with recommended settings -->
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <!-- Add a UR5 -->
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">2.0</member>
+                <member id="robot_driver.max_acceleration">3.0</member>
+            </clone>
+        </member>
+
+        <member id="applications">
+
+            <!-- Use a skill sequence as a container -->
+            <clone prototype="skill_sequence">
+
+                <!-- Use the UR5 for this skill (and for its subskill) -->
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <!-- Add subskill(s) -->
+                <member id="skills">
+
+                    <!-- Move to target1 (lin)-->
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">target1</member>
+                    </clone>
+
+                    <!-- Move along several LIN waypoints and log the desired and measured cartesian positions. -->
+                    <clone prototype="skill_lin_trajectory">
+                        <member id="tool_frame">tool</member>
+                        <!-- <member id="target_frame">target1</member> --> <!-- must not be set, results in errors. Target point is the last waypoint-->
+                        <member id="max_linear_velocity">0.5</member>
+                        <member id="max_linear_acceleration">1.5</member>
+                        <member id="linear_ff_controller_gain">0.8</member>
+
+                        <member id="waypoints">
+                            <clone prototype="lin_trajectory_waypoint">
+                                <member id="target_frame">target2</member>
+                                <member id="blending_distance">0.02</member>
+                                <member id="max_linear_velocity">0.2</member>  <!-- can be set; is valid for the distance to this waypoint -->
+                                <member id="max_angular_velocity">0.5</member>  <!-- can be set; is valid for the distance to this waypoint -->
+                                <member id="max_linear_acceleration">3.0</member>  <!-- can be set; is valid for the distance to this waypoint and the blending -->
+                                <member id="max_angular_acceleration">10.0</member>  <!-- can be set; is valid for the (angular) distance to this waypoint and the blending -->
+                            </clone>
+                            <clone prototype="lin_trajectory_waypoint">
+                                <member id="target_frame">start_position</member>
+                                <member id="blending_distance">0.1</member>
+                                <member id="max_linear_velocity">0.3</member>
+                                <member id="max_angular_velocity">0.6</member>
+                                <member id="max_linear_acceleration">5.0</member>
+                            </clone>
+                            <clone prototype="lin_trajectory_waypoint">
+                                <member id="target_frame">target3</member>
+                                <member id="blending_distance">0.03</member>
+                                <member id="target_offsets">0, 0.05, 0, 0, 0, 0</member>
+                            </clone>
+                            <clone prototype="lin_trajectory_waypoint">
+                                <member id="target_frame">target3</member>
+                                <member id="target_offsets">-0.05, 0, 0, 0, 0, 0</member>
+                                <member id="max_linear_velocity">0.1</member>
+                                <member id="max_angular_velocity">1.0</member>
+                            </clone>
+                        </member>
+
+                        <member id="scripts">
+                            <clone prototype="script_measurement_logger">
+                                <member id="provider" reference_id="collections.target_to_tool.chains"/>
+                                <member id="file_name">{rospkg pitasc_common}/examples/skills/logs/lin_trajectory_measured_pos.csv</member>
+                                <member id="filter"></member>
+                            </clone>
+                            <clone prototype="script_measurement_logger">
+                                <member id="provider" reference_id="tasks.tracking.setpoint_generators"/>
+                                <member id="file_name">{rospkg pitasc_common}/examples/skills/logs/lin_trajectory_desired_pos.csv</member>
+                                <member id="filter"></member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <!-- Move to target1 (lin)-->
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">target1</member>
+                    </clone>
+
+                    <!-- Move along several LIN waypoints, with double speed. Notice the manual controller tuning -->
+                    <clone prototype="skill_lin_trajectory">
+                        <member id="tool_frame">tool</member>
+                        <!-- <member id="target_frame">target1</member> --> <!-- must not be set, results in errors. Target point is the last waypoint-->
+                        <member id="max_linear_velocity">0.4</member>
+                        <member id="max_angular_velocity">5.0</member>
+                        <member id="max_linear_acceleration">1.5</member>
+                        <member id="linear_controller_gain">4.0</member>
+                        <member id="angular_controller_gain">2.0</member>
+                        <member id="linear_ff_controller_gain">0.7</member>
+                        <member id="angular_ff_controller_gain">0.8</member>
+
+                        <member id="waypoints">
+                            <clone prototype="lin_trajectory_waypoint">
+                                <member id="target_frame">target2</member>
+                                <member id="blending_distance">0.02</member>
+                            </clone>
+                            <clone prototype="lin_trajectory_waypoint">
+                                <member id="target_frame">start_position</member>
+                                <member id="blending_distance">0.1</member>
+                            </clone>
+                            <clone prototype="lin_trajectory_waypoint">
+                                <member id="target_frame">target3</member>
+                                <member id="blending_distance">0.03</member>
+                                <member id="target_offsets">0, 0.05, 0, 0, 0, 0</member>
+                            </clone>
+                            <clone prototype="lin_trajectory_waypoint">
+                                <member id="target_frame">target3</member>
+                                <member id="target_offsets">-0.05, 0, 0, 0, 0, 0</member>
+                            </clone>
+                        </member>
+
+                    </clone>
+                </member>
+
+            </clone>
+
+        </member>
+
+    </clone>
+
+</pitasc>

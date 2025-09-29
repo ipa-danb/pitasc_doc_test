@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+
+        <type id="monitor_nop" prototype="monitor">
+            <meta>
+                <member id="description">Monitor that never fires</member>
+                <member id="categories">logic</member>
+                <member id="implementation">
+                </member>
+            </meta>
+        </type>
+
+
+        <type id="monitor_sync" prototype="monitor">
+            <meta>
+                <member id="description">Contains other monitors and triggers when all sub-events match.</member>
+                <member id="categories">logic</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">SyncMonitor</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="monitors" data_type="list:monitor" prototype="base">
+                    <meta>
+                        <member id="description">Sub-monitors that need to be synced.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="events" prototype="string_csv">
+                    <meta>
+                        <member id="description">Events that trigger the sync. If empty, **succeeded** is assumed for all sub monitors.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data></data>
+                </type>
+            </data>
+        </type>
+
+
+        <type id="monitor_cycle_counter" prototype="monitor">
+            <meta>
+                <member id="description">Triggers after a certain number of cycles.</member>
+                <member id="categories">logic</member>
+                <member id="implementation">
+                </member>
+            </meta>
+            <data>
+                <type id="count" prototype="int_parameter">
+                    <meta>
+                        <member id="description">The number of cycles before the event is raised</member>
+                        <member id="visibility">required</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="int_min">0</clone>
+                        </clone>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+
+        <type id="monitor_execution_counter" prototype="monitor">
+            <meta>
+                <member id="description">Triggers after a certain number of executions of the parent skill. Can trigger a **reject_event** if the number of exections is not reached yet.</member>
+                <member id="categories">logic</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">ExecutionCounterMonitor</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="count" prototype="int_parameter">
+                    <meta>
+                        <member id="description">Number of executions before triggering</member>
+                        <member id="visibility">required</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="int_min">1</clone>
+                        </clone>
+                    </meta>
+                </type>
+                <type id="reject_event" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The event to be triggered if count **is not** reached.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>preempted</data>
+                </type>
+                <type id="fire_on_reject" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">If true, the **reject_event** is triggered if the **count** is not reached yet.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>false</data>
+                </type>
+            </data>
+        </type>
+
+
+        <type id="monitor_duration" prototype="monitor">
+            <meta>
+                <member id="description">Triggers after a certain time.</member>
+                <member id="categories">logic</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">DurationMonitor</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="duration" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The amount of time to wait until triggering</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+
+        <type id="monitor_script_result" prototype="monitor">
+            <meta>
+                <member id="description">Triggers when a script returns a certain result.</member>
+                <member id="categories">logic</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">ScriptResultMonitor</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="script" data_type="parameter:script" prototype="base">
+                    <meta>
+                        <member id="description">The script to watch</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="possible_results" prototype="string_csv">
+                    <meta>
+                        <member id="description">The possible results that can be returned by the script</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="events" prototype="string_csv">
+                    <meta>
+                        <member id="description">The respective events that are fired, in the order according to the possible results</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <member id="event"></member> <!-- must not be set, but 'events' instead -->
+                <member id="event.meta.visibility">hidden</member>
+            </data>
+        </type>
+
+
+        <type id="monitor_trigger_script_result" prototype="monitor">
+            <meta>
+                <member id="description">Triggers when a script calling a trigger-like service finishes.</member>
+                <member id="categories">logic</member>
+                <member id="implementation">
+                </member>
+            </meta>
+            <data>
+                <type id="script" data_type="parameter:script" prototype="base">
+                    <meta>
+                        <member id="description">The script to watch</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="fail_event" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The event to be triggered on failure.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>preempted</data>
+                </type>
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

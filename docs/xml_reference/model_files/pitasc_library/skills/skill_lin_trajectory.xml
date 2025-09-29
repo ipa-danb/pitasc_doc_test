@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="skills/skill_cartesian.xml"/>
+
+        <type id="skill_lin_trajectory_base" prototype="skill_cartesian">
+            <meta>
+                <member id="description">Base class for linear trajectories.
+                
+                Care: Setting target offsets for the waypoints for orientation can cause euler angle issues.
+                </member>
+                <member id="visibility">expert</member>
+            </meta>
+
+            <data>
+                <!-- Task description -->
+                <type id="axes" prototype="string_csv">
+                    <meta>
+                        <member id="description">List of axes to be aligned.</member>
+                        <member id="visibility">basic</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z, a, b, c</clone>
+                        </clone>
+                    </meta>
+                    <data>x, y, z, a, b, c</data>
+                </type>
+
+                <!-- Setpoint generation -->
+                <type id="waypoints" data_type="list:lin_trajectory_waypoint" prototype="base">
+                    <meta>
+                        <member id="description">List of joint_trajectory_waypoint to move through with blending</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <!-- Control -->
+                <type id="max_linear_velocity" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Max linear velocity.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>0.2</data>
+                </type>
+                <type id="max_angular_velocity" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Max angular velocity.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.5</data>
+                </type>
+                <type id="max_linear_acceleration" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Max linear acceleration.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.0</data>
+                </type>
+                <type id="max_angular_acceleration" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Max angular acceleration. If not set, a default value (three times the linear acceleration) is used.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                </type>
+                <type id="linear_controller_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Specifies the approx. linear gain of the controller transfer function for Cartesian positions (i.e. x,y and z).</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>3</data>
+                </type>
+                <type id="angular_controller_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Specifies the approx. linear gain of the controller transfer function for Cartesian angles (i.e. a,b and c).</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>3</data>
+                </type>
+                <type id="linear_ff_controller_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Specifies the velocity feed-forward gain of the controller</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>0.8</data>
+                </type>
+                <type id="angular_ff_controller_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Specifies the velocity feed-forward gain of the controller</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>0.8</data>
+                </type>
+
+                <type id="positioning_monitor" prototype="monitor_distance">
+                    <meta>
+                        <member id="description">Checks whether the target frame has been reached.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>
+                        <member id="reference_frame" reference_id="waypoints[-1].target_frame"/>
+                        <member id="target_offsets" reference_id="waypoints[-1].target_offsets"/>
+                        <member id="frame" reference_id="tool_frame"/>
+                        <member id="coordinates" reference_id="axes"/>
+                        <member id="distance_coordinates">x, y, z, a, b, c</member>
+                        <member id="distances">0.001, 0.001, 0.001, 0.005, 0.005, 0.005</member>
+                        <member id="operator">absolute_less</member>
+
+                    </data>
+                </type>
+
+                <member id="monitors">
+                    <reference reference_id="positioning_monitor"/>
+                </member>
+
+                <member id="target_frame" reference_id="waypoints[-1].target_frame"/>
+                <member id="target_frame.meta.description">Target frame is set automatically. Must not be overwritten!</member>
+
+                <member id="tasks">
+                    <clone id="tracking" prototype="task">
+                        <member id="coordinates" reference_id="axes"/>
+                        <member id="prefix" reference_id="collections.target_to_tool.prefix"/>
+
+                        <member id="setpoint_generators">
+                            <clone id="setpoint" prototype="lin_blending_setpoint">
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]"/>
+                                </member>
+                                <member id="desired" reference_id="waypoints[-1].target_offsets"/>
+                                <member id="coordinates" reference_id="coordinates"/>
+                                <member id="prefix" reference_id="prefix"/>
+
+                                <member id="max_pos_vel" reference_id="max_linear_velocity"/>
+                                <member id="max_rot_vel" reference_id="max_angular_velocity"/>
+                                <member id="max_pos_acc" reference_id="max_linear_acceleration"/>
+                                <member id="pos_symbols">x, y, z</member>
+                                <member id="rot_symbols">a, b, c</member>
+                                <member id="target_frame" reference_id="target_frame" />
+                                <member id="waypoints" reference_id="waypoints" />
+
+                            </clone>
+                        </member>
+
+                    </clone>
+                </member>
+
+            </data>
+        </type>
+
+        <type id="skill_lin_trajectory" prototype="skill_lin_trajectory_base">
+            <meta>
+                <member id="description">Moves along given blending points with blending distances to the target frame.
+                
+                Care: Setting target offsets for the waypoints for orientation can cause euler angle issues.
+                </member>
+                <member id="visibility">basic</member>
+            </meta>
+
+            <data>
+                <member id="tasks">
+                    <member id="tracking">
+                        <member id="controllers">
+                            <!-- position controller -->
+                            <clone prototype="trajectory_p_controller">
+                                <!-- <member id="limit" reference_id="max_linear_velocity"/> -->
+                                <member id="gain" reference_id="linear_controller_gain"/>
+                                <member id="limit">10.0</member>
+                                <member id="ff_gain" reference_id="linear_ff_controller_gain"/>
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]"/>
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference reference_id="setpoint_generators.setpoint"/>
+                                </member>
+                                <member id="coordinates" reference_id="setpoint_generators.setpoint.pos_symbols"/>
+                                <member id="prefix" reference_id="prefix"/>
+                            </clone>
+
+                            <!-- orientation controller -->
+                            <clone prototype="trajectory_p_controller">
+                                <!-- <member id="limit" reference_id="max_angular_velocity"/>-->
+                                <member id="gain" reference_id="angular_controller_gain"/>
+                                <member id="limit">30.0</member>
+                                <member id="ff_gain" reference_id="angular_ff_controller_gain"/>
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]"/>
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference reference_id="setpoint_generators.setpoint"/>
+                                </member>
+                                <member id="coordinates" reference_id="setpoint_generators.setpoint.rot_symbols"/>
+                                <member id="prefix" reference_id="prefix"/>
+                            </clone>
+                        </member>
+                    </member>
+                </member>
+
+            </data>
+        </type>
+
+
+        <type id="skill_lin_trajectory_pd" prototype="skill_lin_trajectory_base">
+            <meta>
+                <member id="description">Moves along given blending points with blending distances to the target frame. Controlled by pd controller</member>
+                <member id="visibility">expert</member>
+            </meta>
+
+            <data>
+                <member id="tasks">
+                    <member id="tracking">
+                        <member id="controllers">
+                            <!-- position controller -->
+                            <clone prototype="trajectory_pd_controller">
+                                <!-- <member id="max_output" reference_id="max_linear_velocity"/>
+                                <member id="P_lin" reference_id="linear_controller_gain"/> -->
+                                <member id="compliance" reference_id="linear_controller_gain"/>
+                                <member id="f0_hz">10.0</member>
+                                <member id="ff_gain" reference_id="linear_ff_controller_gain"/>
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]"/>
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference reference_id="setpoint_generators.setpoint"/>
+                                </member>
+                                <member id="coordinates" reference_id="setpoint_generators.setpoint.pos_symbols"/>
+                                <member id="prefix" reference_id="prefix"/>
+                            </clone>
+
+                            <!-- orientation controller -->
+                            <clone prototype="trajectory_pd_controller">
+                                <!-- <member id="max_output" reference_id="max_angular_velocity"/>
+                                <member id="P_lin" reference_id="angular_controller_gain"/> -->
+                                <member id="compliance" reference_id="angular_controller_gain"/>
+                                <member id="f0_hz">10.0</member>
+                                <member id="ff_gain" reference_id="angular_ff_controller_gain"/>
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]"/>
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference reference_id="setpoint_generators.setpoint"/>
+                                </member>
+                                <member id="coordinates" reference_id="setpoint_generators.setpoint.rot_symbols"/>
+                                <member id="prefix" reference_id="prefix"/>
+                            </clone>
+                        </member>
+                    </member>
+                </member>
+
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

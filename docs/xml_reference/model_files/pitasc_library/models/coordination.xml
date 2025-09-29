@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+
+        <type id="transition" prototype="dictionary">
+            <meta>
+                <member id="description">Links an event to a target skill.</member>
+                <member id="visibility">hidden</member>
+            </meta>
+            <data>
+                <type id="event" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Event name.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="target" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the target skill.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="monitor" prototype="object">
+            <meta>
+                <member id="description">Monitors specified data</member>
+                <member id="categories">internal</member>
+                <member id="visibility">hidden</member>
+            </meta>
+            <data>
+                <type id="event" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Primary event that is triggered by the monitor</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>succeeded</data>
+                </type>
+            </data>
+        </type>
+
+        <type id="script" prototype="object">
+            <meta>
+                <member id="description">An executable script</member>
+                <member id="categories">internal</member>
+            </meta>
+        </type>
+
+
+        <!-- Skills -->
+
+        <type id="skill" prototype="object">
+            <meta>
+                <member id="description">A skill</member>
+                <member id="categories">internal</member>
+                <member id="implementation">
+                    <clone prototype="cpp">
+                        <member id="lib">cppitasc_skills</member>
+                        <member id="class">Skill</member>
+                        <member id="arguments">skill_name, loops, tasks, bounds,
+                            monitors, transitions, scripts, robot
+                        </member>
+                    </clone>
+                </member>
+                <member id="visibility">expert</member>
+            </meta>
+            <data>
+                <type id="skill_name" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of this skill. Must be locally unique.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                </type>
+                <type id="collections" data_type="list:collection" prototype="base">
+                    <meta>
+                        <member id="description">Contains the kinematic chains of the skill (feature, robot, object chains).</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                </type>
+                <type id="loops" data_type="list:kinematic_loop" prototype="base">
+                    <meta>
+                        <member id="description">Contains the kinematic loop(s) that define the task to be solved.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                </type>
+                <type id="tasks" data_type="list:task" prototype="base">
+                    <meta>
+                        <member id="description">Contains the task description(s).</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                </type>
+                <type id="bounds" data_type="list:bound" prototype="base">
+                    <meta>
+                        <member id="description">Contains the bounds description(s).</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                </type>
+                <type id="monitors" data_type="list:monitor" prototype="base">
+                    <meta>
+                        <member id="description">Contains the monitors of the skill that determine when the skill should terminate.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                </type>
+                <type id="transitions" data_type="list:transition" prototype="base">
+                    <meta>
+                        <member id="description">Contains additional transitions to other states (skills), given an event name.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                </type>
+                <type id="scripts" data_type="list:script" prototype="base">
+                    <meta>
+                        <member id="description">Contains scripts that should be executed while the skill is active.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="skill_single_robot" prototype="skill">
+            <meta>
+                <member id="description">Base model for all skills with a single robot</member>
+                <member id="categories">internal</member>
+                <member id="visibility">expert</member>
+            </meta>
+            <data>
+                <!-- ToDo: somehow this breaks -->
+                <!-- <type id="robot" prototype="robot_prototype" reference_id="environment.robot">
+                    <meta>
+                        <member id="description">A reference to the robot</member>
+                    </meta>
+                </type> -->
+                <reference id="robot" prototype="robot_prototype" reference_id="robot"/>
+                <member id="robot.meta.description">Robot that is controlled by the skill (only needs to be set at the application level).</member>
+                <member id="robot.meta.visibility">basic</member>
+            </data>
+        </type>
+
+        <type id="skill_statechart" prototype="skill_single_robot">
+            <meta>
+                <member id="description">Group of skills which are connected in a state machine.</member>
+                <member id="categories">composition</member>
+                <member id="implementation">
+                    <clone prototype="cpp">
+                        <member id="lib">cppitasc_skills</member>
+                        <member id="class">SkillGroup</member>
+                        <member id="arguments">skill_name, loops, tasks, bounds,
+                            monitors, transitions, scripts,
+                            initial_skill, skills, robot
+                        </member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="initial_skill" prototype="string_parameter">
+                    <meta>
+                        <member id="description">First skill to run.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="skills" data_type="list:skill" prototype="base">
+                    <meta>
+                        <member id="description">Sub-skills that are connected in a state machine.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="skill_sequence" prototype="skill_single_robot">
+            <meta>
+                <member id="description">List of skills which are executed in sequence.</member>
+                <member id="categories">composition</member>
+                <member id="implementation">
+                    <clone prototype="cpp">
+                        <member id="lib">cppitasc_skills</member>
+                        <member id="class">SkillSequence</member>
+                        <member id="arguments">skill_name, loops, tasks, bounds,
+                            monitors, transitions, scripts,
+                            initial_skill, skills, robot
+                        </member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="initial_skill" prototype="string_parameter">
+                    <meta>
+                        <member id="description">First skill to run.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                </type>
+                <type id="skills" data_type="list:skill" prototype="base">
+                    <meta>
+                        <member id="description">Sub-skills that are executed in sequence.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="skill_concurrency" prototype="skill_single_robot">
+            <meta>
+                <member id="description">Hierarchy of skills which are executed simultaneously.</member>
+                <member id="categories">composition</member>
+                <member id="implementation">
+                    <clone prototype="cpp">
+                        <member id="lib">cppitasc_skills</member>
+                        <member id="class">SkillHierarchy</member>
+                        <member id="arguments">skill_name, loops, tasks, bounds,
+                            monitors, transitions, scripts,
+                            skills, robot
+                        </member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="skills" data_type="list:skill" prototype="base">
+                    <meta>
+                        <member id="description">Sub-skills that are executed simultaneously.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="skill_parallel" prototype="skill_single_robot">
+            <meta>
+                <member id="description">Hierarchy of skills which are executed simultaneously. Ends with 'succeeded' only if **all** subskills triggered 'succeeded'.
+
+                If a subskill cannot finish with 'succeeded', it does not block the skill_parallel, except when there is no subskill that can trigger 'succeeded'.
+
+                As soon as one skill finishes, this skill drops out of the control hierarchy. **This means that the control hierarchy gets updated, resulting in a potentially fundamentally different robot behavior (due to the projection).**
+                </member>
+                <member id="categories">composition</member>
+                <member id="implementation">
+                    <clone prototype="cpp">
+                        <member id="lib">cppitasc_skills</member>
+                        <member id="class">SkillParallel</member>
+                        <member id="arguments">skill_name, loops, tasks, bounds,
+                            monitors, transitions, scripts,
+                            skills, robot
+                        </member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="skills" data_type="list:skill" prototype="base">
+                    <meta>
+                        <member id="description">Sub-skills that are executed simultaneously.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+
+        <type id="monitor_ros_service" prototype="monitor">
+            <meta>
+                <member id="description">Prototype for ROS service monitors</member>
+                <member id="categories">internal</member>
+            </meta>
+            <data>
+                <type id="namespace" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Namespace of the service to be provided</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                </type>
+                <type id="service_name" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the service to be provided</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="monitor_action_caller" prototype="monitor">
+            <meta>
+                <member id="description">A prototype for ROS action caller monitors</member>
+                <member id="categories">internal</member>
+            </meta>
+            <data>
+                <type id="namespace" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Namespace of the action to be called</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data></data>
+                </type>
+                <type id="action_name" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the action to be called</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="failure_event" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Event that is triggered when the ROS action fails (i.e. the state of the action is not SUCCEEDED)</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>preempted</data>
+                </type>
+                <type id="wait_for_action" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Wait until the action becomes available</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>True</data>
+                </type>
+            </data>
+        </type>
+
+        <type id="monitor_ros_empty_service" prototype="monitor_ros_service">
+            <meta>
+                <member id="description">Triggers when a ROS Empty service is called</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosServiceMonitorEmpty</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_trigger_service" prototype="monitor_ros_service">
+            <meta>
+                <member id="description">Triggers when a ROS Trigger service is called</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosServiceMonitorTrigger</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_setbool_service" prototype="monitor_ros_service">
+            <meta>
+                <member id="description">Triggers when a ROS SetBool service is called</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosServiceMonitorSetBool</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_fireevent_service" prototype="monitor_ros_service">
+            <meta>
+                <member id="description">Fires an event with eventname given by service call</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosServiceMonitorFireEvent</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <member id="event.meta.description">Unused, the event name comes from the service call</member>
+                <member id="event.meta.visibility">hidden</member>
+                <member id="event"></member>
+            </data>
+        </type>
+
+        <type id="value_event_pair" prototype="dictionary">
+            <meta>
+                <member id="description">Value-Event pair for usage within monitor_ros_fireevent_rostopic</member>
+            </meta>
+            <data>
+                <type id="value" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The value of the input</member>
+                    </meta>
+                </type>
+                <type id="event" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Tthe event which is fired</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="monitor_ros_fireevent_rostopic" prototype="monitor">
+            <meta>
+                <member id="description">Monitor which fires events according to the values on rostopic input.</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorFireEvent</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="namespace" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Namespace of the topic to subscribe</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                </type>
+                <type id="topic" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the topic to subscribe</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="values" data_type="list:value_event_pair" prototype="base">
+                    <meta>
+                        <member id="description">The desired values and corresponding events. Use the value_event_pair type.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="type" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The desired type</member>
+                        <member id="visibility">required</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">std_msgs/Bool, std_msgs/Int8, std_msgs/Int16, std_msgs/Int32, std_msgs/Int64, std_msgs/UInt8, std_msgs/UInt16, std_msgs/UInt32, std_msgs/UInt64, std_msgs/String</clone>
+                        </clone>
+                    </meta>
+                </type>
+                <member id="event.meta.description">Unused, since 'values' contains the event names</member>
+                <member id="event.meta.visibility">hidden</member>
+                <member id="event"></member>
+            </data>
+        </type>
+
+        <type id="monitor_ros_topic" prototype="monitor">
+            <meta>
+                <member id="description">Prototype for ROS topic monitors</member>
+                <member id="categories">internal</member>
+            </meta>
+            <data>
+                <type id="namespace" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Namespace of the topic to subscribe</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                </type>
+                <type id="topic" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the topic to subscribe</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="monitor_ros_topic_with_operator" prototype="monitor_ros_topic">
+            <meta>
+                <member id="description">Prototype for ROS topic monitors with operator</member>
+                <member id="categories">internal</member>
+            </meta>
+            <data>
+                <type id="operator" prototype="operator">
+                    <meta>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>equal</data>
+                </type>
+            </data>
+        </type>
+
+        <type id="monitor_ros_bool_topic" prototype="monitor_ros_topic_with_operator">
+            <meta>
+                <member id="description">Triggers when a ROS bool topic has a desired value</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorBool</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="value" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">The desired value</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>True</data>
+                </type>
+                <member id="operator.meta.restrictions">
+                    <clone prototype="enum">equal, not_equal</clone>
+                </member>
+            </data>
+        </type>
+
+        <type id="monitor_ros_int8_topic" prototype="monitor_ros_topic_with_operator">
+            <meta>
+                <member id="description">Triggers when a ROS int8 topic has a desired value.</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorInt8</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="value" prototype="int_parameter">
+                    <meta>
+                        <member id="description">The desired value</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="monitor_ros_int16_topic" prototype="monitor_ros_int8_topic">
+            <meta>
+                <member id="description">Triggers when a ROS int16 topic has a desired value.</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorInt16</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_int32_topic" prototype="monitor_ros_int8_topic">
+            <meta>
+                <member id="description">Triggers when a ROS int32 topic has a desired value.</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorInt32</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_int64_topic" prototype="monitor_ros_int8_topic">
+            <meta>
+                <member id="description">Triggers when a ROS int64 topic has a desired value.</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorInt64</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_uint8_topic" prototype="monitor_ros_int8_topic">
+            <meta>
+                <member id="description">Triggers when a ROS uint8 topic has a desired value.</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorUInt8</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_uint16_topic" prototype="monitor_ros_int8_topic">
+            <meta>
+                <member id="description">Triggers when a ROS uint16 topic has a desired value.</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorUInt16</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_uint32_topic" prototype="monitor_ros_int8_topic">
+            <meta>
+                <member id="description">Triggers when a ROS uint32 topic has a desired value.</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorUInt32</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_uint64_topic" prototype="monitor_ros_int8_topic">
+            <meta>
+                <member id="description">Triggers when a ROS uint64 topic has a desired value.</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorUInt64</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_float32_topic" prototype="monitor_ros_topic_with_operator">
+            <meta>
+                <member id="description">Triggers when a ROS float32 topic exceeds a desired value (depending on operator).</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorFloat32</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="value" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The desired value</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <member id="operator">greater_equal</member>
+            </data>
+        </type>
+
+        <type id="monitor_ros_float64_topic" prototype="monitor_ros_float32_topic">
+            <meta>
+                <member id="description">Triggers when a ROS float64 topic has a desired value.</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorFloat64</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ros_string_topic" prototype="monitor_ros_topic_with_operator">
+            <meta>
+                <member id="description">Triggers when a ROS string topic has a desired value (depending on operator)</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">RosTopicMonitorString</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="value" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The desired value</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <member id="operator.meta.restrictions">
+                    <clone prototype="enum">equal, not_equal</clone>
+                </member>
+            </data>
+        </type>
+
+        <type id="monitor_user_confirm" prototype="monitor">
+            <meta>
+                <member id="description">Opens a dialog window to receive confirmation from the user.</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">UserConfirmMonitor</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="title" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Title of the dialog window</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>Confirmation required</data>
+                </type>
+
+                <type id="text" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Text of the dialog window (Question)</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>Proceed with application?</data>
+                </type>
+
+                <type id="ignore" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Parameter to skip the user confirm dialog and fire the (success) event immediately.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>False</data>
+                </type>
+
+                <type id="reject_event" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The event to be triggered on failure.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>preempted</data>
+                </type>
+            </data>
+        </type>
+
+        <type id="monitor_rosparam" prototype="monitor">
+            <meta>
+                <member id="description">Reads a rosparam and fires if the rosparam exists and matches given value</member>
+                <member id="implementation">
+                </member>
+            </meta>
+            <data>
+                <type id="rosparam_name" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The rosparam to look up.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="rosparam_value" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The value to compare the rosparam to. Empty checks for existence.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data></data>
+                </type>
+
+                <type id="undefined_event" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The event to be fired if the parameter is not found.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>rosparam_undefined</data>
+                </type>
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="skills/skill_force.xml" />
+        <include package="pitasc_library" file="skills/skill_cartesian.xml" />
+
+        <type id="skill_apply_force_pid" prototype="skill_force">
+            <meta>
+                <member id="description">Applies a force in the direction of a frame</member>
+                <member id="categories">single_robot, force_controlled</member>
+                <member id="visibility">basic</member>
+            </meta>
+
+            <data>
+                <!-- Task description -->
+                <type id="axes" prototype="string_csv">
+                    <meta>
+                        <member id="description">List of axes.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z, a, b, c</clone>
+                        </clone>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="target_forces" prototype="float_csv">
+                    <meta>
+                        <member id="description">Forces and torques to be applied. Must be the same
+                            number of values as for 'axes'.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_csv_min">-100.0, -100.0, -100.0, -10.0, -10.0,
+                                -10.0</clone>
+                            <clone prototype="float_csv_max">100.0, 100.0, 100.0, 10.0, 10.0, 10.0</clone>
+                        </clone>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <!-- Control -->
+                <type id="K" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The gain K of the controller</member>
+                    </meta>
+                    <data>0.001</data>
+                </type>
+                <type id="Tn" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The constant Tn impacts the systems inversely, so higher Tn means slower impact
+</member>
+                    </meta>
+                    <data>0</data>
+                </type>
+                <type id="Tv" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The constant Tv impacts the system directly,(its a part of D component), so higher Tv means faster response</member>
+                    </meta>
+                    <data>0</data>
+                </type>
+                <type id="Tp" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Parasitic timeconstant of real PID controller (Tp
+                            smaller than Tv)</member>
+                    </meta>
+                    <data>0.001</data>
+                </type>
+                <type id="u_i_limit" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The output limit of the i part of the controller</member>
+                    </meta>
+                    <data>0.0</data>
+                </type>
+                <type id="Tp" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Compliance [m/(s*N)]</member>
+                    </meta>
+                    <data>0.001</data>
+                </type>
+                <type id="u_i_limit" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The output limit of the i part of the controller</member>
+                    </meta>
+                    <data>0.0</data>
+                </type>
+                <type id="I_flag" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Parameter to switch integral part on/off</member>
+                    </meta>
+                    <data>false</data>
+                </type>
+                <type id="D_flag" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Parameter to switch derivative part on/off</member>
+                    </meta>
+                    <data>false</data>
+                </type>
+
+                <!-- Implementation details below: -->
+
+                <member id="tasks">
+                    <clone id="apply_force" prototype="task">
+                        <member id="coordinates" reference_id="axes" />
+                        <member id="prefix" reference_id="collections.force_chain.prefix" />
+
+                        <member id="setpoint_generators">
+                            <clone id="setpoint" prototype="constant_setpoint">
+                                <member id="desired" reference_id="target_forces" />
+                                <member id="coordinates" reference_id="coordinates" />
+                                <member id="prefix" reference_id="prefix" />
+                            </clone>
+                        </member>
+
+                        <member id="controllers">
+                            <clone prototype="pid_controller">
+                                <member id="K" reference_id="K" />
+                                <member id="Tn" reference_id="Tn" />
+                                <member id="Tv" reference_id="Tv" />
+                                <member id="I_flag" reference_id="I_flag" />
+                                <member id="D_flag" reference_id="D_flag" />
+
+                                <member id="u_i_limit" reference_id="u_i_limit" />
+
+                                <member id="u_i_limit" reference_id="u_i_limit" />
+
+                                <member id="data_source">
+                                    <reference reference_id="collections.force_chain.chains[0]" />
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference reference_id="setpoint_generators.setpoint" />
+                                </member>
+                                <member id="coordinates" reference_id="coordinates" />
+                                <member id="prefix" reference_id="prefix" />
+                            </clone>
+                        </member>
+
+                    </clone>
+                </member>
+                <member id="tasks.meta.visibility">hidden</member>
+
+            </data>
+        </type>
+
+
+        <type id="skill_cartesian_tracking_pid" prototype="skill_cartesian">
+            <meta>
+                <member id="description">Keeps on aligning the tool frame with a target frame</member>
+                <member id="visibility">basic</member>
+            </meta>
+
+            <data>
+                <!-- Task description -->
+                <type id="axes" prototype="string_csv">
+                    <meta>
+                        <member id="description">List of axes to be aligned.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z, a, b, c</clone>
+                        </clone>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>x, y, z, a, b, c</data>
+                </type>
+                <type id="target_offsets" prototype="float_csv">
+                    <meta>
+                        <member id="description">Offsets of the axes to be aligned. Must be the same
+                            number of values as for 'axes'. If no value is provided, 0 is used for
+                            all axes.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_csv_min">-10.0, -10.0, -10.0, -3.14, -3.14,
+                                -3.14</clone>
+                            <clone prototype="float_csv_max">10.0, 10.0, 10.0, 3.14, 3.14, 3.14</clone>
+                        </clone>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data></data>
+                </type>
+
+                <!-- Setpoint generation -->
+                <type id="trajectory_duration" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Duration of the trajectory in [s]. '0' means as
+                            fast as possible. Is expanded accordingly if in conflict with maximal
+                            linear veloctiy.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>0</data>
+                </type>
+
+                <!-- Control -->
+                <type id="max_linear_velocity" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Max linear velocity.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.0</data>
+                </type>
+                <type id="max_angular_velocity" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Max angular velocity.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.5</data>
+                </type>
+
+                <type id="K" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The gain K of the controller</member>
+                    </meta>
+                    <data>0.001</data>
+                </type>
+                <type id="Tn" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The integral time of the controller</member>
+                    </meta>
+                    <data>0</data>
+                </type>
+                <type id="Tv" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The derivative time of the controller</member>
+                    </meta>
+                    <data>0</data>
+                </type>
+                <type id="Tp" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Parasitic timeconstant of real PID controller (Tp
+                            smaller than Tv)</member>
+                    </meta>
+                    <data>0.001</data>
+                </type>
+                <type id="u_i_limit" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The output limit of the i part of the controller</member>
+                    </meta>
+                    <data>0.0</data>
+                </type>
+                <type id="I_flag" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Parameter to switch integral part on/off</member>
+                    </meta>
+                    <data>false</data>
+                </type>
+                <type id="D_flag" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Parameter to switch derivative part on/off</member>
+                    </meta>
+                    <data>false</data>
+                </type>
+
+                <!-- Implementation details below: -->
+
+                <member id="tasks">
+                    <clone id="tracking" prototype="task"> <!-- how to specify visibility here? leave
+                        on hidden? -->
+                        <member id="coordinates" reference_id="axes" />
+                        <member id="prefix" reference_id="collections.target_to_tool.prefix" />
+
+                        <member id="setpoint_generators">
+                            <clone id="setpoint" prototype="cosine_setpoint">
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]" />
+                                </member>
+                                <member id="desired" reference_id="target_offsets" />
+                                <member id="coordinates" reference_id="coordinates" />
+                                <member id="prefix" reference_id="prefix" />
+                                <member id="duration" reference_id="trajectory_duration" />
+                                <member id="max_vel_groups">
+                                    <reference reference_id="max_linear_velocity" />
+                                    <reference reference_id="max_angular_velocity" />
+                                </member>
+                                <member id="symbol_groups">
+                                    <clone id="position_coordinates" prototype="string_csv">x, y, z</clone>
+                                    <clone id="orientation_coordinates" prototype="string_csv">a, b,
+                                        c</clone>
+                                </member>
+
+                            </clone>
+                        </member>
+
+                        <member id="controllers">
+                            <!-- position controller -->
+                            <clone prototype="pid_controller">
+                                <member id="K" reference_id="K" />
+                                <member id="Tn" reference_id="Tn" />
+                                <member id="Tv" reference_id="Tv" />
+                                <member id="I_flag" reference_id="I_flag" />
+                                <member id="D_flag" reference_id="D_flag" />
+
+                                <member id="u_i_limit" reference_id="u_i_limit" />
+
+
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]" />
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference reference_id="setpoint_generators.setpoint" />
+                                </member>
+                                <member id="coordinates"
+                                    reference_id="setpoint_generators.setpoint.symbol_groups.position_coordinates" />
+                                <member id="prefix" reference_id="prefix" />
+                            </clone>
+
+                            <!-- orientation controller -->
+                            <clone prototype="pid_controller">
+                                <member id="K" reference_id="K" />
+                                <member id="Tn" reference_id="Tn" />
+                                <member id="Tv" reference_id="Tv" />
+                                <member id="I_flag" reference_id="I_flag" />
+                                <member id="D_flag" reference_id="D_flag" />
+
+                                <member id="u_i_limit" reference_id="u_i_limit" />
+
+
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]" />
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference reference_id="setpoint_generators.setpoint" />
+                                </member>
+                                <member id="coordinates"
+                                    reference_id="setpoint_generators.setpoint.symbol_groups.orientation_coordinates" />
+                                <member id="prefix" reference_id="prefix" />
+                            </clone>
+                        </member>
+                    </clone>
+                </member>
+                <member id="tasks.meta.visibility">hidden</member>
+
+            </data>
+        </type>
+
+
+    </models>
+
+</pitasc>

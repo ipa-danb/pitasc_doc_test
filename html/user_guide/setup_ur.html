@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup UR Robot &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setup KUKA Robot" href="setup_kuka.html" />
+    <link rel="prev" title="Setup Robots" href="setup_robots.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to/index.html">How-To</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="setup_robots.html">Setup Robots</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setup UR Robot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-ur-driver-and-setup">Install UR driver and setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup-the-network-connection">Setup the network connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-up-the-robot">Set up the robot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ros-launch-file">ROS launch file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pitasc-environment">pitasc environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="setup_kuka.html">Setup KUKA Robot</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="setup_robots.html">Setup Robots</a></li>
+      <li class="breadcrumb-item active">Setup UR Robot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/setup_ur.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setup-ur-robot">
+<h1>Setup UR Robot<a class="headerlink" href="#setup-ur-robot" title="Permalink to this heading"></a></h1>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<p>UR e-series (recommended) or CB3</p>
+</section>
+<section id="install-ur-driver-and-setup">
+<h2>Install UR driver and setup<a class="headerlink" href="#install-ur-driver-and-setup" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Optional/Recommended: Follow the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/real_time.md">Realtime Kernel setup guide</a></p></li>
+<li><p><a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/README.md#install-from-binary-packages">Install the ur driver</a></p></li>
+</ul>
+<section id="setup-the-network-connection">
+<h3>Setup the network connection<a class="headerlink" href="#setup-the-network-connection" title="Permalink to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Open the network settings from the UR teach pendant (Setup Robot -&gt; Network) and enter these settings (possibly adapt the ip space <cite>192.168.1.xx</cite> to your needs):</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IP</span> <span class="n">address</span><span class="p">:</span> <span class="mf">192.168.1.102</span>
+<span class="n">Subnet</span> <span class="n">mask</span><span class="p">:</span> <span class="mf">255.255.255.0</span>
+<span class="n">Default</span> <span class="n">gateway</span><span class="p">:</span> <span class="mf">192.168.1.1</span>
+<span class="n">Preferred</span> <span class="n">DNS</span> <span class="n">server</span><span class="p">:</span> <span class="mf">192.168.1.1</span>
+<span class="n">Alternative</span> <span class="n">DNS</span> <span class="n">server</span><span class="p">:</span> <span class="mf">0.0.0.0</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>On the remote PC, turn off all network devices except the “wired connection”, e.g. turn off wifi.</p></li>
+<li><p>Open Network Settings and create a new Wired connection with these settings. You may want to name this new connection <code class="docutils literal notranslate"><span class="pre">UR</span></code> or something similar:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IPv4</span>
+<span class="n">Manual</span>
+<span class="n">Address</span><span class="p">:</span> <span class="mf">192.168.1.101</span>
+<span class="n">Netmask</span><span class="p">:</span> <span class="mf">255.255.255.0</span>
+<span class="n">Gateway</span><span class="p">:</span> <span class="mf">192.168.1.1</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Verify the connection from the PC with e.g. ping. <code class="docutils literal notranslate"><span class="pre">192.168.1.102</span></code> is the robot ip in this case.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ping 192.168.1.102</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="set-up-the-robot">
+<h3>Set up the robot<a class="headerlink" href="#set-up-the-robot" title="Permalink to this heading"></a></h3>
+<p>Follow the instructions of the ur robot driver: <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/README.md#setting-up-a-ur-robot-for-ur_robot_driver">Setup the robot</a>
+(Use the ip you set above)</p>
+<p>Note:
+You can download the calibration correction and use it in your package like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">roslaunch ur_calibration calibration_correction.launch robot_ip:=192.168.1.102 target_filename:=&quot;${HOME}/catkin_ws/src/&lt;your_ros_package&gt;/config/ur10e_kinematics.yaml&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ros-launch-file">
+<h2>ROS launch file<a class="headerlink" href="#ros-launch-file" title="Permalink to this heading"></a></h2>
+<p>We recommend putting the robot into a namespace, e.g. <code class="docutils literal notranslate"><span class="pre">/robot</span></code>. The following launchfile loads the driver for a UR10e robot. Use the ip you set on the robot</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+
+<span class="nt">&lt;launch&gt;</span>
+<span class="w">    </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_ip&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;192.168.1.102&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">ns=</span><span class="s">&quot;robot&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!-- ROS control: make pitasc controller available --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rosparam</span><span class="w"> </span><span class="na">command=</span><span class="s">&quot;load&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find pitasc_controller)/controller/pitasc_controller.yaml&quot;</span><span class="nt">/&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!-- robot driver (official) --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;$(find ur_robot_driver)/launch/ur10e_bringup.launch&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_ip&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;$(arg robot_ip)&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!-- create your own upload launch file for using your own robot description --&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!-- &lt;arg name=&quot;robot_description_file&quot; value=&quot;$(find &lt;your_ros_package&gt;)/launch/ur10e_upload.launch&quot;/&gt; --&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!-- enter the tf_prefix if you set it in a custom urdf --&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!-- &lt;arg name=&quot;tf_prefix&quot; value=&quot;&quot;/&gt; --&gt;</span>
+<span class="w">            </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;controllers&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;joint_state_controller speed_scaling_state_controller force_torque_sensor_controller pitasc_vel_control&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;stopped_controllers&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;joint_group_vel_controller&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!-- use the factory calibration of your robot for higher accuracy --&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!-- &lt;arg name=&quot;kinematics_config&quot; default=&quot;$(find &lt;your_ros_package&gt;)/config/ur10e_kinematics.yaml&quot;/&gt; --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/include&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;/group&gt;</span>
+
+<span class="nt">&lt;/launch&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="pitasc-environment">
+<h2>pitasc environment<a class="headerlink" href="#pitasc-environment" title="Permalink to this heading"></a></h2>
+<p>To let pitasc take joint states and urdf description from the robot namespace, it needs to be configured. Set the urdf prefix if you have one (<code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> in the ur launch file)</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pitasc&gt;</span>
+<span class="w">    </span><span class="nt">&lt;models&gt;</span>
+<span class="w">        </span>(...)
+<span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;pitasc_library&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;universal_robots/ur.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/models&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;project&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;configuration&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!-- Use the default configuration with 500Hz rate (for e series, 125Hz for CB3) --&gt;</span>
+<span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;configuration&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;default_configuration&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;update_rate&quot;</span><span class="nt">&gt;</span>500<span class="nt">&lt;/member&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;environment&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;robot_ur10&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot_driver.max_velocity&quot;</span><span class="nt">&gt;</span>2.0<span class="nt">&lt;/member&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot_driver.max_acceleration&quot;</span><span class="nt">&gt;</span>3.0<span class="nt">&lt;/member&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;namespace&quot;</span><span class="nt">&gt;</span>robot<span class="nt">&lt;/member&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;urdf_prefix&quot;</span><span class="nt">&gt;&lt;/member&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;applications&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>(...)
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="setup_robots.html" class="btn btn-neutral float-left" title="Setup Robots" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="setup_kuka.html" class="btn btn-neutral float-right" title="Setup KUKA Robot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

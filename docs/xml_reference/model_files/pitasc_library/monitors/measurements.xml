@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+
+        <type id="monitor_control_error" prototype="monitor">
+            <meta>
+                <member id="description">Checks control_errors (desired vs. measured values)</member>
+                <member id="categories">measurements</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">ControlErrorMonitor</member>
+                        <member id="arguments">scene, event, controllers, coordinates, prefix, thresholds, samples</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="controllers" data_type="list:controller" prototype="base">
+                    <meta>
+                        <member id="description">Controllers for which to check the control errors.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="coordinates" prototype="string_csv">
+                    <meta>
+                        <member id="description">Coordinates to be monitored</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="prefix" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Prefix for the coordinates</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                    <data></data>
+                </type>
+                <type id="thresholds" prototype="float_csv">
+                    <meta>
+                        <member id="description">Thresholds for the control errors</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="samples" prototype="int_parameter">
+                    <meta>
+                        <member id="description">Number of consecutive samples to be below the threshold before raising the event</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1</data>
+                </type>
+            </data>
+        </type>
+
+
+        <type id="monitor_threshold" prototype="monitor">
+            <meta>
+                <member id="description">Triggers when a measurement exceeds a certain threshold.</member>
+                <member id="categories">measurements</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">ThresholdMonitor</member>
+                        <member id="arguments">scene, event, provider, coordinates, prefix, operator, thresholds, multi_coordinates_handling, samples</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="provider" data_type="parameter:data_source" prototype="base">
+                    <meta>
+                        <member id="description">Data source for which to check the outputs.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="coordinates" prototype="string_csv">
+                    <meta>
+                        <member id="description">Coordinate of the value to be checked</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="prefix" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Prefix for the coordinates</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                    <data></data>
+                </type>
+
+                <type id="operator" prototype="operator">
+                    <meta>
+                        <member id="description">Defines if the measurements should be lower or greater than the thresholds.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="thresholds" prototype="float_csv">
+                    <meta>
+                        <member id="description">Threshold values</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="multi_coordinates_handling" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Behavior for applying the thresholds to multiple coordinates. </member>
+                        <member id="visibility">basic</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">single_element, vector_norm, all_elements</clone>
+                        </clone>
+                    </meta>
+                    <data>single_element</data>
+                </type>
+
+                <type id="samples" prototype="int_parameter">
+                    <meta>
+                        <member id="description">Number of consecutive samples that need to meet the threshold condition before the monitor fires</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1</data>
+                </type>
+            </data>
+        </type>
+
+
+        <type id="monitor_wrench" prototype="monitor">
+            <meta>
+                <member id="description">Triggers when a wrench component exceeds a certain threshold.</member>
+                <member id="categories">measurements</member>
+                <member id="implementation">
+                </member>
+            </meta>
+            <data>
+                <reference prototype="kinematic_graph" reference_id="configuration.kinematic_graph"/>
+                <member id="kinematic_graph.meta.visibility">hidden</member>
+
+                <type id="coordinate" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The component of the wrench that should be checked (x, y, z, a, b, c)</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="operator" prototype="operator">
+                    <meta>
+                        <member id="description">Defines if the measurements should be lower or greater than the thresholds.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="threshold" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The value of the threshold</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="topic" prototype="string_parameter">  <!-- TODO: replace by force sensor -->
+                    <meta>
+                        <member id="description">The WrenchStamped topic to observe</member>
+                    </meta>
+                </type>
+
+                <type id="frame" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The frame of reference in which the wrench should be analyzed</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+
+        <type id="monitor_topic_threshold" prototype="monitor">
+            <meta>
+                <member id="description">Triggers when a value in a topic exceeds a certain threshold.</member>
+                <member id="categories">measurements</member>
+                <member id="implementation">
+                </member>
+            </meta>
+            <data>
+                <type id="topic" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The topic to listen on</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="field" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The value to listen on</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="operator" prototype="operator">
+                    <meta>
+                        <member id="description">Defines if the measurements should be lower or greater than the thresholds.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="threshold" prototype="float_parameter">
+                    <meta>
+                        <member id="description">The value of the threshold</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

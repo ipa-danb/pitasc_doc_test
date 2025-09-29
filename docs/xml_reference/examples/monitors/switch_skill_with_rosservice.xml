@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example shows how to switch skills on runtime using an external trigger, namely a ros service. 
+Once you reached skill1, you can switch between skill1 and skill2 by calling the rosservice specified in the change_skill_monitor.
+From terminal: `rosservice call /switch_skill "event: 'change_to_skill2'" ` (resp. `change_to_skill1` to switch back)
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">2.0</member>
+                <member id="robot_driver.max_acceleration">3.0</member>
+                <member id="components">
+                    <clone prototype="force_sensor">
+                        <member id="wrench_topic">wrench</member>
+                    </clone>
+                </member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone id="main_skill" prototype="skill_statechart">
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <!-- Monitor which listens to skill switching service. Should be on top level -->
+                <member id="monitors">
+                    <clone id="change_skill_monitor" prototype="monitor_ros_fireevent_service">
+                        <member id="service_name">switch_skill</member>
+                    </clone>
+                </member>
+
+                <member id="initial_skill">move_to_start</member>
+
+                <member id="skills">
+                    <clone id="move_to_start" prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">target1</member>
+                        <member id="transitions">
+                            <clone prototype="transition">
+                                <member id="event">succeeded</member>
+                                <member id="target">skill1</member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <!-- Transitions define which skill follows on which event (specified in service call)-->
+                    <!-- The skill switching monitor must be referenced here-->
+                    <clone id="skill1" prototype="skill_idle">
+                        <member id="transitions">
+                            <clone prototype="transition">
+                                <member id="event">change_to_skill2</member>
+                                <member id="target">skill2</member>
+                            </clone>
+                        </member>
+                        <member id="monitors">
+                            <reference reference_id="main_skill.monitors.change_skill_monitor" />
+                        </member>
+                    </clone>
+
+                    <clone id="skill2" prototype="skill_idle">
+                        <member id="transitions">
+                            <clone prototype="transition">
+                                <member id="event">change_to_skill1</member>
+                                <member id="target">skill1</member>
+                            </clone>
+                        </member>
+                        <member id="monitors">
+                            <reference reference_id="main_skill.monitors.change_skill_monitor" />
+                        </member>
+                    </clone>
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

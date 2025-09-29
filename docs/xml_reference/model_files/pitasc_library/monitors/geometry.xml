@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+
+        <type id="monitor_wait_for_transform" prototype="monitor">
+            <meta>
+                <member id="description">Triggers when a frame becomes available.</member>
+                <member id="categories">geometry</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">MonitorCheckTransform</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="frame" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Transform target to wait for.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="parent_frame" prototype="string_parameter">  <!-- TODO: Rename! -->
+                    <meta>
+                        <member id="description">Transform source frame to wait for.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>world</data>
+                </type>
+
+                <reference prototype="kinematic_graph" reference_id="configuration.kinematic_graph"/>
+                <member id="kinematic_graph.meta.visibility">hidden</member>
+            </data>
+        </type>
+
+
+        <type id="monitor_distance" prototype="monitor">
+            <meta>
+                <member id="description">Triggers when each frame's coordinate relative to a reference frame exceeds a certain threshold.
+
+                Every coordinate is handled individually. Triggers when true for every coordinate.
+                </member>
+                <member id="categories">geometry</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">MonitorBoxDistance</member>
+                    </clone>
+                </member>
+                <member id="visibility">expert</member>
+            </meta>
+            <data>
+                <type id="reference_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Static frame from which the moving frame is observed (e.g. world).</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="frame" prototype="frame">
+                    <meta>
+                        <member id="description">Moving frame</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="coordinates" prototype="string_csv">
+                    <meta>
+                        <member id="description">Observed axes.</member>
+                        <!-- <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z, a, b, c</clone>
+                        </clone> -->
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="distance_coordinates" prototype="string_csv">
+                    <meta>
+                        <member id="description">Possible axes names that can be given in the member `coordinates`. The given `distances` are aligned to the axes given here.</member>
+                        <member id="visibility">hidden</member>
+                    </meta>
+                </type>
+                <member id="distance_coordinates" reference_id="coordinates"/>
+
+                <type id="distances" prototype="float_csv">
+                    <meta>
+                        <member id="description">Distances threshold (m or rad). Aligned to the `distance_coordinates` member.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="target_offsets" prototype="float_csv">
+                    <meta>
+                        <member id="description">Offsets to the target. There must be as many values as there are `coordinates`. If no value is given, 0 is used for all coordinates.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data></data>
+                </type>
+
+                <type id="operator" prototype="operator">
+                    <meta>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <reference prototype="kinematic_graph" reference_id="configuration.kinematic_graph"/>
+                <member id="kinematic_graph.meta.visibility">hidden</member>
+            </data>
+        </type>
+
+
+        <type id="monitor_relative_distance" prototype="monitor_distance">
+            <meta>
+                <member id="description">Triggers when a frame moved a certain relative distance.</member>
+                <member id="categories">geometry</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">MonitorRelativeBoxDistance</member>
+                    </clone>
+                </member>
+            </meta>
+        </type>
+
+        <type id="monitor_ptp_distance" prototype="monitor">
+            <meta>
+                <member id="description">Compares distances of the current joint states and the target joints states to the given distances values.</member>
+                <member id="categories">geometry</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_monitors</member>
+                        <member id="component">MonitorPtpDistance</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="robot_driver" prototype="robot_driver">
+                    <meta>
+                        <member id="description">Robot driver which joint states shall be observed.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="target_joint_states" prototype="float_csv">
+                    <meta>
+                        <member id="description">Target joint states</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="coordinates" prototype="string_csv">
+                    <meta>
+                        <member id="description">Observed joints.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="distances" prototype="float_csv">
+                    <meta>
+                        <member id="description">Distances threshold (rad). Aligned to the `coordinates` member.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="operator" prototype="operator">
+                    <meta>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+            </data>
+        </type>
+
+
+        <type id="monitor_frame_in_box" prototype="monitor_distance">
+            <meta>
+                <member id="description">Check whether a frame lies inside a bounding box.</member>
+                <member id="categories">geometry</member>
+            </meta>
+            <data>
+                <type id="frame" prototype="frame">
+                    <meta>
+                        <member id="description">Name of the frame to check.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="box_center_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Name of the frame in the center of the box.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="edge_length_xyz" prototype="float_csv">
+                    <meta>
+                        <member id="description">Size of the box in x, y and direction.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <!-- Implementation details below: -->
+
+                <member id="reference_frame" reference_id="box_center_frame"/>
+                <member id="reference_frame.meta.visibility">hidden</member>
+
+                <member id="distances" reference_id="edge_length_xyz"/>
+                <member id="distances.meta.visibility">hidden</member>
+
+                <member id="coordinates">x,y,z</member>
+                <member id="coordinates.meta.visibility">expert</member>
+
+                <member id="operator">absolute_less_equal</member>
+                <member id="operator.meta.visibility">hidden</member>
+
+                <reference prototype="kinematic_graph" reference_id="configuration.kinematic_graph"/>
+                <member id="kinematic_graph.meta.visibility">hidden</member>
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

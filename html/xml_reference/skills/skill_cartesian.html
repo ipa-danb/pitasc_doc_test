@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>skill_cartesian &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="skill_cartesian_bound" href="skill_cartesian_bound.html" />
+    <link rel="prev" title="skill_approach" href="skill_approach.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Skills</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#composition">composition</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#position-controlled">position_controlled</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="loop_target.html">loop_target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_approach.html">skill_approach</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">skill_cartesian</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#meta-data">Meta data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cartesian_bound.html">skill_cartesian_bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cartesian_tracking.html">skill_cartesian_tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cartesian_tracking_pid.html">skill_cartesian_tracking_pid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cylindrical.html">skill_cylindrical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cylindrical_positioning.html">skill_cylindrical_positioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cylindrical_tracking.html">skill_cylindrical_tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_hold_duration.html">skill_hold_duration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_hold_pose.html">skill_hold_pose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_joint_space.html">skill_joint_space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_joint_space_bound.html">skill_joint_space_bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_joint_space_tracking.html">skill_joint_space_tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_lin.html">skill_lin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_lin_time_optimal.html">skill_lin_time_optimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_lin_trajectory.html">skill_lin_trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_lin_trajectory_base.html">skill_lin_trajectory_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_lin_trajectory_pd.html">skill_lin_trajectory_pd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_log_cartesian.html">skill_log_cartesian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_partial_lin.html">skill_partial_lin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_ptp.html">skill_ptp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_ptp_time_optimal.html">skill_ptp_time_optimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_ptp_trajectory.html">skill_ptp_trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_relative_lin.html">skill_relative_lin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_relative_ptp.html">skill_relative_ptp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_spherical.html">skill_spherical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_spherical_positioning.html">skill_spherical_positioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_spherical_tracking.html">skill_spherical_tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_wait_for_transform.html">skill_wait_for_transform</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#force-controlled">force_controlled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#velocity-controlled">velocity_controlled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#logic">logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#user">user</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Skills</a></li>
+      <li class="breadcrumb-item active">skill_cartesian</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/xml_reference/skills/skill_cartesian.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="skill-cartesian">
+<h1>skill_cartesian<a class="headerlink" href="#skill-cartesian" title="Permalink to this heading"></a></h1>
+<p>Models a loop via tool frame and target frame</p>
+<p>Defined at line 9 of file <a class="reference internal" href="../model_files/pitasc_library/skills/skill_cartesian_xml.html"><span class="doc">skills/skill_cartesian.xml</span></a> in package <strong>pitasc_library</strong>.</p>
+<section id="meta-data">
+<h2>Meta data<a class="headerlink" href="#meta-data" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>Categories</strong></div>
+<div class="line-block">
+<div class="line">single_robot, position_controlled</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Prototypes</strong></div>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="loop_target.html"><span class="doc">loop_target</span></a>, skill_single_robot, skill, object, dictionary, base, descriptive</div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<p><strong>Required</strong> parameters:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>tool_frame</strong> : string</div>
+<div class="line-block">
+<div class="line">Name of the tool frame</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>target_frame</strong> : string</div>
+<div class="line-block">
+<div class="line">Name of the target frame</div>
+</div>
+</div>
+</div></blockquote>
+<p><strong>Basic</strong> parameters:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>robot</strong> : dict</div>
+<div class="line-block">
+<div class="line">Robot that is controlled by the skill (only needs to be set at the application level).</div>
+</div>
+</div>
+</div></blockquote>
+<p><strong>Expert</strong> parameters:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>skill_name</strong> : string</div>
+<div class="line-block">
+<div class="line">Name of this skill. Must be locally unique.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>tasks</strong> : list:task</div>
+<div class="line-block">
+<div class="line">Contains the task description(s).</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>bounds</strong> : list:bound</div>
+<div class="line-block">
+<div class="line">Contains the bounds description(s).</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>monitors</strong> : list:monitor</div>
+<div class="line-block">
+<div class="line">Contains the monitors of the skill that determine when the skill should terminate.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>transitions</strong> : list:transition</div>
+<div class="line-block">
+<div class="line">Contains additional transitions to other states (skills), given an event name.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>scripts</strong> : list:script</div>
+<div class="line-block">
+<div class="line">Contains scripts that should be executed while the skill is active.</div>
+</div>
+</div>
+</div></blockquote>
+<p><strong>Hidden</strong> parameters:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>collections</strong> : list:collection</div>
+<div class="line-block">
+<div class="line">Contains the kinematic chains of the skill (feature, robot, object chains).</div>
+<div class="line"><strong>Default</strong>: odict_keys([‘collection’, ‘target_to_tool’])</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>loops</strong> : list:kinematic_loop</div>
+<div class="line-block">
+<div class="line">Contains the kinematic loop(s) that define the task to be solved.</div>
+<div class="line"><strong>Default</strong>: odict_keys([‘kinematic_loop’])</div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p>No examples found that make use of <strong>skill_cartesian</strong></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="skill_approach.html" class="btn btn-neutral float-left" title="skill_approach" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="skill_cartesian_bound.html" class="btn btn-neutral float-right" title="skill_cartesian_bound" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+
+        <type id="script_topic_logger" prototype="script">
+            <meta>
+                <member id="description">Logs values from a ROS topic to a file.</member>
+                <member id="categories">publisher</member>
+                <member id="implementation">
+                    <!-- For Orocos topic logger is always external -->
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">ScriptExtTopicLogger</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="topic" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The ros topic to listen on</member>
+                    </meta>
+                </type>
+                <type id="fields" data_type="list:string_parameter" prototype="base">
+                    <meta>
+                        <member id="description">The Field in the topic to be logged. Syntax is comparable to 'rostopic echo': Lists with [], subitems with . (dot).
+
+Examples: "wrench.force", "wrench.force.x", "list[0]"</member>
+                    </meta>
+                </type>
+                <type id="package" prototype="string_parameter">
+                    <meta>
+                        <member id="description">A rospackage in the workspace to place the file in. Leave empty if absolute path is wanted.</member>
+                    </meta>
+                </type>
+                <type id="folder" prototype="string_parameter">
+                    <meta>
+                        <member id="description">An additional folder within the rospackage path. Creates folder if not existing.</member>
+                    </meta>
+                </type>
+                <type id="file_name" prototype="string_parameter">
+                    <meta>
+                        <member id="description">The name of the file to log the data into.
+
+Accepts subsequent folders, "~" for home (if package=="") and the following special artefacts:
+"{number}" -> starts at 0 and increases by one every time the logger is reentered within an application (e.g. application starts and stops logger in a loop);
+"{timestamp%Y-%m-%d_%H-%M-%S}" -> Is replaced by the timestamp at starting with the given structure.
+Examples: "{timestamp%Y-%m-%d}/{timestamp%H-%M-%S}_iteration_{number}.log" -> 2020-06-06/13-40-31_iteration_0.log</member>
+                    </meta>
+                </type>
+                <type id="file_mode" prototype="string_parameter">
+                    <data>w+</data>
+                    <meta>
+                        <member id="description">File creation flag:
+
+a  : if file already exists, new data will be appended,
+w  : new data will overwrite and replace already existing data,
+w+ : if file already exists, a new file will be created with additional surfix</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="script_external_topic_logger" prototype="script_topic_logger">
+            <data>
+                <type id="name" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the external node to be created.</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+    </models>
+</pitasc>

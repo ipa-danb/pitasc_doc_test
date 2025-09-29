@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+
+        <!-- Kinematic Graph -->
+
+        <type id="script_kinematic_graph" prototype="script">
+            <meta>
+                <member id="description">Prototype for kinematic graph scripts</member>
+                <member id="categories">internal</member>
+            </meta>
+            <data>
+                <type id="on_start" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Execute the script before or after the skill.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>True</data>
+                </type>
+
+                <type id="tf_broadcast" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Broadcast the frame to TF?</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>False</data>
+                </type>
+
+                <reference prototype="kinematic_graph" reference_id="configuration.kinematic_graph"/>
+                <member id="kinematic_graph.meta.visibility">hidden</member>
+            </data>
+        </type>
+
+        <type id="script_copy_frame" prototype="script_kinematic_graph">
+            <meta>
+                <member id="description">Copies a frame.</member>
+                <member id="categories">frames</member>
+                <member id="implementation">
+                </member>
+            </meta>
+            <data>
+                <type id="frame" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the frame to be created</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="source" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the frame to be copied</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="parent" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the parent frame to of 'frame'</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="script_temp_frame" prototype="script_kinematic_graph">
+            <meta>
+                <member id="description">Creates a temporary frame that lives as long as the parent skill is active.</member>
+                <member id="categories">frames</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_kinematics</member>
+                        <member id="component">ScriptTempFrame</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="frame" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the frame to be created</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="source" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the frame to be copied</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="parent" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the parent frame to of 'frame'</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="script_remove_frame" prototype="script_kinematic_graph">
+            <meta>
+                <member id="description">Removes a frame.</member>
+                <member id="categories">frames</member>
+                <member id="implementation">
+                </member>
+            </meta>
+            <data>
+                <type id="frame" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the frame to be removed.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+        <type id="script_set_frame" prototype="script_kinematic_graph">
+            <meta>
+                <member id="description">Sets a new frame.</member>
+                <member id="categories">frames</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_kinematics</member>
+                        <member id="component">ScriptSetFrame</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="frame" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the frame to be set or created</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="parent" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the parent frame to of 'frame'</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="pose" prototype="float_csv">
+                    <meta>
+                        <member id="description">Pose of the new frame relative to 'parent'</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="pose_type" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Specifies how the rotation part of pose is given.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">rpy, rot_vec</clone>
+                        </clone>
+                    </meta>
+                    <data>rpy</data>
+                </type>
+            </data>
+        </type>
+
+        <type id="script_set_frame_rotvec" prototype="script_set_frame">
+            <meta>
+                <member id="description">Sets a new frame (pose with rotation vector).</member>
+            </meta>
+            <data>
+                <member id="pose_type">rot_vec</member>
+            </data>
+        </type>
+
+
+        <type id="script_temp_frame_from_force" prototype="script_temp_frame">
+            <meta>
+                <member id="description">Creates a temporary frame from the current force measurements.
+
+                    The z axis points in the opposite direction of the measured force vector (the usual definition for force control with pitasc).
+                    The frame's position and direction will be updated as long as the script is active.
+
+                    Includes possibility to filter the input with a first order low pass.
+                </member>
+                <member id="categories">frames</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_kinematics</member>
+                        <member id="component">ScriptTempFrameFromForce</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <reference id="wrench_driver" prototype="data_source" reference_id="robot.components.force_sensor.wrench_driver"/>
+                <member id="wrench_driver.meta.visibility">expert</member>
+
+                <member id="parent" reference_id="robot.base_link"/>
+                <member id="parent.meta.visibility">expert</member>
+
+                <type id="low_pass_filter_gain" prototype="float_parameter">
+                    <meta>
+                        <member id="description">First order low pass filter gain (exponential filter). Must be in interval [0:1]. 0 means taking only the previous value, 1 means taking only the new value.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1</data>
+                </type>
+
+            </data>
+        </type>
+
+        <type id="script_sinus_frame" prototype="script_temp_frame">
+            <meta>
+                <member id="description">Creates a temporary frame that lives as long as the parent skill is active. The frame moves in the given coordinate with a sinus</member>
+                <member id="categories">frames</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_kinematics</member>
+                        <member id="component">ScriptSinusFrame</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="coordinate" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Coordinate that will be updated by a sine.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="amplitude" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Amplitude of the sine.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="period" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Period of the sine in [s].</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+            </data>
+        </type>
+
+    </models>
+</pitasc>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the usage of monitors.
+
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">2.0</member>
+                <member id="robot_driver.max_acceleration">3.0</member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_sequence">
+
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <member id="skills">
+
+                    <clone prototype="skill_cartesian_tracking">
+                        <member id="skill_name">track_duration</member>
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">marker</member>
+
+                        <!-- Quit after 5 seconds -->
+                        <member id="monitors">
+                            <clone prototype="monitor_duration">
+                                <member id="duration">30.0</member>
+                            </clone>
+                        </member>
+
+                    </clone>
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

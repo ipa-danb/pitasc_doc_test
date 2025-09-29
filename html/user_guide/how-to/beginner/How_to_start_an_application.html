@@ -1,0 +1,397 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to start an application &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="How to create an application" href="How_to_create_an_application.html" />
+    <link rel="prev" title="Beginner" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">How-To</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Beginner</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">How to start an application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#file-reader">File reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#executor">Executor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pi-teacher-gui">Pi Teacher (GUI)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python-api">Python API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_create_an_application.html">How to create an application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_add_a_robot_to_an_application.html">How to add a robot to an application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_add_a_skill_to_an_application.html">How to add a skill to an application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_set_the_value_of_a_parameter.html">How to set the value of a parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_attach_a_monitor_to_a_skill.html">How to attach a monitor to a Skill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_attach_a_script_to_a_skill.html">How to attach a script to a skill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_log_data.html">How to log data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/index.html">Advanced</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../xml_reference/skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../xml_reference/monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../xml_reference/scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../xml_reference/examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">How-To</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Beginner</a></li>
+      <li class="breadcrumb-item active">How to start an application</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user_guide/how-to/beginner/How_to_start_an_application.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-start-an-application">
+<h1>How to start an application<a class="headerlink" href="#how-to-start-an-application" title="Permalink to this heading"></a></h1>
+<p>There are different ways to start a pitasc program, which are explained in the following.</p>
+<section id="file-reader">
+<h2>File reader<a class="headerlink" href="#file-reader" title="Permalink to this heading"></a></h2>
+<p>The first option is to use the <code class="docutils literal notranslate"><span class="pre">pitasc_filereader</span></code>. It reads the app file (.xml) and runs one of the applications
+inside the <code class="docutils literal notranslate"><span class="pre">applications</span></code> member in the file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See also <a class="reference internal" href="../../fundamentals/application.html"><span class="doc">Applications</span></a></p>
+</div>
+<p>The syntax:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pitasc_filereader<span class="w"> </span><span class="o">[</span>&lt;options&gt;<span class="o">]</span><span class="w"> </span>&lt;package&gt;<span class="w"> </span>&lt;filename&gt;<span class="w"> </span><span class="o">[</span>&lt;appname&gt;<span class="o">]</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>The <code class="docutils literal notranslate"><span class="pre">&lt;package&gt;</span></code> argument specifies the package_name where your application file is present.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;filename&gt;</span></code> argument specifies the relative path/filename of the application file in the package.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">[&lt;appname&gt;]</span></code> argument allows you to specify a list of application names that get executed. If no
+application name is given and multiple applications are present inside the <code class="docutils literal notranslate"><span class="pre">applications</span></code> member of the app
+file, pitasc aborts and a list of all applications inside the <code class="docutils literal notranslate"><span class="pre">applications</span></code> member is printed out. If only
+one application is inside the <code class="docutils literal notranslate"><span class="pre">applications</span></code> member, pitasc runs it even if the <code class="docutils literal notranslate"><span class="pre">[&lt;appname&gt;]</span></code> argument is
+left empty.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">[&lt;options&gt;]</span></code> argument contains a list of options. The following options are available:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-c</span></code>, <code class="docutils literal notranslate"><span class="pre">--component-info</span></code>:</div>
+<div class="line">Print in which component the logging happened.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-v</span></code>, <code class="docutils literal notranslate"><span class="pre">--verbose</span></code>:</div>
+<div class="line">Print code location of logging statements.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-l</span></code>, <code class="docutils literal notranslate"><span class="pre">--log-level</span></code> &lt;loglevel&gt;:</div>
+<div class="line">Specify which log levels should be printed to the terminal. Possible values: [debug, info, warn, error,
+fatal]. Loglevel “debug” implies verbose logging.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-t</span></code>, <code class="docutils literal notranslate"><span class="pre">--trigger-periodic</span></code></div>
+<div class="line">Uses Trigger with constant trigger rate instead of Joint Topic/ROS based Trigger.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">--help</span></code>:</div>
+<div class="line">Print this usage information.</div>
+</div>
+</div></blockquote>
+</div></blockquote>
+<p><strong>Example</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pitasc_filereader<span class="w"> </span>pitasc_common<span class="w"> </span>examples/beginner/multiple_apps.xml<span class="w"> </span>another_application
+</pre></div>
+</div>
+</section>
+<section id="executor">
+<h2>Executor<a class="headerlink" href="#executor" title="Permalink to this heading"></a></h2>
+<p>The second option to start an application, is to run the <code class="docutils literal notranslate"><span class="pre">pitasc_executor_rossrv</span></code> with the following command.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pitasc_executor_rossrv<span class="w"> </span><span class="o">[</span>&lt;options&gt;<span class="o">]</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>The <code class="docutils literal notranslate"><span class="pre">[&lt;options&gt;]</span></code> argument specifies a list of options. The following options are available:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-c</span></code>, <code class="docutils literal notranslate"><span class="pre">--component-info</span></code>:</div>
+<div class="line">Print in which component the logging happened.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-v</span></code>, <code class="docutils literal notranslate"><span class="pre">--verbose</span></code>:</div>
+<div class="line">Print code location of logging statements.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-l</span></code>, <code class="docutils literal notranslate"><span class="pre">--log-level</span></code> &lt;loglevel&gt;:</div>
+<div class="line">Specify which log levels should print to the terminal. Possible values: [debug, info, warn, error,
+fatal]. Loglevel “debug” implies verbose logging.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-t</span></code>, <code class="docutils literal notranslate"><span class="pre">--trigger-periodic</span></code></div>
+<div class="line">Uses Trigger with constant trigger rate instead of Joint Topic/ROS based Trigger.</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">--help</span></code>:</div>
+<div class="line">Print this usage information.</div>
+</div>
+</div></blockquote>
+</div></blockquote>
+<p>This command starts a ros node providing the following ros services:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/pitasc/load</span></code> loads your application.xml file into the executor.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rosservice<span class="w"> </span>call<span class="w"> </span>/pitasc/load<span class="w"> </span>&lt;package&gt;<span class="w"> </span>&lt;filename&gt;<span class="w"> </span><span class="o">[</span>&lt;parameters&gt;<span class="o">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;package&gt;</span></code> argument specifies the package_name where your application file is present.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;filename&gt;</span></code> argument specifies the relative path/filename of the application file in the package.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">[&lt;parameters&gt;]</span></code> argument allows you to change parameters of skills/script/etc. inside the
+<code class="docutils literal notranslate"><span class="pre">applications</span></code> member of the app file (this is an optional). Parameters have a name and a value. You can specify the parameter
+of a nested sub-skill by chaining the names with a <code class="docutils literal notranslate"><span class="pre">.</span></code> connecting them. Use a <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> in front of the value
+of value to indicate that the parameter referenced a parameter with the <code class="docutils literal notranslate"><span class="pre">id</span></code> of value. See example below at <code class="docutils literal notranslate"><span class="pre">/pitasc/run</span></code></p>
+<p><strong>Console example</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rosservice<span class="w"> </span>call<span class="w"> </span>/pitasc/load<span class="w"> </span><span class="s2">&quot;package: &#39;pitasc_common&#39;</span>
+<span class="go">    file_name: &#39;examples/beginner/multiple_apps.xml&#39;&quot;</span>
+</pre></div>
+</div>
+<p><strong>Python example</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rospy</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pitasc.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">Load</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s2">&quot;load_srv_caller&quot;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">load_srv</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s2">&quot;/pitasc/load&quot;</span><span class="p">,</span> <span class="n">Load</span><span class="p">)</span>
+    <span class="n">resp_load</span> <span class="o">=</span> <span class="n">load_srv</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">package</span><span class="o">=</span><span class="s2">&quot;pitasc_common&quot;</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;examples/beginner/multiple_apps.xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/pitasc/list</span></code> prints out a list of all available applications inside the <code class="docutils literal notranslate"><span class="pre">applications</span></code> member of the loaded app file.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rosservice<span class="w"> </span>call<span class="w"> </span>/pitasc/list
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/pitasc/run</span></code> starts an application from inside the <code class="docutils literal notranslate"><span class="pre">applications</span></code> member of your app file.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rosservice<span class="w"> </span>call<span class="w"> </span>/pitasc/run<span class="w"> </span>&lt;app&gt;<span class="w"> </span><span class="o">[</span>&lt;parameters&gt;<span class="o">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;app&gt;</span></code> argument allows you to specify the name of the applications to run. If no application name is
+specified and multiple applications are inside the <code class="docutils literal notranslate"><span class="pre">applications</span></code> member of the app file pitasc
+aborts and a list of all applications inside the <code class="docutils literal notranslate"><span class="pre">applications</span></code> member is printed out. If only one
+application is inside the <code class="docutils literal notranslate"><span class="pre">applications</span></code> member, pitasc runs it even if the <code class="docutils literal notranslate"><span class="pre">&lt;app&gt;</span></code> argument is left
+empty.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">[&lt;parameters&gt;]</span></code> argument allows you to change parameters of skills/script/etc. inside the
+<code class="docutils literal notranslate"><span class="pre">applications</span></code> member of the app file. Parameters have a name and a value. You can specify the parameter
+of a nested sub-skill by chaining the names with a <code class="docutils literal notranslate"><span class="pre">.</span></code> connecting them. Use a <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> in front of the value
+of value to indicate that the parameter referenced a parameter with the <code class="docutils literal notranslate"><span class="pre">id</span></code> of value.</p>
+<p><strong>Console example</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rosservice<span class="w"> </span>call<span class="w"> </span>/pitasc/run<span class="w"> </span><span class="s2">&quot;app: &#39;another_application&#39;</span>
+<span class="go">parameters:</span>
+<span class="go">- name: &#39;skills.move_to.max_linear_velocity&#39;</span>
+<span class="go">value: &#39;0.1&#39;</span>
+<span class="go">- name: &#39;skills.move_to.target_frame&#39;</span>
+<span class="go">value: &#39;target2&#39;</span>
+<span class="go">- name: &#39;skills.approach.target_frame&#39;</span>
+<span class="go">value: &#39;-&gt;move_to.target_frame&#39;&quot;</span>
+</pre></div>
+</div>
+<p><strong>Python example</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rospy</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pitasc.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">Run</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pitasc.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parameter</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s2">&quot;run_srv_caller&quot;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">run_srv</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s2">&quot;/pitasc/run&quot;</span><span class="p">,</span> <span class="n">Run</span><span class="p">)</span>
+
+    <span class="n">param1</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;skills.move_to.max_linear_velocity&quot;</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">param2</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;skills.move_to.target_frame&quot;</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="s2">&quot;target2&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">param3</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;skills.approach.target_frame&quot;</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="s2">&quot;-&gt;move_to.target_frame&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># requires pitasc_common/examples/beginner/multiple_apps.xml being loaded beforehand</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">run_srv</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="s2">&quot;another_application&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">[</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="n">param3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/pitasc/stop</span></code> stops a running application.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rosservice<span class="w"> </span>call<span class="w"> </span>/pitasc/stop
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/pitasc/pause</span></code> pauses a running application.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rosservice<span class="w"> </span>call<span class="w"> </span>/pitasc/pause
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/pitasc/resume</span></code> resumes a paused application.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rosservice<span class="w"> </span>call<span class="w"> </span>/pitasc/resume
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="pi-teacher-gui">
+<h2>Pi Teacher (GUI)<a class="headerlink" href="#pi-teacher-gui" title="Permalink to this heading"></a></h2>
+<p>Instead of using rosservice calls directly, another option is to use the <code class="docutils literal notranslate"><span class="pre">pi_teacher</span></code> along with the executor node, which gives you a
+graphical user interface for calling the ros services.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>rqt<span class="w"> </span>-s<span class="w"> </span>pi_teacher
+</pre></div>
+</div>
+</section>
+<section id="python-api">
+<h2>Python API<a class="headerlink" href="#python-api" title="Permalink to this heading"></a></h2>
+<p>You can also use the python API to use pitasc directly within python. Please note that this feature is still experimental.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">rospy</span>
+
+<span class="c1"># pitasc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pitasc.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cppitasc.runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Executor</span><span class="p">,</span> <span class="n">roscpp_init</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cppitasc.package_path</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_package_path</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="c1"># ROS</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s2">&quot;pitasc&quot;</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">rospy</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+    <span class="c1"># init pitasc</span>
+    <span class="n">roscpp_init</span><span class="p">(</span><span class="s2">&quot;pitasc&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+
+    <span class="c1"># Load file</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_package_path</span><span class="p">(</span><span class="s2">&quot;pitasc_common&quot;</span><span class="p">),</span> <span class="s2">&quot;examples/beginner/multiple_apps.xml&quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">import_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+
+    <span class="c1"># Execute</span>
+    <span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="n">executor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;another_application&quot;</span><span class="p">,</span> <span class="p">{})</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Beginner" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="How_to_create_an_application.html" class="btn btn-neutral float-right" title="How to create an application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

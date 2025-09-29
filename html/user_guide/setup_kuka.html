@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup KUKA Robot &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Skills" href="../xml_reference/skills/index.html" />
+    <link rel="prev" title="Setup UR Robot" href="setup_ur.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to/index.html">How-To</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="setup_robots.html">Setup Robots</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="setup_ur.html">Setup UR Robot</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setup KUKA Robot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-driver-and-setup">Install driver and setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional">Optional</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ros-launch-file">ROS launch file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pitasc-environment">pitasc environment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xml_reference/examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="setup_robots.html">Setup Robots</a></li>
+      <li class="breadcrumb-item active">Setup KUKA Robot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/setup_kuka.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setup-kuka-robot">
+<h1>Setup KUKA Robot<a class="headerlink" href="#setup-kuka-robot" title="Permalink to this heading"></a></h1>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Robot controller: KRC2, KRC4 or KRC5</p></li>
+<li><p>Option RSI3, RSI4 or RSI5.</p></li>
+</ul>
+</section>
+<section id="install-driver-and-setup">
+<h2>Install driver and setup<a class="headerlink" href="#install-driver-and-setup" title="Permalink to this heading"></a></h2>
+<p>Until the relative command patch is merged, use the fork <a class="reference external" href="https://github.com/ipa-jsk/kuka_experimental/tree/rsi4_with_velocity_interface">rsi4_with_velocity_interface</a> instead of the <a class="reference external" href="https://github.com/ros-industrial/kuka_experimental">main repository</a>.</p>
+<ol class="arabic simple">
+<li><p>Optional/Recommended: Follow the <a class="reference external" href="https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/blob/master/ur_robot_driver/doc/real_time.md">Realtime Kernel setup guide</a></p></li>
+<li><p>Depending on your KRC version, follow one of the guides per the READMEs below to install the driver</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ipa-jsk/kuka_experimental/tree/rsi4_with_velocity_interface/kuka_rsi_hw_interface/krl/KR_C2">KRC2</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ipa-jsk/kuka_experimental/tree/rsi4_with_velocity_interface/kuka_rsi_hw_interface/krl/KR_C4">KRC4</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ipa-jsk/kuka_experimental/tree/rsi4_with_velocity_interface/kuka_rsi_hw_interface/krl/KR_C4">KRC5</a></p></li>
+</ul>
+</li>
+</ol>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Make sure that your ROS PC is connected to the right physical interface (ethernet port) on the KUKA controller. There are usually two interfaces of interest: one for transferring e.g. WorkVisual projects and the other for control with e.g. RSI.</p></li>
+<li><p>There is usually a detailed documentation of RSI (and the other installed options) on your controller; refer to that for more information (i.e. ways to debug). (E.g. Log in at least as an Expert on the Teach Pad, then navigate to <code class="code docutils literal notranslate"><span class="pre">KUKA_DATA</span> <span class="pre">D(:\)\KUKA_OPT\RobotSensorInterface\DOC</span></code>).</p></li>
+</ul>
+</section>
+<section id="optional">
+<h3>Optional<a class="headerlink" href="#optional" title="Permalink to this heading"></a></h3>
+<p>Make a backup of current KRC configuration before driver installation. (See also: <a class="reference external" href="https://www.youtube.com/watch?v=PtVohrofnLY">https://www.youtube.com/watch?v=PtVohrofnLY</a>)</p>
+<ol class="arabic simple">
+<li><p>Insert USB stick to robot controller cabinet</p></li>
+<li><p>Change user group level to “Expert”</p></li>
+<li><p>In File navigator select <code class="code docutils literal notranslate"><span class="pre">Archiv:\</span></code></p></li>
+<li><p>Select Archiv everything on USB(cabinet)</p></li>
+</ol>
+</section>
+</section>
+<section id="ros-launch-file">
+<h2>ROS launch file<a class="headerlink" href="#ros-launch-file" title="Permalink to this heading"></a></h2>
+<p>To start the communication with the KUKA controller a ROS launch file is required. The following ROS launch file loads the driver for a KUKA KR270 robot. We recommend putting the robot into a namespace, for this example we use the robot model: e.g. <code class="docutils literal notranslate"><span class="pre">/KUKA-KR270</span></code>.
+The lines of code which have to be changed for your robot are marked by in-line comments.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot;?&gt;
+
+&lt;launch&gt;
+    &lt;arg name=&quot;rsi_listen_address&quot; doc=&quot;IP address of the PC running the ROS driver node&quot; default=&quot;172.22.10.22&quot; /&gt; &lt;-- Change to your IP --&gt;
+    &lt;arg name=&quot;rsi_listen_port&quot;    doc=&quot;Port number for the RSI communication&quot;            default=&quot;59152&quot; /&gt; &lt;-- Change to your port --&gt;
+
+    &lt;group ns=&quot;KUKA-KR270&quot;&gt; &lt;-- Change to your choosen namespace --&gt;
+        &lt;!-- ROBOT DESCRIPTION --&gt;
+        &lt;param name=&quot;robot_description&quot; command=&quot;$(find xacro)/xacro &#39;$(find kuka_kr270_support)/urdf/kr270r2700.xacro&#39;&quot; /&gt; &lt;-- Adapt for your robot type --&gt;
+
+        &lt;!-- ROBOT DRIVER (official) --&gt;
+        &lt;rosparam file=&quot;$(find kuka_kr270_support)/config/joint_names_kr270r2700.yaml&quot; /&gt; &lt;-- Adapt for your robot type --&gt;
+        &lt;param name=&quot;rsi/listen_address&quot; value=&quot;$(arg rsi_listen_address)&quot; /&gt;
+        &lt;param name=&quot;rsi/listen_port&quot; value=&quot;$(arg rsi_listen_port)&quot; /&gt;
+        &lt;node pkg=&quot;kuka_rsi_hw_interface&quot; type=&quot;kuka_hardware_interface_node&quot; name=&quot;rsi_driver&quot;
+            output=&quot;screen&quot; /&gt;
+
+        &lt;!-- ROS CONTROL --&gt;
+        &lt;!-- load pitasc controllers --&gt;
+        &lt;rosparam command=&quot;load&quot; file=&quot;$(find pitasc_controller)/controller/pitasc_controller.yaml&quot;/&gt;
+        &lt;!-- load joint_state_controller --&gt;
+        &lt;rosparam&gt;
+            joint_state_controller:
+                type: joint_state_controller/JointStateController
+                publish_rate: 250  # RSI update rate
+        &lt;/rosparam&gt;
+        &lt;!-- spawn controllers --&gt;
+        &lt;node name=&quot;controller_spawner&quot; pkg=&quot;controller_manager&quot; type=&quot;spawner&quot; respawn=&quot;false&quot;
+            args=&quot;joint_state_controller pitasc_vel_control&quot; /&gt;
+
+        &lt;!-- TF --&gt;
+        &lt;!-- joint states to TF --&gt;
+        &lt;node pkg=&quot;robot_state_publisher&quot; type=&quot;robot_state_publisher&quot; name=&quot;robot_state_publisher&quot; /&gt;
+
+    &lt;/group&gt;
+
+&lt;/launch&gt;
+</pre></div>
+</div>
+</section>
+<section id="pitasc-environment">
+<h2>pitasc environment<a class="headerlink" href="#pitasc-environment" title="Permalink to this heading"></a></h2>
+<p>To let pitasc take joint states and urdf description from the robot namespace, it needs to be configured. Set the urdf prefix if you have one (<code class="docutils literal notranslate"><span class="pre">tf_prefix</span></code> in the launch file).
+The only change required in the following code example is the namespace you choose in the ROS launch file.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;pitasc&gt;</span>
+<span class="w">    </span><span class="nt">&lt;models&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- Include pitasc --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;pitasc_library&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;models/pitasc.xml&quot;</span><span class="nt">/&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!-- Include the kuka robot--&gt;</span>
+<span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;pitasc_library&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;kuka/robot_kuka.xml&quot;</span><span class="nt">/&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!-- Include the idle skill --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;pitasc_library&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;models/skills.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/models&gt;</span>
+<span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;project&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;configuration&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;configuration&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;default_configuration&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;update_rate&quot;</span><span class="nt">&gt;</span>250.0<span class="nt">&lt;/member&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;environment&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;robot_kuka&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="cm">&lt;!-- Set the limits for the joint control signals --&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot_driver.max_velocity&quot;</span><span class="nt">&gt;</span>1.5<span class="nt">&lt;/member&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot_driver.max_acceleration&quot;</span><span class="nt">&gt;</span>1.5<span class="nt">&lt;/member&gt;</span>
+
+<span class="w">                </span><span class="cm">&lt;!-- adjust the namespace to correspond to the one set in the launchfile --&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;namespace&quot;</span><span class="nt">&gt;</span>KUKA-KR270<span class="nt">&lt;/member&gt;</span>
+
+<span class="w">                </span><span class="cm">&lt;!-- define any prefixes you might have set in the robot description  --&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;urdf_prefix&quot;</span><span class="nt">&gt;&lt;/member&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;applications&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_sequence&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;environment.robot_kuka&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skills&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_relative_ptp&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;relative_joint_state&quot;</span><span class="nt">&gt;</span>0,<span class="w"> </span>0,<span class="w"> </span>0,<span class="w"> </span>0,<span class="w"> </span>0,<span class="w"> </span>0<span class="nt">&lt;/member&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/member&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="nt">&lt;/pitasc&gt;</span>
+</pre></div>
+</div>
+<p>To start the application:</p>
+<ol class="arabic">
+<li><p>Start launch file:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">roslaunch &lt;your_package_name&gt; &lt;your_launc_file_name.launch&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Start pitasc executor</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pitasc_executor_rossrv</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Start <code class="code docutils literal notranslate"><span class="pre">rqt</span></code>, start the piteacher and load your xml file to start the program</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rqt -s &quot;Pi Teacher&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="setup_ur.html" class="btn btn-neutral float-left" title="Setup UR Robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../xml_reference/skills/index.html" class="btn btn-neutral float-right" title="Skills" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

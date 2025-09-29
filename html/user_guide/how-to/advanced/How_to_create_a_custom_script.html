@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to create a custom script &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="How to create a custom monitor" href="How_to_create_a_custom_monitor.html" />
+    <link rel="prev" title="How to add a parameter to a skill, monitor, …" href="How_to_add_a_parameter_to_a_skill_monitor_etc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">How-To</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../beginner/index.html">Beginner</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Advanced</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="How_to_create_a_custom_skill.html">How to create a custom skill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_add_a_parameter_to_a_skill_monitor_etc.html">How to add a parameter to a skill, monitor, …</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">How to create a custom script</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xml">XML</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_create_a_custom_monitor.html">How to create a custom monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_access_parameter_inside_cpp_files.html">How to access parameters inside cpp files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="How_to_use_the_operator_class.html">How to use the operator class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../xml_reference/skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../xml_reference/monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../xml_reference/scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../xml_reference/examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">How-To</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Advanced</a></li>
+      <li class="breadcrumb-item active">How to create a custom script</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/user_guide/how-to/advanced/How_to_create_a_custom_script.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-create-a-custom-script">
+<h1>How to create a custom script<a class="headerlink" href="#how-to-create-a-custom-script" title="Permalink to this heading"></a></h1>
+<p>This guide explains how to create a custom script. Scripts consist of two parts, the structure which is defined inside a <code class="docutils literal notranslate"><span class="pre">.xml</span></code> and the implementation which is inside a <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> file.</p>
+<p>First, create the <code class="docutils literal notranslate"><span class="pre">.xml</span></code>, <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">.hpp</span></code> files in a ros package.  Good practice is to save the custom script in a <code class="docutils literal notranslate"><span class="pre">models</span></code> folder with the naming convention <code class="docutils literal notranslate"><span class="pre">script_[script_name].xml</span></code>. Save your script.cpp file in the <code class="docutils literal notranslate"><span class="pre">/srs/scripts</span></code> directory and the scripts.hpp in the <code class="docutils literal notranslate"><span class="pre">include/package_name/scripts</span></code> directory of your package and use the following naming convention <code class="docutils literal notranslate"><span class="pre">script_[script_name].cpp</span></code> / <code class="docutils literal notranslate"><span class="pre">script_[script_name].hpp</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>package_name
+├── examples
+├── include
+|   └── package_name
+|       ├── monitors
+|       ├── scripts
+<span class="hll">|       |   └── script_[script_name].hpp &lt;-- Your script.hpp file
+</span>|       └── ...
+├── models
+<span class="hll">|   └── script_[script_name].xml    &lt;-- Your script.xml file
+</span>├── src
+|   ├── monitors
+|   ├── scripts
+<span class="hll">|   |   └── script_[script_name].cpp     &lt;-- Your script.cpp file
+</span>|   └── ...
+├── package.xml
+└── CMakeLists.txt
+</pre></div>
+</div>
+<section id="xml">
+<h2>XML<a class="headerlink" href="#xml" title="Permalink to this heading"></a></h2>
+<p>To create a script, include the base type <code class="docutils literal notranslate"><span class="pre">script</span></code> (see below). Add the include statement at the start of the <code class="docutils literal notranslate"><span class="pre">&lt;models&gt;</span></code> tag with the following syntax.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pitasc&gt;</span>
+<span class="w">    </span><span class="nt">&lt;models&gt;</span>
+<span class="hll"><span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;package_name&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;models/script_[script_name].xml.xml&quot;</span><span class="nt">/&gt;</span>
+</span><span class="w">        </span>...
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="line-block">
+<div class="line">To include the base script, use this include statement</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&lt;include</span> <span class="pre">package=&quot;pitasc_library&quot;</span> <span class="pre">file=&quot;models/pitasc.xml&quot;</span> <span class="pre">/&gt;</span></code></div>
+</div>
+</div>
+<p>The script gets added right after the include statements in the <code class="docutils literal notranslate"><span class="pre">&lt;models&gt;</span></code> by using the <code class="docutils literal notranslate"><span class="pre">&lt;type&gt;</span></code> tags.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="nt">&lt;type</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;script_[script_name]&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;{base script}&quot;</span><span class="nt">&gt;</span>
+</span><span class="w">    </span><span class="cm">&lt;!-- script body --&gt;</span>
+<span class="nt">&lt;/type&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>The <code class="docutils literal notranslate"><span class="pre">id</span></code>, i.e., the script name, should be unique and descriptive.</p>
+<p>The attribute <code class="docutils literal notranslate"><span class="pre">prototype</span></code> refers to the base script, which is the basis of the new script. If you do not extend an existing script, use <code class="docutils literal notranslate"><span class="pre">script</span></code>.</p>
+</div></blockquote>
+<p>Set the metadata inside the <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span></code> tag of the script.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>Description<span class="nt">&lt;/member&gt;</span>
+<span class="w">    </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>category_1,<span class="w"> </span>category_2<span class="nt">&lt;/member&gt;</span>
+<span class="w">    </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;visibility&quot;</span><span class="nt">&gt;</span>basic<span class="nt">&lt;/member&gt;</span>
+<span class="w">    </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;implementation&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- Implementation details --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/member&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>The parameter <code class="docutils literal notranslate"><span class="pre">description</span></code> contains a description. Describe the script in as much detail as needed to understand the script completely. This description can be used to create the automatically generated documentation.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">categories</span></code> should include the categories of the base script.. An exception to this is the internal category of base-scripts. The category has no special meaning, but can help to sort the scripts, e.g., in a documentation or a GUI. Examples for categories are the entries of <a class="reference internal" href="../../../xml_reference/scripts/index.html"><span class="doc">Scripts</span></a>.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">visibility</span></code> determines how a script is shown inside the documentation. It can be set to required, basic, expert and hidden. In most cases, basic visibility should be used.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">implementation</span></code> is a dictionary in which the implementations are placed.</p>
+</div></blockquote>
+<p>Pitasc implementations are ocoros, since the project used orocos state machine in the past.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;implementation&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;orocos&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;package&quot;</span><span class="nt">&gt;</span>[package_name]_scripts<span class="nt">&lt;/member&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;component&quot;</span><span class="nt">&gt;</span>CppScriptClassName<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Name of the c++ script class --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="nt">&lt;/member&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>The parameter <code class="docutils literal notranslate"><span class="pre">package</span></code> defines the c++ library containing the component, use <code class="docutils literal notranslate"><span class="pre">[package_name]_scripts</span></code>. Must be used in the <cite>CMakeLists.txt</cite> file to create the c++ library (see below).</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">component</span></code> links to the C++ implemented class using the class name as the value.</p>
+</div></blockquote>
+<p>Inside the <code class="docutils literal notranslate"><span class="pre">&lt;data&gt;</span></code> tag is where the parameters of the script are placed.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;/meta&gt;</span>
+<span class="nt">&lt;data&gt;</span>
+<span class="hll"><span class="w">    </span><span class="cm">&lt;!-- script parameter definition --&gt;</span>
+</span><span class="nt">&lt;/data&gt;</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Example</strong></div>
+<div class="line">This is the xml definition of the <code class="docutils literal notranslate"><span class="pre">script_temp_frame</span></code>, existing in the pitasc library.</div>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;type</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;script_temp_frame&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_kinematic_graph&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>Creates<span class="w"> </span>a<span class="w"> </span>temporary<span class="w"> </span>frame<span class="w"> </span>that<span class="w"> </span>lives<span class="w"> </span>as<span class="w"> </span>long<span class="w"> </span>as<span class="w"> </span>the<span class="w"> </span>parent<span class="w"> </span>skill<span class="w"> </span>is<span class="w"> </span>active.<span class="nt">&lt;/member&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>frames<span class="nt">&lt;/member&gt;</span>
+<span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;implementation&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;orocos&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;package&quot;</span><span class="nt">&gt;</span>cppitasc_kinematics<span class="nt">&lt;/member&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;component&quot;</span><span class="nt">&gt;</span>ScriptTempFrame<span class="nt">&lt;/member&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;data&gt;</span>
+<span class="w">        </span><span class="nt">&lt;type</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;frame&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;string_parameter&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>Name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>frame<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>created<span class="nt">&lt;/member&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;visibility&quot;</span><span class="nt">&gt;</span>required<span class="nt">&lt;/member&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/type&gt;</span>
+
+<span class="w">        </span><span class="nt">&lt;type</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;source&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;string_parameter&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>Name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>frame<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>copied<span class="nt">&lt;/member&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;visibility&quot;</span><span class="nt">&gt;</span>required<span class="nt">&lt;/member&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/type&gt;</span>
+
+<span class="w">        </span><span class="nt">&lt;type</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;parent&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;string_parameter&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>Name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>parent<span class="w"> </span>frame<span class="w"> </span>to<span class="w"> </span>of<span class="w"> </span>&#39;frame&#39;<span class="nt">&lt;/member&gt;</span>
+<span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;visibility&quot;</span><span class="nt">&gt;</span>required<span class="nt">&lt;/member&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/type&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="c">
+<h2>C++<a class="headerlink" href="#c" title="Permalink to this heading"></a></h2>
+<p>Create the Script class by inheriting from another script. In most cases, you will inherit from the base script class <code class="docutils literal notranslate"><span class="pre">Script</span></code> in the package <strong>cppitasc</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ScriptName</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Script</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//Add stuff here</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="line-block">
+<div class="line">The base script class can be included with the following include statement</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;cppitasc/coordination/script.hpp&quot;</span></code></div>
+</div>
+</div>
+<p>The implementation of the script uses multiple functions that are called at different parts of the skill execution. The following functions are available for use. The most often used ones are highlighted.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="hll">init()        : Called in the factory after object creation (more or less the constructor). Read the xml parameters here.
+</span>onConfigure() : Called when an application is started to configure the component.
+<span class="hll">onStart()     : Called when a component is started (when a skill is entered).
+</span><span class="hll">onUpdate()    : Called on Update (each pitasc cycle)
+</span>onPause()     : Called when a component is paused
+onResume()    : Called when a component is resumed
+<span class="hll">onStop()      : Called when a component is stopped (when a skill is exited).
+</span>onCleanup()   : Called when an application is stopped to cleanup the component.
+</pre></div>
+</div>
+<p>To add logic to the scripts, override the needed functions. The header file:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ScriptName</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Script</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="hll"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">onStart</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span class="w">    </span><span class="c1">//Add more stuff here</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>At the end of your implementation of the function, call the base type function and return its result (if no <code class="docutils literal notranslate"><span class="pre">void</span></code> type).</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">ScriptName::onStart</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// some implementation</span>
+<span class="hll"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Script</span><span class="o">:</span><span class="n">onStart</span><span class="p">()</span>
+</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>To access parameters defined in the <code class="docutils literal notranslate"><span class="pre">.xml</span></code> see <a class="reference internal" href="How_to_access_parameter_inside_cpp_files.html"><span class="doc">How to access parameters inside cpp files</span></a></p>
+<p>Add the script by appending the following syntax to the end of the <code class="docutils literal notranslate"><span class="pre">script_[script_name].cpp</span></code> file.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">RUNTIME_COMPONENT</span><span class="p">(</span><span class="n">ScriptName</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Example</strong></div>
+<div class="line">In this example from the pitasc library, the declaration and implementation are both in the cpp file (no header file).</div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;kdl/frames.hpp&gt;</span>
+<span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;cppitasc/coordination/script.hpp&quot;</span>
+</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;cppitasc/kinematic_tree.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;cppitasc/utils/tf_publisher.hpp&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ScriptTempFrame</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Script</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">ScriptTempFrame</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Script</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="hll"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="n">Dict</span><span class="o">&amp;</span><span class="w"> </span><span class="n">params</span><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</span><span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Kinematic Tree</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">peer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extract_type</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s">&quot;kinematic_graph&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">RuntimeObject</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tree_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">KinematicTree</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">peer</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+
+<span class="w">        </span><span class="n">frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extract_type</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s">&quot;frame&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">string</span><span class="p">);</span>
+<span class="w">        </span><span class="n">extract</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s">&quot;source&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">source_</span><span class="p">);</span>
+<span class="w">        </span><span class="n">extract</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s">&quot;parent&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">parent_</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">tf_broadcast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extract_type</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s">&quot;tf_broadcast&quot;</span><span class="p">],</span><span class="w"> </span><span class="kt">bool</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tf_publisher_</span><span class="p">.</span><span class="n">setBroadcast</span><span class="p">(</span><span class="n">tf_broadcast</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tree_</span><span class="o">-&gt;</span><span class="n">addElement</span><span class="p">(</span><span class="n">frame_id_</span><span class="p">,</span><span class="w"> </span><span class="n">parent_</span><span class="p">,</span><span class="w"> </span><span class="n">frame_id_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">parent_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;-temp&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">joint_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&quot;ScriptTempFrame: Frame &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">frame_id_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39; already exists!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">setDependencies</span><span class="p">({});</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Script</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">params</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="hll"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">onConfigure</span><span class="p">()</span><span class="w"> </span><span class="k">final</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Script</span><span class="o">::</span><span class="n">onConfigure</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+</span>
+<span class="hll"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">onStart</span><span class="p">()</span><span class="w"> </span><span class="k">override</span>
+</span><span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Update pose</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">tree_</span><span class="o">-&gt;</span><span class="n">lookup</span><span class="p">(</span><span class="n">parent_</span><span class="p">,</span><span class="w"> </span><span class="n">source_</span><span class="p">,</span><span class="w"> </span><span class="n">frame_</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&quot;ScriptTempFrame: Lookup from &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">parent_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39; to &#39;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">source_</span>
+<span class="w">                                    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&#39; not possible&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">tree_</span><span class="o">-&gt;</span><span class="n">setTransform</span><span class="p">(</span><span class="n">joint_</span><span class="p">,</span><span class="w"> </span><span class="n">frame_</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Script</span><span class="o">::</span><span class="n">onStart</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="hll"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">onUpdate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Tick</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tick</span><span class="p">)</span><span class="w"> </span><span class="k">override</span>
+</span><span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tf_publisher_</span><span class="p">.</span><span class="n">publishFrame</span><span class="p">(</span><span class="n">frame_</span><span class="p">,</span><span class="w"> </span><span class="n">parent_</span><span class="p">,</span><span class="w"> </span><span class="n">frame_id_</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Script</span><span class="o">::</span><span class="n">onUpdate</span><span class="p">(</span><span class="n">tick</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="hll"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">onStop</span><span class="p">()</span><span class="w"> </span><span class="k">final</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Script</span><span class="o">::</span><span class="n">onStop</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+</span><span class="p">};</span>
+
+<span class="hll"><span class="n">RUNTIME_COMPONENT</span><span class="p">(</span><span class="n">ScriptTempFrame</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>To build the script with <code class="docutils literal notranslate"><span class="pre">catkin</span> <span class="pre">build</span> <span class="pre">package_name</span></code>, add the following lines to the CMakeLists.txt.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.0.2</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">package_name</span><span class="p">)</span>
+
+<span class="nb">add_compile_options</span><span class="p">(</span><span class="s">-std=c++17</span><span class="p">)</span>
+
+<span class="c">## Find catkin macros and libraries</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span><span class="w"> </span><span class="s">REQUIRED</span><span class="w"> </span><span class="s">COMPONENTS</span>
+<span class="w">  </span><span class="s">cppitasc</span>
+<span class="w">  </span><span class="c"># possibly other libraries</span>
+<span class="p">)</span>
+
+<span class="nb">catkin_package</span><span class="p">(</span>
+<span class="w">   </span><span class="s">INCLUDE_DIRS</span><span class="w"> </span><span class="s">include</span>
+<span class="w">   </span><span class="s">LIBRARIES</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_scripts</span>
+<span class="c">#  CATKIN_DEPENDS other_catkin_pkg</span>
+<span class="c">#  DEPENDS system_lib</span>
+<span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span>
+<span class="w">  </span><span class="o">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_scripts</span>
+<span class="w">  </span><span class="s">src/scripts/script_[script_name].cpp</span>
+<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_scripts</span>
+<span class="w">  </span><span class="o">${</span><span class="nv">catkin_LIBRARIES</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="w">    </span><span class="s">ARCHIVE</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="o">${</span><span class="nv">CATKIN_PACKAGE_LIB_DESTINATION</span><span class="o">}</span>
+<span class="w">    </span><span class="s">LIBRARY</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="o">${</span><span class="nv">CATKIN_PACKAGE_LIB_DESTINATION</span><span class="o">}</span>
+<span class="w">    </span><span class="s">RUNTIME</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="o">${</span><span class="nv">CATKIN_GLOBAL_BIN_DESTINATION</span><span class="o">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>After sourcing, you are able to use the script within a pitasc skill, as described in <a class="reference internal" href="../beginner/How_to_attach_a_script_to_a_skill.html"><span class="doc">How to attach a script to a skill</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="How_to_add_a_parameter_to_a_skill_monitor_etc.html" class="btn btn-neutral float-left" title="How to add a parameter to a skill, monitor, …" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="How_to_create_a_custom_monitor.html" class="btn btn-neutral float-right" title="How to create a custom monitor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

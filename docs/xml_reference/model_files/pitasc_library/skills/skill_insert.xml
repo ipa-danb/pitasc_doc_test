@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="skills/skill_cartesian_tracking.xml"/>
+        <include package="pitasc_library" file="skills/skill_apply_force.xml"/>
+
+        <type id="skill_insert" prototype="skill_concurrency">
+            <meta>
+                <member id="description">A skill that pushes and aligns the position</member>
+                <member id="categories">single_robot, force_controlled</member>
+            </meta>
+
+            <data>
+
+                <type id="tool_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Name of the tool frame.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="target_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Name of the target frame.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+
+                <!-- Force parameters: -->
+                <type id="force_axes" prototype="string_csv">
+                    <meta>
+                        <member id="description">List of axes.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z, a, b, c</clone>
+                        </clone>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="target_forces" prototype="float_csv">
+                    <meta>
+                        <member id="description">Forces and torques to be applied. Must be the same number of values as for 'axes'.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_csv_min">-100.0, -100.0, -100.0, -10.0, -10.0, -10.0</clone>
+                            <clone prototype="float_csv_max">100.0, 100.0, 100.0, 10.0, 10.0, 10.0</clone>
+                        </clone>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="compliance" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Force controller gain</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_min">0.00001</clone>
+                            <clone prototype="float_max">0.1</clone>
+                        </clone>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>0.002</data>
+                </type>
+
+                <type id="corner_frequency" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Force controller corner frequency</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_min">1.0</clone>
+                            <clone prototype="float_max">50.0</clone>
+                        </clone>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>5.0</data>
+                </type>
+
+
+                <!-- Track parameters: -->
+                <type id="track_axes" prototype="string_csv">
+                    <meta>
+                        <member id="description">List of axes to be aligned.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z, a, b, c</clone>
+                        </clone>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>x, y, z, a, b, c</data>
+                </type>
+
+                <type id="track_offsets" prototype="float_csv">
+                    <meta>
+                        <member id="description">Offsets of the axes to be aligned. Must be the same number of values as for 'axes'. If no value is provided, 0 is used for all axes.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_csv_min">-10.0, -10.0, -10.0, -3.14, -3.14, -3.14</clone>
+                            <clone prototype="float_csv_max">10.0, 10.0, 10.0, 3.14, 3.14, 3.14</clone>
+                        </clone>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data></data>
+                </type>
+
+                <!-- Implementation details below: -->
+
+                <!-- Subskills -->
+                <clone id="force" prototype="skill_apply_force">
+                    <member id="force_frame" reference_id="target_frame"/>
+                    <member id="axes" reference_id="force_axes"/>
+                    <member id="target_forces" reference_id="target_forces"/>
+                    <member id="compliance" reference_id="compliance"/>
+                    <member id="corner_frequency" reference_id="corner_frequency"/>
+                </clone>
+                <member id="force.meta.visibility">expert</member>
+
+                <clone id="track" prototype="skill_cartesian_tracking">
+                    <member id="tool_frame" reference_id="tool_frame"/>
+                    <member id="target_frame" reference_id="target_frame"/>
+                    <member id="axes" reference_id="track_axes"/>
+                    <member id="target_offsets" reference_id="track_offsets"/>
+                </clone>
+                <member id="track.meta.visibility">expert</member>
+
+
+                <member id="skills">
+                    <reference reference_id="force"/>
+                    <reference reference_id="track"/>
+                </member>
+                <member id="skills.meta.visibility">expert</member>
+
+                <member id="collections.meta.visibility">hidden</member>
+                <member id="loops.meta.visibility">hidden</member>
+                <member id="tasks.meta.visibility">hidden</member>
+
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

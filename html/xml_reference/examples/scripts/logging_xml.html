@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>logging.xml &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="temp_frame.xml" href="temp_frame_xml.html" />
+    <link rel="prev" title="io.xml" href="io_xml.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/index.html">Scripts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#advanced">advanced</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#beginner">beginner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#customized-robots">customized_robots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dual-robot">dual_robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#monitors">monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#rosless">rosless</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#scripts">scripts</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_xml.html">frame_editor.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="io_xml.html">io.xml</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">logging.xml</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#models-used">Models used</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-contents">File contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="temp_frame_xml.html">temp_frame.xml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#skills">skills</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+      <li class="breadcrumb-item active">logging.xml</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/xml_reference/examples/scripts/logging_xml.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="logging-xml">
+<h1>logging.xml<a class="headerlink" href="#logging-xml" title="Permalink to this heading"></a></h1>
+<p>This example application shows the usage of scripts.</p>
+<section id="models-used">
+<h2>Models used<a class="headerlink" href="#models-used" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../scripts/script_error_logger.html"><span class="doc">script_error_logger</span></a>: lines 47, 64</p></li>
+<li><p><a class="reference internal" href="../../scripts/script_measurement_logger.html"><span class="doc">script_measurement_logger</span></a>: lines 85, 93, 100, 107, 121, 128, 135</p></li>
+<li><p><a class="reference internal" href="../../scripts/script_measurement_publisher.html"><span class="doc">script_measurement_publisher</span></a>: lines 210</p></li>
+<li><p><a class="reference internal" href="../../skills/skill_concurrency.html"><span class="doc">skill_concurrency</span></a>: lines 149</p></li>
+<li><p><a class="reference internal" href="../../skills/skill_guarded_approach.html"><span class="doc">skill_guarded_approach</span></a>: lines 76</p></li>
+<li><p><a class="reference internal" href="../../skills/skill_lin.html"><span class="doc">skill_lin</span></a>: lines 41, 71, 116, 186, 205</p></li>
+<li><p><a class="reference internal" href="../../skills/skill_log_cartesian.html"><span class="doc">skill_log_cartesian</span></a>: lines 152, 161, 169</p></li>
+<li><p><a class="reference internal" href="../../skills/skill_log_force.html"><span class="doc">skill_log_force</span></a>: lines 177</p></li>
+<li><p><a class="reference internal" href="../../skills/skill_push_settle.html"><span class="doc">skill_push_settle</span></a>: lines 54, 191</p></li>
+<li><p><a class="reference internal" href="../../skills/skill_sequence.html"><span class="doc">skill_sequence</span></a>: lines 35, 184</p></li>
+</ul>
+</section>
+<section id="file-contents">
+<h2>File contents<a class="headerlink" href="#file-contents" title="Permalink to this heading"></a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="cm">&lt;!-- This example application shows the usage of scripts.</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="cm">--&gt;</span>
+<span class="linenos">  6</span>
+<span class="linenos">  7</span><span class="nt">&lt;pitasc&gt;</span>
+<span class="linenos">  8</span>
+<span class="linenos">  9</span><span class="w">    </span><span class="nt">&lt;models&gt;</span>
+<span class="linenos"> 10</span><span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;pitasc_library&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;models/pitasc.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 11</span><span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;pitasc_library&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;models/skills.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;pitasc_library&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;universal_robots/ur.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 14</span><span class="w">    </span><span class="nt">&lt;/models&gt;</span>
+<span class="linenos"> 15</span>
+<span class="linenos"> 16</span><span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;project&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 17</span>
+<span class="linenos"> 18</span><span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;configuration&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 19</span><span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;configuration&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;default_configuration&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 20</span><span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span><span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;environment&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 23</span><span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;robot_ur5&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 24</span><span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot_driver.max_velocity&quot;</span><span class="nt">&gt;</span>0.5<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 25</span><span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot_driver.max_acceleration&quot;</span><span class="nt">&gt;</span>2.0<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 26</span><span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;components&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 27</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;force_sensor&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 28</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;wrench_topic&quot;</span><span class="nt">&gt;</span>wrench<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 29</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 30</span><span class="w">                </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 31</span><span class="w">            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 32</span><span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span><span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;applications&quot;</span><span class="nt">&gt;</span>
+<span class="hll"><span class="linenos"> 35</span><span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_sequence&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 36</span>
+<span class="linenos"> 37</span><span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;environment.robot_ur5&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span><span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skills&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 40</span>
+<span class="hll"><span class="linenos"> 41</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skill&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 42</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;tool_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 43</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_frame&quot;</span><span class="nt">&gt;</span>start_position<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;scripts&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 46</span><span class="w">                            </span><span class="cm">&lt;!-- log the pose control error --&gt;</span>
+<span class="hll"><span class="linenos"> 47</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_error_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 48</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;controllers&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;tasks.tracking.controllers&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 49</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%T}_error_lin.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 50</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 51</span><span class="w">                        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 52</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 53</span>
+<span class="hll"><span class="linenos"> 54</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_push_settle&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 55</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;tool_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 56</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;force_frame&quot;</span><span class="nt">&gt;</span>start_position<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 57</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;axes&quot;</span><span class="nt">&gt;</span>z<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 58</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_forces&quot;</span><span class="nt">&gt;</span>30<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 59</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;compliance&quot;</span><span class="nt">&gt;</span>0.0005<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 60</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;corner_frequency&quot;</span><span class="nt">&gt;</span>7<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;scripts&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 63</span><span class="w">                            </span><span class="cm">&lt;!-- log the force control error --&gt;</span>
+<span class="hll"><span class="linenos"> 64</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_error_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 65</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;controllers&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;force.tasks.apply_force.controllers&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 66</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}/{time<span class="w"> </span>%H_%M_%S}_error_push.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 67</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 68</span><span class="w">                        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 69</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 70</span>
+<span class="hll"><span class="linenos"> 71</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 72</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;tool_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 73</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_frame&quot;</span><span class="nt">&gt;</span>start_position<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 74</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 75</span>
+<span class="hll"><span class="linenos"> 76</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_guarded_approach&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 77</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;control_frame&quot;</span><span class="nt">&gt;</span>start_position<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 78</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;tool_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 79</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;axes&quot;</span><span class="nt">&gt;</span>z<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 80</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;velocities&quot;</span><span class="nt">&gt;</span>0.02<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 81</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;max_forces&quot;</span><span class="nt">&gt;</span>10.0<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 82</span>
+<span class="linenos"> 83</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;scripts&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 84</span><span class="w">                            </span><span class="cm">&lt;!-- log the whole chain, means all forces and torques --&gt;</span>
+<span class="hll"><span class="linenos"> 85</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_measurement_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 86</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;force_skill.collections.force_chain.chains&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 87</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_forceAndTorque_approach.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 88</span><span class="w">                                </span><span class="cm">&lt;!-- filter is an optional argument. Can be omitted when you want to log the complete chain --&gt;</span>
+<span class="linenos"> 89</span><span class="w">                                </span><span class="cm">&lt;!-- &lt;member id=&quot;filter&quot;&gt;force_chain/x, force_chain/y, force_chain/z, force_chain/a, force_chain/b, force_chain/c&lt;/member&gt; --&gt;</span>
+<span class="linenos"> 90</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="w">                            </span><span class="cm">&lt;!-- log the force in z-direction using a filter --&gt;</span>
+<span class="hll"><span class="linenos"> 93</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_measurement_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 94</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;force_skill.collections.force_chain.chains&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 95</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_z_force_approach.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 96</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;</span>force_chain/z<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 97</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span><span class="w">                            </span><span class="cm">&lt;!-- log xy target to tool position and z rotation using a filter --&gt;</span>
+<span class="hll"><span class="linenos">100</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_measurement_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">101</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;move_skill.collections.target_to_tool.chains&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">102</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_position_xy_approach.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">103</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;</span>target_to_tool/x,<span class="w"> </span>target_to_tool/y,<span class="w"> </span>target_to_tool/c<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">104</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">105</span>
+<span class="linenos">106</span><span class="w">                            </span><span class="cm">&lt;!-- log z target to tool position with simple filter keys --&gt;</span>
+<span class="hll"><span class="linenos">107</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_measurement_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">108</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;move_skill.collections.target_to_tool.chains&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">109</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_position_z_approach.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">110</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;use_simple_filter_keys&quot;</span><span class="nt">&gt;</span>True<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- allows to specify the filter without the chain... --&gt;</span>
+<span class="linenos">111</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;</span>z<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- ...then you dont need to specify the chain here. Also works for force chains --&gt;</span>
+<span class="linenos">112</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">113</span><span class="w">                        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">114</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">115</span>
+<span class="hll"><span class="linenos">116</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">117</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;tool_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">118</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_frame&quot;</span><span class="nt">&gt;</span>target1<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">119</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;scripts&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">120</span><span class="w">                            </span><span class="cm">&lt;!-- log the desired position (setpoint) with simple filter keys --&gt;</span>
+<span class="hll"><span class="linenos">121</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_measurement_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">122</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;tasks.tracking.setpoint_generators&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">123</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_skill_lin_setpoint.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">124</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;use_simple_filter_keys&quot;</span><span class="nt">&gt;</span>True<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- allows to specify the filter without the chain... --&gt;</span>
+<span class="linenos">125</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;</span>x,y,z<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- ...then you dont need to specify the chain here. Also works for force chains --&gt;</span>
+<span class="linenos">126</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">127</span><span class="w">                            </span><span class="cm">&lt;!-- log the current position with simple filter keys --&gt;</span>
+<span class="hll"><span class="linenos">128</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_measurement_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">129</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;collections.target_to_tool.chains&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">130</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_skill_lin_current_position.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">131</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;use_simple_filter_keys&quot;</span><span class="nt">&gt;</span>True<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- allows to specify the filter without the chain... --&gt;</span>
+<span class="linenos">132</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;</span>x,y,z<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- ...then you dont need to specify the chain here. Also works for force chains --&gt;</span>
+<span class="linenos">133</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">134</span><span class="w">                            </span><span class="cm">&lt;!-- log the desired (setpoint) and current position in the same file --&gt;</span>
+<span class="hll"><span class="linenos">135</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_measurement_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">136</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;provider&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">137</span><span class="w">                                    </span><span class="nt">&lt;reference</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;tasks.tracking.setpoint_generators.setpoint&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">138</span><span class="w">                                    </span><span class="nt">&lt;reference</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;collections.target_to_tool.chains[0]&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="linenos">139</span><span class="w">                                </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">140</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_skill_lin_setpoint_and_current_position.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">141</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;use_simple_filter_keys&quot;</span><span class="nt">&gt;</span>True<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- allows to specify the filter without the chain... --&gt;</span>
+<span class="linenos">142</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;</span>x,y,z<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- ...then you dont need to specify the chain here. Also works for force chains --&gt;</span>
+<span class="linenos">143</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">144</span><span class="w">                        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">145</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">146</span>
+<span class="linenos">147</span><span class="w">                    </span><span class="cm">&lt;!-- log position, rotation and/or force during a skill_sequence --&gt;</span>
+<span class="linenos">148</span><span class="w">                    </span><span class="cm">&lt;!-- use logging skills concurrent to the actual skills --&gt;</span>
+<span class="hll"><span class="linenos">149</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_concurrency&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">150</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skills&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">151</span><span class="w">                            </span><span class="cm">&lt;!-- log tool pose (position and rotation) in base_link coordinates --&gt;</span>
+<span class="hll"><span class="linenos">152</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_log_cartesian&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">153</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;measured_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">154</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;reference_frame&quot;</span><span class="nt">&gt;</span>base_link<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">155</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_pose_tool_to_base.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">156</span><span class="w">                                </span><span class="cm">&lt;!-- filter is an optional argument. Can be omitted when you want to log the complete chain --&gt;</span>
+<span class="linenos">157</span><span class="w">                                </span><span class="cm">&lt;!-- &lt;member id=&quot;filter&quot;&gt;x, y, z, a, b, c&lt;/member&gt; --&gt;</span>
+<span class="linenos">158</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">159</span>
+<span class="linenos">160</span><span class="w">                            </span><span class="cm">&lt;!-- log tool yz position in base_link coordinates using a filter--&gt;</span>
+<span class="hll"><span class="linenos">161</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_log_cartesian&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">162</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;measured_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">163</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;reference_frame&quot;</span><span class="nt">&gt;</span>base_link<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">164</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_yz_position_tool_to_base.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">165</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;</span>y,z<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- (in logging *skills* you dont need to specify the chain) --&gt;</span>
+<span class="linenos">166</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">167</span>
+<span class="linenos">168</span><span class="w">                            </span><span class="cm">&lt;!-- log tool rotation in base_link coordinates using a filter--&gt;</span>
+<span class="hll"><span class="linenos">169</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_log_cartesian&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">170</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;measured_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">171</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;reference_frame&quot;</span><span class="nt">&gt;</span>base_link<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">172</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_rotation_tool_to_base.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">173</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;</span>a,b,c<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- (in logging *skills* you dont need to specify the chain) --&gt;</span>
+<span class="linenos">174</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">175</span>
+<span class="linenos">176</span><span class="w">                            </span><span class="cm">&lt;!-- log force at tool frame in tool coordinates, using a filter--&gt;</span>
+<span class="hll"><span class="linenos">177</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_log_force&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">178</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;force_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">179</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/scripts/logs/{time<span class="w"> </span>%F}_force_tool.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">180</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;</span>x,y,z<span class="nt">&lt;/member&gt;</span><span class="w">  </span><span class="cm">&lt;!-- (in logging *skills* you dont need to specify the chain) --&gt;</span>
+<span class="linenos">181</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">182</span>
+<span class="linenos">183</span><span class="w">                            </span><span class="cm">&lt;!-- the actual robot skills, running concurrently to the logging skills --&gt;</span>
+<span class="hll"><span class="linenos">184</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_sequence&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">185</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skills&quot;</span><span class="nt">&gt;</span>
+<span class="hll"><span class="linenos">186</span><span class="w">                                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">187</span><span class="w">                                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;tool_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">188</span><span class="w">                                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_frame&quot;</span><span class="nt">&gt;</span>start_position<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">189</span><span class="w">                                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">190</span>
+<span class="hll"><span class="linenos">191</span><span class="w">                                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_push_settle&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">192</span><span class="w">                                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;tool_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">193</span><span class="w">                                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;force_frame&quot;</span><span class="nt">&gt;</span>start_position<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">194</span><span class="w">                                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;axes&quot;</span><span class="nt">&gt;</span>z<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">195</span><span class="w">                                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_forces&quot;</span><span class="nt">&gt;</span>30<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">196</span><span class="w">                                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;compliance&quot;</span><span class="nt">&gt;</span>0.0005<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">197</span><span class="w">                                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;corner_frequency&quot;</span><span class="nt">&gt;</span>7<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">198</span><span class="w">                                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">199</span><span class="w">                                </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">200</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">201</span><span class="w">                        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">202</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">203</span>
+<span class="linenos">204</span><span class="w">                    </span><span class="cm">&lt;!-- publish measurements to a ros topic--&gt;</span>
+<span class="hll"><span class="linenos">205</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">206</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;tool_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">207</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_frame&quot;</span><span class="nt">&gt;</span>target1<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">208</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;scripts&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">209</span><span class="w">                            </span><span class="cm">&lt;!-- publish measurements to a ros topic--&gt;</span>
+<span class="hll"><span class="linenos">210</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_measurement_publisher&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos">211</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;collections.target_to_tool.chains[0]&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos">212</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;topic&quot;</span><span class="nt">&gt;</span>tool_position<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">213</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;coordinates&quot;</span><span class="nt">&gt;</span>x,y,z<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">214</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">215</span><span class="w">                        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">216</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">217</span>
+<span class="linenos">218</span><span class="w">                </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">219</span><span class="w">            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">220</span><span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">221</span>
+<span class="linenos">222</span><span class="w">    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">223</span>
+<span class="linenos">224</span><span class="nt">&lt;/pitasc&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="io_xml.html" class="btn btn-neutral float-left" title="io.xml" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="temp_frame_xml.html" class="btn btn-neutral float-right" title="temp_frame.xml" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="skill_concurrency" href="skill_concurrency.html" />
+    <link rel="prev" title="Setup KUKA Robot" href="../../user_guide/setup_kuka.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Skills</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#composition">composition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="skill_concurrency.html">skill_concurrency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_parallel.html">skill_parallel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_sequence.html">skill_sequence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_statechart.html">skill_statechart</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#position-controlled">position_controlled</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="loop_target.html">loop_target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_approach.html">skill_approach</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cartesian.html">skill_cartesian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cartesian_bound.html">skill_cartesian_bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cartesian_tracking.html">skill_cartesian_tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cartesian_tracking_pid.html">skill_cartesian_tracking_pid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cylindrical.html">skill_cylindrical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cylindrical_positioning.html">skill_cylindrical_positioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cylindrical_tracking.html">skill_cylindrical_tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_hold_duration.html">skill_hold_duration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_hold_pose.html">skill_hold_pose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_joint_space.html">skill_joint_space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_joint_space_bound.html">skill_joint_space_bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_joint_space_tracking.html">skill_joint_space_tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_lin.html">skill_lin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_lin_time_optimal.html">skill_lin_time_optimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_lin_trajectory.html">skill_lin_trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_lin_trajectory_base.html">skill_lin_trajectory_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_lin_trajectory_pd.html">skill_lin_trajectory_pd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_log_cartesian.html">skill_log_cartesian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_partial_lin.html">skill_partial_lin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_ptp.html">skill_ptp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_ptp_time_optimal.html">skill_ptp_time_optimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_ptp_trajectory.html">skill_ptp_trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_relative_lin.html">skill_relative_lin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_relative_ptp.html">skill_relative_ptp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_spherical.html">skill_spherical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_spherical_positioning.html">skill_spherical_positioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_spherical_tracking.html">skill_spherical_tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_wait_for_transform.html">skill_wait_for_transform</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#force-controlled">force_controlled</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="skill_apply_force.html">skill_apply_force</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_apply_force_pid.html">skill_apply_force_pid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_force.html">skill_force</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_guarded_approach.html">skill_guarded_approach</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_guarded_lin.html">skill_guarded_lin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_guarded_slide.html">skill_guarded_slide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_insert.html">skill_insert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_log_force.html">skill_log_force</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_pivot.html">skill_pivot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_push.html">skill_push</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_push_duration.html">skill_push_duration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_push_settle.html">skill_push_settle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_slide.html">skill_slide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_slide_relative.html">skill_slide_relative</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#velocity-controlled">velocity_controlled</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="skill_cartesian_velocity.html">skill_cartesian_velocity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_conical_helix.html">skill_conical_helix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cylindrical_helix.html">skill_cylindrical_helix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_cylindrical_velocity.html">skill_cylindrical_velocity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_partial_velocity.html">skill_partial_velocity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_partial_velocity_duration.html">skill_partial_velocity_duration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_partial_velocity_relative_distance.html">skill_partial_velocity_relative_distance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_spherical_velocity.html">skill_spherical_velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#logic">logic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_align.html">frame_editor_align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_copy.html">frame_editor_copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_load_yaml.html">frame_editor_load_yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_remove.html">frame_editor_remove</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_save_yaml.html">frame_editor_save_yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_set.html">frame_editor_set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_set_parent.html">frame_editor_set_parent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_counter_condition.html">skill_counter_condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_idle.html">skill_idle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_idle_duration.html">skill_idle_duration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_idle_once.html">skill_idle_once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_preempt.html">skill_preempt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#user">user</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="skill_user_confirm.html">skill_user_confirm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Skills</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/xml_reference/skills/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="skills">
+<h1>Skills<a class="headerlink" href="#skills" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="composition">
+<h2>composition<a class="headerlink" href="#composition" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="skill_concurrency.html"><span class="doc">skill_concurrency</span></a>
+: Hierarchy of skills which are executed simultaneously.</p></li>
+<li><p><a class="reference internal" href="skill_parallel.html"><span class="doc">skill_parallel</span></a>
+: Hierarchy of skills which are executed simultaneously. Ends with ‘succeeded’ only if <strong>all</strong> subskills triggered ‘succeeded’.</p></li>
+<li><p><a class="reference internal" href="skill_sequence.html"><span class="doc">skill_sequence</span></a>
+: List of skills which are executed in sequence.</p></li>
+<li><p><a class="reference internal" href="skill_statechart.html"><span class="doc">skill_statechart</span></a>
+: Group of skills which are connected in a state machine.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="position-controlled">
+<h2>position_controlled<a class="headerlink" href="#position-controlled" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="loop_target.html"><span class="doc">loop_target</span></a>
+: Models a loop via tool frame and target frame</p></li>
+<li><p><a class="reference internal" href="skill_approach.html"><span class="doc">skill_approach</span></a>
+: A skill approaching a target frame in two steps</p></li>
+<li><p><a class="reference internal" href="skill_cartesian.html"><span class="doc">skill_cartesian</span></a>
+: Models a loop via tool frame and target frame</p></li>
+<li><p><a class="reference internal" href="skill_cartesian_bound.html"><span class="doc">skill_cartesian_bound</span></a>
+: Bound for a cartesian value</p></li>
+<li><p><a class="reference internal" href="skill_cartesian_tracking.html"><span class="doc">skill_cartesian_tracking</span></a>
+: Keeps on aligning the tool frame with a target frame</p></li>
+<li><p><a class="reference internal" href="skill_cartesian_tracking_pid.html"><span class="doc">skill_cartesian_tracking_pid</span></a>
+: Keeps on aligning the tool frame with a target frame</p></li>
+<li><p><a class="reference internal" href="skill_cylindrical.html"><span class="doc">skill_cylindrical</span></a>
+: Cylindrical coordinates</p></li>
+<li><p><a class="reference internal" href="skill_cylindrical_positioning.html"><span class="doc">skill_cylindrical_positioning</span></a>
+: Cylindrical coordinates</p></li>
+<li><p><a class="reference internal" href="skill_cylindrical_tracking.html"><span class="doc">skill_cylindrical_tracking</span></a>
+: Cylindrical coordinates</p></li>
+<li><p><a class="reference internal" href="skill_hold_duration.html"><span class="doc">skill_hold_duration</span></a>
+: Hold the position/orientation on selected axes for duration time.</p></li>
+<li><p><a class="reference internal" href="skill_hold_pose.html"><span class="doc">skill_hold_pose</span></a>
+: Hold the position/orientation on selected axes.</p></li>
+<li><p><a class="reference internal" href="skill_joint_space.html"><span class="doc">skill_joint_space</span></a>
+: Models a loop for joint space control</p></li>
+<li><p><a class="reference internal" href="skill_joint_space_bound.html"><span class="doc">skill_joint_space_bound</span></a>
+: Keeps on tracking a joint configuration</p></li>
+<li><p><a class="reference internal" href="skill_joint_space_tracking.html"><span class="doc">skill_joint_space_tracking</span></a>
+: Keeps on tracking a joint configuration</p></li>
+<li><p><a class="reference internal" href="skill_lin.html"><span class="doc">skill_lin</span></a>
+: Aligns the tool frame with a target frame</p></li>
+<li><p><a class="reference internal" href="skill_lin_time_optimal.html"><span class="doc">skill_lin_time_optimal</span></a>
+: LIN movement from the current pose to the target. Follows a time-optimal trajectory with constant acceleration.</p></li>
+<li><p><a class="reference internal" href="skill_lin_trajectory.html"><span class="doc">skill_lin_trajectory</span></a>
+: Moves along given blending points with blending distances to the target frame.</p></li>
+<li><p><a class="reference internal" href="skill_lin_trajectory_base.html"><span class="doc">skill_lin_trajectory_base</span></a>
+: Base class for linear trajectories.</p></li>
+<li><p><a class="reference internal" href="skill_lin_trajectory_pd.html"><span class="doc">skill_lin_trajectory_pd</span></a>
+: Moves along given blending points with blending distances to the target frame. Controlled by pd controller</p></li>
+<li><p><a class="reference internal" href="skill_log_cartesian.html"><span class="doc">skill_log_cartesian</span></a>
+: Logs position and/or orientation of a frame w.r.t. a reference skill into a file</p></li>
+<li><p><a class="reference internal" href="skill_partial_lin.html"><span class="doc">skill_partial_lin</span></a>
+: A skill that moves to a target frame only in specified axes and holds the other axes in place</p></li>
+<li><p><a class="reference internal" href="skill_ptp.html"><span class="doc">skill_ptp</span></a>
+: Moves the robot to a target joint configuration</p></li>
+<li><p><a class="reference internal" href="skill_ptp_time_optimal.html"><span class="doc">skill_ptp_time_optimal</span></a>
+: Keeps on tracking a joint configuration using a time-optimal trajectory</p></li>
+<li><p><a class="reference internal" href="skill_ptp_trajectory.html"><span class="doc">skill_ptp_trajectory</span></a>
+: Keeps on tracking a joint configuration</p></li>
+<li><p><a class="reference internal" href="skill_relative_lin.html"><span class="doc">skill_relative_lin</span></a>
+: Aligns the tool with an offset relative to the current pose</p></li>
+<li><p><a class="reference internal" href="skill_relative_ptp.html"><span class="doc">skill_relative_ptp</span></a>
+: A skill that moves to a relative joint configuration</p></li>
+<li><p><a class="reference internal" href="skill_spherical.html"><span class="doc">skill_spherical</span></a>
+: Spherical coordinates</p></li>
+<li><p><a class="reference internal" href="skill_spherical_positioning.html"><span class="doc">skill_spherical_positioning</span></a>
+: Spherical coordinates</p></li>
+<li><p><a class="reference internal" href="skill_spherical_tracking.html"><span class="doc">skill_spherical_tracking</span></a>
+: Spherical coordinates</p></li>
+<li><p><a class="reference internal" href="skill_wait_for_transform.html"><span class="doc">skill_wait_for_transform</span></a>
+: A skill that keeps the robot position until a transform becomes available</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="force-controlled">
+<h2>force_controlled<a class="headerlink" href="#force-controlled" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="skill_apply_force.html"><span class="doc">skill_apply_force</span></a>
+: Applies a force in the direction of a frame</p></li>
+<li><p><a class="reference internal" href="skill_apply_force_pid.html"><span class="doc">skill_apply_force_pid</span></a>
+: Applies a force in the direction of a frame</p></li>
+<li><p><a class="reference internal" href="skill_force.html"><span class="doc">skill_force</span></a>
+: Models a loop for force control</p></li>
+<li><p><a class="reference internal" href="skill_guarded_approach.html"><span class="doc">skill_guarded_approach</span></a>
+: A skill that moves along a fixed frame axis until it measures a certain force</p></li>
+<li><p><a class="reference internal" href="skill_guarded_lin.html"><span class="doc">skill_guarded_lin</span></a>
+: Causes a linear motion until a specified force value is reached</p></li>
+<li><p><a class="reference internal" href="skill_guarded_slide.html"><span class="doc">skill_guarded_slide</span></a>
+: A skill that moves along a fixed frame axis until it measures a certain force</p></li>
+<li><p><a class="reference internal" href="skill_insert.html"><span class="doc">skill_insert</span></a>
+: A skill that pushes and aligns the position</p></li>
+<li><p><a class="reference internal" href="skill_log_force.html"><span class="doc">skill_log_force</span></a>
+: Logs a force/torque in a desired frame into a file</p></li>
+<li><p><a class="reference internal" href="skill_pivot.html"><span class="doc">skill_pivot</span></a>
+: Rotates while pushing</p></li>
+<li><p><a class="reference internal" href="skill_push.html"><span class="doc">skill_push</span></a>
+: A skill that pushes and keeps the position</p></li>
+<li><p><a class="reference internal" href="skill_push_duration.html"><span class="doc">skill_push_duration</span></a>
+: A skill that pushes and keeps the position for a certain time.</p></li>
+<li><p><a class="reference internal" href="skill_push_settle.html"><span class="doc">skill_push_settle</span></a>
+: A skill that pushes until the force error is within a region for an acceptable number of samples.</p></li>
+<li><p><a class="reference internal" href="skill_slide.html"><span class="doc">skill_slide</span></a>
+: A skill that results in a slide motion in direction of a specified axis</p></li>
+<li><p><a class="reference internal" href="skill_slide_relative.html"><span class="doc">skill_slide_relative</span></a>
+: Slides to a target relative to the current position</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="velocity-controlled">
+<h2>velocity_controlled<a class="headerlink" href="#velocity-controlled" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="skill_cartesian_velocity.html"><span class="doc">skill_cartesian_velocity</span></a>
+: Track a desired velocity of tool_frame w.r.t. target_frame.</p></li>
+<li><p><a class="reference internal" href="skill_conical_helix.html"><span class="doc">skill_conical_helix</span></a>
+: A skill that performs a conical helix around z axis of the specified pivot_frame</p></li>
+<li><p><a class="reference internal" href="skill_cylindrical_helix.html"><span class="doc">skill_cylindrical_helix</span></a>
+: A skill that performs a cylindrical helix around z axis of the specified pivot_frame</p></li>
+<li><p><a class="reference internal" href="skill_cylindrical_velocity.html"><span class="doc">skill_cylindrical_velocity</span></a>
+: Cylindrical coordinates</p></li>
+<li><p><a class="reference internal" href="skill_partial_velocity.html"><span class="doc">skill_partial_velocity</span></a>
+: A skill that moves along fixed frame axes and holds the other axes in place</p></li>
+<li><p><a class="reference internal" href="skill_partial_velocity_duration.html"><span class="doc">skill_partial_velocity_duration</span></a>
+: A skill that moves along fixed frame axes and holds the other axes in place</p></li>
+<li><p><a class="reference internal" href="skill_partial_velocity_relative_distance.html"><span class="doc">skill_partial_velocity_relative_distance</span></a>
+: A skill that moves along fixed frame axes and holds the other axes in place</p></li>
+<li><p><a class="reference internal" href="skill_spherical_velocity.html"><span class="doc">skill_spherical_velocity</span></a>
+: Spherical coordinates</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="logic">
+<h2>logic<a class="headerlink" href="#logic" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="frame_editor_align.html"><span class="doc">frame_editor_align</span></a>
+: Aligns a frame with another frame via ROS service.</p></li>
+<li><p><a class="reference internal" href="frame_editor_copy.html"><span class="doc">frame_editor_copy</span></a>
+: Copies a frame via ROS service.</p></li>
+<li><p><a class="reference internal" href="frame_editor_load_yaml.html"><span class="doc">frame_editor_load_yaml</span></a>
+: Loads YAML with frame editor.</p></li>
+<li><p><a class="reference internal" href="frame_editor_remove.html"><span class="doc">frame_editor_remove</span></a>
+: Remove a frame from the frame_editor via ROS service.</p></li>
+<li><p><a class="reference internal" href="frame_editor_save_yaml.html"><span class="doc">frame_editor_save_yaml</span></a>
+: Saves YAML with frame editor.</p></li>
+<li><p><a class="reference internal" href="frame_editor_set.html"><span class="doc">frame_editor_set</span></a>
+: Created a new frame with a give pose via ROS service.</p></li>
+<li><p><a class="reference internal" href="frame_editor_set_parent.html"><span class="doc">frame_editor_set_parent</span></a>
+: Set a new parent frame of a given frame via ROS service.</p></li>
+<li><p><a class="reference internal" href="skill_counter_condition.html"><span class="doc">skill_counter_condition</span></a>
+: Branches after a certain number of iterations</p></li>
+<li><p><a class="reference internal" href="skill_idle.html"><span class="doc">skill_idle</span></a>
+: A skill that does nothing</p></li>
+<li><p><a class="reference internal" href="skill_idle_duration.html"><span class="doc">skill_idle_duration</span></a>
+: A skill that keeps the robot position for a given duration</p></li>
+<li><p><a class="reference internal" href="skill_idle_once.html"><span class="doc">skill_idle_once</span></a>
+: Idles for one cycle, e.g. to execute a script</p></li>
+<li><p><a class="reference internal" href="skill_preempt.html"><span class="doc">skill_preempt</span></a>
+: Triggers a preempt event</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="user">
+<h2>user<a class="headerlink" href="#user" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="skill_user_confirm.html"><span class="doc">skill_user_confirm</span></a>
+: Opens a dialog window to receive confirmation from the user.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../user_guide/setup_kuka.html" class="btn btn-neutral float-left" title="Setup KUKA Robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="skill_concurrency.html" class="btn btn-neutral float-right" title="skill_concurrency" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

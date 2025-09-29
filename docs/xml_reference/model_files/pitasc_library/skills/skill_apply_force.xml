@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="skills/skill_force.xml"/>
+
+        <type id="skill_apply_force" prototype="skill_force">
+            <meta>
+                <member id="description">Applies a force in the direction of a frame</member>
+                <member id="categories">single_robot, force_controlled</member>
+                <member id="visibility">basic</member>
+            </meta>
+
+            <data>
+                <!-- Task description -->
+                <type id="axes" prototype="string_csv">
+                    <meta>
+                        <member id="description">List of axes.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z, a, b, c</clone>
+                        </clone>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="target_forces" prototype="float_csv">
+                    <meta>
+                        <member id="description">Forces and torques to be applied. Must be the same number of values as for 'axes'.</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_csv_min">-100.0, -100.0, -100.0, -10.0, -10.0, -10.0</clone>
+                            <clone prototype="float_csv_max">100.0, 100.0, 100.0, 10.0, 10.0, 10.0</clone>
+                        </clone>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="ff_velocities" prototype="float_csv">
+                    <meta>
+                        <member id="description">Feedforward velocities in [m/s] or [rad/s]. This is useful to hold contact to a surface moving with a constant velocity, like while loosing a screw.</member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data></data>
+                </type>
+
+                <!-- Control -->
+                <type id="compliance" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Force controller gain</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_min">0.00001</clone>
+                            <clone prototype="float_max">0.1</clone>
+                        </clone>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>0.002</data>
+                </type>
+                <type id="corner_frequency" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Force controller corner frequency</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="float_min">1.0</clone>
+                            <clone prototype="float_max">50.0</clone>
+                        </clone>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>5.0</data>
+                </type>
+
+                <!-- Implementation details below: -->
+
+                <member id="tasks">
+                    <clone id="apply_force" prototype="task">
+                        <member id="coordinates" reference_id="axes"/>
+                        <member id="prefix" reference_id="collections.force_chain.prefix"/>
+
+                        <member id="setpoint_generators">
+                            <clone id="setpoint" prototype="constant_setpoint">
+                                <member id="desired" reference_id="target_forces"/>
+                                <member id="coordinates" reference_id="coordinates"/>
+                                <member id="prefix" reference_id="prefix"/>
+                            </clone>
+                        </member>
+
+                        <member id="controllers">
+                            <clone prototype="first_order_impedance_controller">
+                                <member id="compliance" reference_id="compliance"/>
+                                <member id="f0_hz" reference_id="corner_frequency"/>
+                                <member id="ff_setpoint">
+                                    <clone id="setpoint" prototype="constant_setpoint">
+                                        <member id="desired" reference_id="ff_velocities" />
+                                        <member id="coordinates" reference_id="coordinates"/>
+                                        <member id="prefix" reference_id="prefix"/>
+                                    </clone>
+                                </member>
+                                <member id="data_source">
+                                    <reference reference_id="collections.force_chain.chains[0]"/>
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference reference_id="setpoint_generators.setpoint"/>
+                                </member>
+                                <member id="coordinates" reference_id="coordinates"/>
+                                <member id="prefix" reference_id="prefix"/>
+                            </clone>
+                        </member>
+
+                    </clone>
+                </member>
+                <member id="tasks.meta.visibility">hidden</member>
+
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

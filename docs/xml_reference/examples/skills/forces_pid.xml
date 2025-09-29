@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the usage of some force skills.
+Move to a target, establishes a contact, pushes for some seconds,
+keeps on pushing while moving in another direction (slide), returns to the initial target
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml" />
+        <include package="pitasc_library" file="models/skills.xml" />
+
+        <include package="pitasc_library" file="universal_robots/ur.xml" />
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration" />
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">2.0</member>
+                <member id="robot_driver.max_acceleration">3.0</member>
+                <member id="components">
+                    <clone prototype="force_sensor">
+                        <member id="wrench_topic">wrench</member>
+                    </clone>
+                </member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_sequence">
+
+                <member id="robot" reference_id="environment.robot_ur5" />
+
+                <!-- Skills -->
+                <member id="skills">
+
+                    <!-- First move to start position -->
+                    <clone prototype="skill_relative_ptp">
+                        <member id="relative_joint_state">0, 0, 0, -0.01, 0, 0</member>
+                    </clone>
+
+                    <clone prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                    <clone prototype="skill_parallel">
+                        <member id="skills">
+
+                            <clone prototype="skill_apply_force_pid">
+                                <member id="force_frame">start_position</member>
+                                <member id="axes">z</member>
+                                <member id="target_forces">30</member>
+                                <member id="K">0.005</member>
+                                <member id="Tv">0.0001</member>
+                                <member id="Tn">10.1</member>
+                                <member id="Tp">0.001</member>
+                                <member id="u_i_limit">0.01</member>
+
+                                <member id="I_flag">false</member>
+                                <member id="D_flag">false</member>
+
+                                <!-- Tv ~ Kd  -->
+                                <!-- Tn ~ 1/Ki -->
+                                <!-- <member id="compliance">0.002</member> -->
+                                <!-- <member id="corner_frequency">5.0</member> -->
+                            </clone>
+
+                            <clone prototype="skill_hold_pose">
+                                <member id="tool_frame">tool</member>
+                                <member id="axes">x, y, z, a, b, c</member>
+                            </clone>
+
+                        </member>
+                        <member id="monitors">
+                            <clone prototype="monitor_duration">
+                                <member id="event">succeeded</member>
+                                <member id="duration">5.0</member>
+                            </clone>
+
+                        </member>
+                    </clone>
+
+
+                    <!-- Back to start position -->
+                    <clone id="back" prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+
+                    <clone prototype="skill_parallel">
+                        <member id="skills">
+
+                            <clone prototype="skill_apply_force_pid">
+                                <member id="force_frame">start_position</member>
+                                <member id="axes">z</member>
+                                <member id="target_forces">30</member>
+                                <member id="K">0.005</member>
+                                <member id="Tv">0.0001</member>
+                                <member id="Tn">10.1</member>
+                                <member id="Tp">0.001</member>
+                                <member id="u_i_limit">0.01</member>
+
+                                <member id="I_flag">false</member>
+                                <member id="D_flag">true</member>
+
+                                <!-- Tv ~ Kd  -->
+                                <!-- Tn ~ 1/Ki -->
+                                <!-- <member id="compliance">0.002</member> -->
+                                <!-- <member id="corner_frequency">5.0</member> -->
+                            </clone>
+
+                            <clone prototype="skill_hold_pose">
+                                <member id="tool_frame">tool</member>
+                                <member id="axes">x, y, z, a, b, c</member>
+                            </clone>
+
+                        </member>
+                        <member id="monitors">
+                            <clone prototype="monitor_duration">
+                                <member id="event">succeeded</member>
+                                <member id="duration">5.0</member>
+                            </clone>
+
+                        </member>
+                    </clone>
+
+                    <!-- Back to start position -->
+                    <clone id="back" prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+                    <clone prototype="skill_parallel">
+                        <member id="skills">
+
+                            <clone prototype="skill_apply_force_pid">
+                                <member id="force_frame">start_position</member>
+                                <member id="axes">z</member>
+                                <member id="target_forces">30</member>
+                                <member id="K">0.005</member>
+                                <member id="Tv">0.0001</member>
+                                <member id="Tn">10.1</member>
+                                <member id="Tp">0.001</member>
+                                <member id="u_i_limit">0.01</member>
+
+                                <member id="I_flag">true</member>
+                                <member id="D_flag">true</member>
+
+                                <!-- Tv ~ Kd  -->
+                                <!-- Tn ~ 1/Ki -->
+                                <!-- <member id="compliance">0.002</member> -->
+                                <!-- <member id="corner_frequency">5.0</member> -->
+                            </clone>
+
+                            <clone prototype="skill_hold_pose">
+                                <member id="tool_frame">tool</member>
+                                <member id="axes">x, y, z, a, b, c</member>
+                            </clone>
+
+                        </member>
+                        <member id="monitors">
+                            <clone prototype="monitor_duration">
+                                <member id="event">succeeded</member>
+                                <member id="duration">5.0</member>
+                            </clone>
+
+                        </member>
+                    </clone>
+
+                    <!-- Back to start position -->
+                    <clone id="back" prototype="skill_lin">
+                        <member id="tool_frame">tool</member>
+                        <member id="target_frame">start_position</member>
+                    </clone>
+
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>

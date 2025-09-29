@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="skills/skill_cartesian.xml"/>
+
+        <type id="skill_cartesian_velocity" prototype="skill_cartesian">
+            <meta>
+                <member id="description">Track a desired velocity of tool_frame w.r.t. target_frame.
+
+                For Translation, target_frame specifies the translation axes. For Rotation, tool_frame specifies the pivot point. Specifying the rotation axes with target_frame does not fully work (see #356)
+                </member>
+                <member id="categories">single_robot, velocity_controlled</member>
+            </meta>
+
+            <data>
+                <!-- Task description -->
+                <type id="axes" prototype="string_csv">
+                    <meta>
+                        <member id="description">List of axes to apply velocities.</member>
+                        <member id="visibility">required</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z, a, b, c</clone>
+                        </clone>
+                    </meta>
+                    <data>x, y, z, a, b, c</data>
+                </type>
+
+                <type id="velocities" prototype="float_csv">
+                    <meta>
+                        <member id="description">Velocities in [m/s] or [rad/s].</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                    <data>0, 0, 0, 0, 0, 0</data>
+                </type>
+
+                <type id="velocity_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Defines in which direction the robot will move.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <!-- Implementation details below: -->
+
+                <member id="target_frame" reference_id="velocity_frame" />
+                <member id="target_frame.meta.visibility">hidden</member>
+
+
+                <member id="tasks">
+                    <clone id="velocity_feedforward" prototype="task">
+                        <member id="coordinates" reference_id="axes"/>
+                        <member id="prefix" reference_id="collections.target_to_tool.prefix"/>
+
+                        <member id="setpoint_generators">
+                            <clone id="setpoint" prototype="constant_setpoint">
+                                <member id="desired" reference_id="velocities"/>
+                                <member id="coordinates" reference_id="coordinates"/>
+                                <member id="prefix" reference_id="prefix"/>
+                            </clone>
+                        </member>
+
+                        <member id="controllers">
+                            <clone prototype="velocity_controller">
+                                <member id="data_source">
+                                    <reference reference_id="collections.target_to_tool.chains[0]"/>
+                                </member>
+                                <member id="setpoint_generator">
+                                    <reference id="generator" reference_id="setpoint_generators.setpoint"/>
+                                </member>
+                                <member id="coordinates" reference_id="axes"/>
+                                <member id="prefix" reference_id="prefix"/>
+                            </clone>
+                        </member>
+                    </clone>
+                </member>
+                <member id="tasks.meta.visibility">hidden</member>
+
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

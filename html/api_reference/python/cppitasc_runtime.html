@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cppitasc.runtime &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="cppitasc.logging" href="cppitasc_logging.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../xml_reference/examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python API reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#model-access">Model access</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#runtime-access">Runtime access</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cppitasc_logging.html">cppitasc.logging</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">cppitasc.runtime</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cppitasc.runtime.Executor"><code class="docutils literal notranslate"><span class="pre">Executor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cppitasc.runtime.RuntimeAccess"><code class="docutils literal notranslate"><span class="pre">RuntimeAccess</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cppitasc.runtime.roscpp_init"><code class="docutils literal notranslate"><span class="pre">roscpp_init()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Python API reference</a></li>
+      <li class="breadcrumb-item active">cppitasc.runtime</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api_reference/python/cppitasc_runtime.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-cppitasc.runtime">
+<span id="cppitasc-runtime"></span><h1>cppitasc.runtime<a class="headerlink" href="#module-cppitasc.runtime" title="Permalink to this heading"></a></h1>
+<p>Runtime access for executing pitasc applications and runtime data exchange.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Executor</span></code> class is used for starting and executing apps, while the <code class="docutils literal notranslate"><span class="pre">RuntimeAccess</span></code>
+class provides access to input and output data of pitasc.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pitasc.model_interface</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleInterface</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">cppitasc.runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Executor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">SimpleInterface</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">import_ros_file</span><span class="p">(</span><span class="s2">&quot;pitasc_common&quot;</span><span class="p">,</span> <span class="s2">&quot;examples/rosless/simple_move_rosless.xml&quot;</span><span class="p">)</span>
+<span class="go"># lots of [ Info  ] prints</span>
+<span class="go">(True, &quot;Successfully loaded &#39;/path/to/pitasc_common/examples/rosless/simple_move_rosless.xml&#39; in X.XXX sec&quot;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="go"># [ Info  ] prints regarding the license check</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{})</span>
+<span class="go"># lots of [ Info  ] prints</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">set_q_pos</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="go">False  # -&gt; the app is not finished</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get_q_vel_cmd</span><span class="p">()</span>
+<span class="go">array([0., 0., 0., 0., 0., 0.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">set_q_pos</span><span class="p">([</span><span class="o">-</span><span class="mf">0.2763951796306786</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.810352244689719</span><span class="p">,</span> <span class="mf">1.7330523352540461</span><span class="p">,</span>
+<span class="go">                       -1.4933876960477237, -1.5708139174643418, -1.8471973153217982])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="go"># lots of [ Info  ] prints -&gt; app finished with Outcome: succeeded (previous q_pos was final position of app)</span>
+<span class="go">True  # -&gt; the app has just finished</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span><span class="o">.</span><span class="n">outcome</span><span class="p">()</span>
+<span class="go">&#39;succeeded&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">executor</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="cppitasc.runtime.Executor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cppitasc.runtime.</span></span><span class="sig-name descname"><span class="pre">Executor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pitasc_model.html#pitasc.model.Model" title="pitasc.model.Model"><span class="pre">pitasc.model.Model</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cppitasc.runtime.Executor" title="Permalink to this definition"></a></dt>
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">Executor</span></code> class is responsible for executing an application (or application skill).
+It builds the required runtime objects and provides functionality for running a complete app
+from start to finish (mainly used for real-time execution with ROS) or step-by-step (intended
+for RL applications). In the latter case, the methods <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">step</span></code>, <code class="docutils literal notranslate"><span class="pre">cleanup</span></code> and
+<code class="docutils literal notranslate"><span class="pre">outcome</span></code> are utilized.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="pitasc_model.html#pitasc.model.Model" title="pitasc.model.Model"><em>Model</em></a>) – pitasc model containing the application to be executed.
+Can be a wrapper if it provides a <code class="docutils literal notranslate"><span class="pre">.model</span></code> property or instance variable.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.Executor.cleanup">
+<span class="sig-name descname"><span class="pre">cleanup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cppitasc.runtime.Executor.cleanup" title="Permalink to this definition"></a></dt>
+<dd><p>Perform cleanup of runtime objects.</p>
+<p>Call this function after the application has finished.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – Raised if you call cleanup() twice</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cppitasc.runtime.Executor.data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#cppitasc.runtime.Executor.data" title="Permalink to this definition"></a></dt>
+<dd><p>Provides access to the input and output data of the pitasc runtime.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#cppitasc.runtime.RuntimeAccess" title="cppitasc.runtime.RuntimeAccess">RuntimeAccess</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.Executor.outcome">
+<span class="sig-name descname"><span class="pre">outcome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#cppitasc.runtime.Executor.outcome" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the outcome of the application after it has finished.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>outcome of the application. Typical values are “succeeded”, “exception” or “finished”.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.Executor.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cppitasc.runtime.Executor.run" title="Permalink to this definition"></a></dt>
+<dd><p>Runs the application given by <code class="docutils literal notranslate"><span class="pre">app_name</span></code> from start to finish.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app_name</strong> (<em>str</em>) – Name of the application to be started.</p></li>
+<li><p><strong>parameters</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code> to value) – The key gives the parameter path relative
+to the application, the value overwrites the default value given in the model.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.Executor.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cppitasc.runtime.Executor.start" title="Permalink to this definition"></a></dt>
+<dd><p>Starts the application given by <code class="docutils literal notranslate"><span class="pre">app_name</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app_name</strong> (<em>str</em>) – Name of the application to be started.</p></li>
+<li><p><strong>parameters</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code> to value) – The key gives the parameter path relative
+to the application, the value overwrites the default value given in the model.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.Executor.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#cppitasc.runtime.Executor.step" title="Permalink to this definition"></a></dt>
+<dd><p>Executes one timestep of the pitasc execution runtime for the running app.</p>
+<p>The time is set to 0 initially and then increased by <cite>T_s</cite> in each step
+with <cite>T_s = 1.0 / update_rate</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the application is finished, False if not.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cppitasc.runtime.RuntimeAccess">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cppitasc.runtime.</span></span><span class="sig-name descname"><span class="pre">RuntimeAccess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">executor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cppitasc.runtime.Executor" title="cppitasc.runtime.Executor"><span class="pre">Executor</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cppitasc.runtime.RuntimeAccess" title="Permalink to this definition"></a></dt>
+<dd><p>The <code class="docutils literal notranslate"><span class="pre">RuntimeAccess</span></code> class is responsible for accessing data of the pitasc runtime objects.
+This includes setting current joint positions, velocities and forces/torques, reading the calculated
+pitasc joint velocity commands, as well as reading current values of other arbitrary runtime objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>executor</strong> (<a class="reference internal" href="#cppitasc.runtime.Executor" title="cppitasc.runtime.Executor"><em>Executor</em></a>) – Executor that runs the application.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.RuntimeAccess.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_element_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">np.ndarray</span></span></span><a class="headerlink" href="#cppitasc.runtime.RuntimeAccess.get_data" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the current output data of the runtime object corresponding to the given model element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Array of current output values of the specified runtime object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.RuntimeAccess.get_data_keys">
+<span class="sig-name descname"><span class="pre">get_data_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_element_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cppitasc.runtime.RuntimeAccess.get_data_keys" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the keys describing which output data can be read from the runtime object corresponding to
+the given model element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Keys describing which output data is read by <code class="docutils literal notranslate"><span class="pre">get_data</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.RuntimeAccess.get_q_vel_cmd">
+<span class="sig-name descname"><span class="pre">get_q_vel_cmd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cppitasc.runtime.RuntimeAccess.get_q_vel_cmd" title="Permalink to this definition"></a></dt>
+<dd><p>Returns current joint velocity command calculated by pitasc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>Joint velocity commands calculated by pitasc in the last step. These</dt><dd><p>values should be given to the simulated or real robot to execute the pitasc app.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.RuntimeAccess.set_fts_name">
+<span class="sig-name descname"><span class="pre">set_fts_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fts_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fts_driver_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'simple_wrench_driver'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cppitasc.runtime.RuntimeAccess.set_fts_name" title="Permalink to this definition"></a></dt>
+<dd><p>Specifies the force-torque sensor (driver) that will be accessed by calls to <code class="docutils literal notranslate"><span class="pre">set_wrench</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fts_name</strong> (<em>str</em>) – Robot name in the pitasc model. Default value is ‘force_sensor’.</p></li>
+<li><p><strong>fts_driver_name</strong> (<em>str</em>) – Robot driver name in the pitasc model. Default value is ‘simple_wrench_driver’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.RuntimeAccess.set_q_pos">
+<span class="sig-name descname"><span class="pre">set_q_pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">np.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cppitasc.runtime.RuntimeAccess.set_q_pos" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the current joint positions of the robot (used as input by the pitasc runtime).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q_pos</strong> (<em>np.ndarray</em>) – Array of joint positions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.RuntimeAccess.set_q_vel">
+<span class="sig-name descname"><span class="pre">set_q_vel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">np.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cppitasc.runtime.RuntimeAccess.set_q_vel" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the current joint velocities of the robot (used as input by the pitasc runtime).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q_vel</strong> (<em>np.ndarray</em>) – Array of joint velocities.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.RuntimeAccess.set_robot_name">
+<span class="sig-name descname"><span class="pre">set_robot_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_driver_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'simple_robot_driver'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cppitasc.runtime.RuntimeAccess.set_robot_name" title="Permalink to this definition"></a></dt>
+<dd><p>Specifies the robot (driver) that will be accessed by calls to <code class="docutils literal notranslate"><span class="pre">set_q_pos</span></code>, <code class="docutils literal notranslate"><span class="pre">set_q_vel</span></code> and <code class="docutils literal notranslate"><span class="pre">get_q_vel_cmd</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_name</strong> (<em>str</em>) – Robot name in the pitasc model. Default value is ‘robot’.</p></li>
+<li><p><strong>robot_driver_name</strong> (<em>str</em>) – Robot driver name in the pitasc model. Default value is ‘simple_robot_driver’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cppitasc.runtime.RuntimeAccess.set_wrench">
+<span class="sig-name descname"><span class="pre">set_wrench</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cppitasc.runtime.RuntimeAccess.set_wrench" title="Permalink to this definition"></a></dt>
+<dd><p>set_q_vel(wrench: np.ndarray) -&gt; None</p>
+<p>Sets the current forces and torques of the F/T sensor (used as input by the pitasc runtime).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wrench</strong> (<em>np.ndarray</em>) – 6D array of forces and torques (Fx, Fy, Fz, Tx, Ty, Tz).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cppitasc.runtime.roscpp_init">
+<span class="sig-prename descclassname"><span class="pre">cppitasc.runtime.</span></span><span class="sig-name descname"><span class="pre">roscpp_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cppitasc.runtime.roscpp_init" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cppitasc_logging.html" class="btn btn-neutral float-left" title="cppitasc.logging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

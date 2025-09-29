@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="skills/skill_joint_space.xml"/>
+
+        <type id="skill_joint_space_bound" prototype="skill_joint_space">
+            <meta>
+                <member id="description">Keeps on tracking a joint configuration</member>
+            </meta>
+
+            <data>
+
+                <!-- Task description -->
+                <type id="joint_names" prototype="string_csv">
+                    <meta>
+                        <member id="description">Joint names of the target pose.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                </type>
+                <member id="joint_names" reference_id="robot.joint_names"/>
+
+                <type id="upper_bound" prototype="float_csv">
+                    <meta>
+                        <member id="description">List of upper bound values respective to axes.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>3.14, 3.14, 3.14, 3.14, 3.14, 3.14</data>
+                </type>
+
+                <type id="lower_bound" prototype="float_csv">
+                    <meta>
+                        <member id="description">List of lower bound values respective to axes.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>-3.14, -3.14, -3.14, -3.14, -3.14, -3.14</data>
+                </type>
+
+                <type id="scaler" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Time constant restricting the movement, i.e.,  v_allowed &lt;  (p_bound - p_current) / scalar </member>
+                        <member id="visibility">expert</member>
+                    </meta>
+                    <data>1.0</data>
+                </type>
+               
+                <!-- Implementation details below: -->
+                <member id="bounds">
+                    <clone id="tracking_bound" prototype="bound"> <!-- how to specify visibility here? leave on hidden? -->
+                        <member id="coordinates" reference_id="joint_names"/>
+                        <member id="upper_bounds" reference_id="upper_bound"/>
+                        <member id="lower_bounds" reference_id="lower_bound"/>
+                        <member id="scaler" reference_id="scaler"/>
+                        <member id="data_source">
+                            <reference prototype="robot_driver" reference_id="robot.robot_driver"/>
+                        </member>
+                    </clone>
+                </member>
+                <member id="bounds.tracking_bound.meta.visibility">hidden</member>
+
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

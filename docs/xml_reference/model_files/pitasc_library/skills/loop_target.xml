@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+
+        <type id="loop_target" prototype="skill_single_robot">
+            <meta>
+                <member id="description">Models a loop via tool frame and target frame</member>
+                <member id="categories">single_robot, position_controlled</member>
+                <member id="visibility">expert</member>
+            </meta>
+
+            <data>
+                <!-- Kinematics -->
+                <type id="tool_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Name of the tool frame</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="target_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Name of the target frame</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <!-- Implementation details below: -->
+
+                <member id="collections">
+                    <clone prototype="collection">
+                        <member id="chains">
+                            <clone id="eef_to_tool" prototype="observed_chain">
+                                <member id="chain_name">eef_to_tool</member>
+                                <member id="control">False</member>
+                                <member id="from_frame" reference_id="robot.ee_link"/>
+                                <member id="to_frame" reference_id="tool_frame"/>
+                            </clone>
+                            <clone id="base_to_target" prototype="observed_chain">
+                                <member id="chain_name">base_to_target</member>
+                                <member id="control">False</member>
+                                <member id="from_frame" reference_id="robot.base_link"/>
+                                <member id="to_frame" reference_id="target_frame"/>
+                            </clone>
+                        </member>
+                    </clone>
+                </member>
+
+                <member id="loops">
+                    <clone prototype="kinematic_loop">
+                        <member id="loop_name">via_target</member>
+                        <member id="robot_chains">
+                            <reference prototype="kinematic_chain_base" reference_id="robot.chains[0]"/>
+                            <reference prototype="kinematic_chain_base" reference_id="collections.collection.chains.eef_to_tool"/>
+                        </member>
+                        <member id="feature_chains">
+                            <reference prototype="kinematic_chain_base" reference_id="collections.collection.chains.base_to_target"/>
+                            <reference prototype="kinematic_chain_base" reference_id="collections.target_to_tool.chains[0]"/>
+                        </member>
+                    </clone>
+                </member>
+                <member id="loops.meta.visibility">hidden</member>
+
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

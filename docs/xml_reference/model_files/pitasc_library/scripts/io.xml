@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+
+        <type id="script_action_caller" prototype="script">
+            <meta>
+                <member id="description">A prototype for action caller scripts</member>
+                <member id="categories">internal</member>
+            </meta>
+            <data>
+                <type id="namespace" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Namespace of the action to be called</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data></data>
+                </type>
+
+                <type id="on_start" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">If true, the script is executed when the parent skill starts</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>True</data>
+                </type>
+
+                <type id="wait_until_done" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Wait for the action to complete before returning</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>True</data>
+                </type>
+
+                <type id="wait_for_action" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Wait until the action becomes available</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>True</data>
+                </type>
+            </data>
+        </type>
+
+        <type id="script_service_caller" prototype="script">
+            <meta>
+                <member id="description">Prototype for service caller scripts</member>
+                <member id="categories">internal</member>
+            </meta>
+            <data>
+		        <type id="service_name" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Name of the service to be called</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="namespace" prototype="string_parameter">
+                    <meta>
+                        <member id="description">Namespace of the service to be called</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data></data>
+                </type>
+
+                <type id="on_start" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">If true, the script is executed when the parent skill starts</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>True</data>
+                </type>
+
+                <type id="blocking" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Decides if the ros service call blocks the pitasc cycle until the service returned. If set to false, on_start must be set to true.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>True</data>
+                </type>
+
+                <type id="wait_for_service" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Wait until service becomes available</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>True</data>
+                </type>
+                <!-- TODO retries, throw error -->
+            </data>
+        </type>
+
+        <type id="script_call_empty_srvs" prototype="script_service_caller">
+            <meta>
+                <member id="description">Calls a srvs with type 'std_msgs/Empty'.</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">ScriptRosServiceEmpty</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+            </data>
+        </type>
+
+        <type id="script_call_trigger_srvs" prototype="script_service_caller">
+            <meta>
+                <member id="description">Calls a srvs with type 'std_msgs/Trigger'.</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">ScriptRosServiceTrigger</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="retries" prototype="int_parameter">
+                    <meta>
+                        <member id="description">Number of retries in case of a failure.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>0</data>
+                </type>
+                <type id="throw_if_failed" prototype="string_parameter">
+                    <meta>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>False</data>
+                </type>
+            </data>
+        </type>
+
+        <type id="script_call_setbool_srvs" prototype="script_service_caller">
+            <meta>
+                <member id="description">Calls a srvs with type 'std_msgs/SetBool'.</member>
+                <member id="categories">io</member>
+                <member id="implementation">
+                    <clone prototype="orocos">
+                        <member id="package">cppitasc_ros_components</member>
+                        <member id="component">ScriptRosServiceSetBool</member>
+                    </clone>
+                </member>
+            </meta>
+            <data>
+                <type id="value" prototype="bool_parameter">
+                    <meta>
+                        <member id="description">Boolean value to set.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+                <type id="retries" prototype="int_parameter">
+                    <meta>
+                        <member id="description">Number of retries in case of a failure.</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>0</data>
+                </type>
+            </data>
+        </type>
+    </models>
+</pitasc>

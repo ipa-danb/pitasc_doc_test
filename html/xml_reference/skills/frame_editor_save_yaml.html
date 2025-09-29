@@ -1,0 +1,277 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>frame_editor_save_yaml &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="frame_editor_set" href="frame_editor_set.html" />
+    <link rel="prev" title="frame_editor_remove" href="frame_editor_remove.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Skills</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#composition">composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#position-controlled">position_controlled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#force-controlled">force_controlled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#velocity-controlled">velocity_controlled</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#logic">logic</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_align.html">frame_editor_align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_copy.html">frame_editor_copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_load_yaml.html">frame_editor_load_yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_remove.html">frame_editor_remove</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">frame_editor_save_yaml</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#meta-data">Meta data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_set.html">frame_editor_set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frame_editor_set_parent.html">frame_editor_set_parent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_counter_condition.html">skill_counter_condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_idle.html">skill_idle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_idle_duration.html">skill_idle_duration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_idle_once.html">skill_idle_once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="skill_preempt.html">skill_preempt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#user">user</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Skills</a></li>
+      <li class="breadcrumb-item active">frame_editor_save_yaml</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/xml_reference/skills/frame_editor_save_yaml.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="frame-editor-save-yaml">
+<h1>frame_editor_save_yaml<a class="headerlink" href="#frame-editor-save-yaml" title="Permalink to this heading"></a></h1>
+<p>Saves YAML with frame editor.</p>
+<p>Defined at line 430 of file <a class="reference internal" href="../model_files/pitasc_library/frame_editor/frame_editor_xml.html"><span class="doc">frame_editor/frame_editor.xml</span></a> in package <strong>pitasc_library</strong>.</p>
+<section id="meta-data">
+<h2>Meta data<a class="headerlink" href="#meta-data" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>Categories</strong></div>
+<div class="line-block">
+<div class="line">single_robot, logic</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Prototypes</strong></div>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="skill_idle_once.html"><span class="doc">skill_idle_once</span></a>, <a class="reference internal" href="skill_idle_duration.html"><span class="doc">skill_idle_duration</span></a>, <a class="reference internal" href="skill_idle.html"><span class="doc">skill_idle</span></a>, skill_single_robot, skill, object, dictionary, base, descriptive</div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<p><strong>Basic</strong> parameters:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>robot</strong> : dict</div>
+<div class="line-block">
+<div class="line">Robot that is controlled by the skill (only needs to be set at the application level).</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>duration</strong> : float</div>
+<div class="line-block">
+<div class="line">Skill duration in [s].</div>
+<div class="line"><strong>Default</strong>: 0.001</div>
+</div>
+</div>
+</div></blockquote>
+<p><strong>Expert</strong> parameters:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>skill_name</strong> : string</div>
+<div class="line-block">
+<div class="line">Name of this skill. Must be locally unique.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>collections</strong> : list:collection</div>
+<div class="line-block">
+<div class="line">Contains the kinematic chains of the skill (feature, robot, object chains).</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>loops</strong> : list:kinematic_loop</div>
+<div class="line-block">
+<div class="line">Contains the kinematic loop(s) that define the task to be solved.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>tasks</strong> : list:task</div>
+<div class="line-block">
+<div class="line">Contains the task description(s).</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>bounds</strong> : list:bound</div>
+<div class="line-block">
+<div class="line">Contains the bounds description(s).</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>monitors</strong> : list:monitor</div>
+<div class="line-block">
+<div class="line">Contains the monitors of the skill that determine when the skill should terminate.</div>
+<div class="line"><strong>Default</strong>: odict_keys([‘monitor_duration’])</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>transitions</strong> : list:transition</div>
+<div class="line-block">
+<div class="line">Contains additional transitions to other states (skills), given an event name.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>scripts</strong> : list:script</div>
+<div class="line-block">
+<div class="line">Contains scripts that should be executed while the skill is active.</div>
+<div class="line"><strong>Default</strong>: odict_keys([‘script_frame_editor_save_yaml’])</div>
+</div>
+</div>
+</div></blockquote>
+<p><strong>Hidden</strong> parameters:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>namespace</strong> : string</div>
+<div class="line-block">
+<div class="line">Namespace of the frame_editor, leave empty if only</div>
+<div class="line">one editor is launched.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>filename</strong> : string</div>
+<div class="line-block">
+<div class="line">Name of the file to be saved</div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p><strong>frame_editor_save_yaml</strong> is used in the following examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../examples/scripts/frame_editor_xml.html"><span class="doc">frame_editor.xml</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="frame_editor_remove.html" class="btn btn-neutral float-left" title="frame_editor_remove" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="frame_editor_set.html" class="btn btn-neutral float-right" title="frame_editor_set" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="skills/skill_cartesian_velocity.xml"/>
+        <include package="pitasc_library" file="skills/skill_hold_pose.xml"/>
+
+        <type id="skill_partial_velocity" prototype="skill_concurrency">
+            <meta>
+                <member id="description">A skill that moves along fixed frame axes and holds the other axes in place</member>
+                <member id="categories">single_robot, velocity_controlled</member>
+            </meta>
+
+            <data>
+
+                <type id="tool_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Name of the tool frame</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="velocity_frame" prototype="frame">
+                    <meta>
+                        <member id="description">Defines the axes along which this skill can move.</member>
+                        <member id="visibility">required</member>
+                    </meta>
+                </type>
+
+                <type id="axes" prototype="string_csv">
+                    <meta>
+                        <member id="description">The directions of motion.</member>
+                        <member id="visibility">basic</member>
+                        <clone prototype="restrictions">
+                            <clone prototype="enum">x, y, z</clone>
+                        </clone>
+                    </meta>
+                    <data>x</data>
+                </type>
+
+                <type id="velocities" prototype="float_csv">
+                    <meta>
+                        <member id="description">Velocities in [m/s].</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>0.01</data>
+                </type>
+
+                <clone id="move_skill" prototype="skill_cartesian_velocity">
+                    <member id="velocity_frame" reference_id="velocity_frame"/>
+                    <member id="tool_frame" reference_id="tool_frame"/>
+                    <member id="axes" reference_id="axes"/>
+                    <member id="velocities" reference_id="velocities"/>
+                </clone>
+                <member id="move_skill.meta.visibility">expert</member>
+
+                <clone id="hold_skill" prototype="skill_hold_pose">
+                    <member id="tool_frame" reference_id="tool_frame"/>
+                </clone>
+                <member id="hold_skill.meta.visibility">expert</member>
+
+                <member id="skills">
+                    <reference reference_id="move_skill"/>
+                    <reference reference_id="hold_skill"/>
+                </member>
+                <member id="skills.meta.visibility">expert</member>
+
+            </data>
+        </type>
+
+        <type id="skill_partial_velocity_duration" prototype="skill_partial_velocity">
+            <data>
+                <type id="duration" prototype="float_parameter">
+                    <meta>
+                        <member id="description">Skill duration in [s].</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>1.0</data>
+                </type>
+
+                <member id="monitors">
+                    <clone prototype="monitor_duration">
+                        <member id="event">succeeded</member>
+                        <member id="duration" reference_id="duration"/>
+                    </clone>
+                </member>
+            </data>
+        </type>
+
+        <type id="skill_partial_velocity_relative_distance" prototype="skill_partial_velocity">
+            <data>
+                <type id="distances" prototype="float_csv">
+                    <meta>
+                        <member id="description">Travel distance after that the skill stops, in [m].</member>
+                        <member id="visibility">basic</member>
+                    </meta>
+                    <data>0.01</data>
+                </type>
+
+                <member id="monitors">
+                    <clone prototype="monitor_relative_distance">
+                        <member id="reference_frame">world</member>
+                        <member id="frame" reference_id="velocity_frame"/>
+                        <member id="coordinates" reference_id="axes"/>
+                        <member id="distances" reference_id="distances"/>
+                        <member id="operator">absolute_greater</member>
+                    </clone>
+                </member>
+            </data>
+        </type>
+
+    </models>
+
+</pitasc>

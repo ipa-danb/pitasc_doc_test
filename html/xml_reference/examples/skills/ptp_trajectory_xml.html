@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ptp_trajectory.xml &mdash; pitasc master documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=d75fae25" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=48f0e2ba"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="spherical_velocity.xml" href="spherical_velocity_xml.html" />
+    <link rel="prev" title="position_pid.xml" href="position_pid_xml.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pitasc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/fundamentals/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/how-to/index.html">How-To</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/setup_robots.html">Setup Robots</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">XML Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../skills/index.html">Skills</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../monitors/index.html">Monitors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/index.html">Scripts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#advanced">advanced</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#beginner">beginner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#customized-robots">customized_robots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dual-robot">dual_robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#monitors">monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#rosless">rosless</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#scripts">scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#skills">skills</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="blacklist_xml.html">blacklist.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bound_example_xml.html">bound_example.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="conical_helix_xml.html">conical_helix.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cylindrical_helix_xml.html">cylindrical_helix.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="forces_pid_xml.html">forces_pid.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lin_time_optimal_xml.html">lin_time_optimal.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lin_trajectory_xml.html">lin_trajectory.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="partial_lin_xml.html">partial_lin.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="position_pid_xml.html">position_pid.xml</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ptp_trajectory.xml</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#models-used">Models used</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-contents">File contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spherical_velocity_xml.html">spherical_velocity.xml</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_reference/python/index.html">Python API reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en.html">About</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.pitasc.fraunhofer.de/en/contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pitasc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+      <li class="breadcrumb-item active">ptp_trajectory.xml</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/xml_reference/examples/skills/ptp_trajectory_xml.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ptp-trajectory-xml">
+<h1>ptp_trajectory.xml<a class="headerlink" href="#ptp-trajectory-xml" title="Permalink to this heading"></a></h1>
+<p>This example application shows how to run a ptp trajectory through several joint states with blending.</p>
+<p>A UR5 moves to start position, then he performs the trajectory. Then, he does it again with higher velocity. Then the application terminates.</p>
+<section id="models-used">
+<h2>Models used<a class="headerlink" href="#models-used" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../scripts/script_measurement_logger.html"><span class="doc">script_measurement_logger</span></a>: lines 77, 82</p></li>
+<li><p><a class="reference internal" href="../../skills/skill_lin.html"><span class="doc">skill_lin</span></a>: lines 50, 91</p></li>
+<li><p><a class="reference internal" href="../../skills/skill_ptp_trajectory.html"><span class="doc">skill_ptp_trajectory</span></a>: lines 56, 97</p></li>
+<li><p><a class="reference internal" href="../../skills/skill_sequence.html"><span class="doc">skill_sequence</span></a>: lines 41</p></li>
+</ul>
+</section>
+<section id="file-contents">
+<h2>File contents<a class="headerlink" href="#file-contents" title="Permalink to this heading"></a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="cm">&lt;!-- This example application shows how to run a ptp trajectory through several joint states with blending.</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="cm">A UR5 moves to start position, then he performs the trajectory. Then, he does it again with higher velocity. Then the application terminates.</span>
+<span class="linenos">  6</span><span class="cm">--&gt;</span>
+<span class="linenos">  7</span>
+<span class="linenos">  8</span><span class="nt">&lt;pitasc&gt;</span>
+<span class="linenos">  9</span>
+<span class="linenos"> 10</span><span class="w">    </span><span class="nt">&lt;models&gt;</span>
+<span class="linenos"> 11</span><span class="w">        </span><span class="cm">&lt;!-- Include pitasc --&gt;</span>
+<span class="linenos"> 12</span><span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;pitasc_library&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;models/pitasc.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 13</span>
+<span class="linenos"> 14</span><span class="w">        </span><span class="cm">&lt;!-- Include the UR5 --&gt;</span>
+<span class="linenos"> 15</span><span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;pitasc_library&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;universal_robots/ur.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span><span class="w">        </span><span class="cm">&lt;!-- Include the skills --&gt;</span>
+<span class="linenos"> 18</span><span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">package=</span><span class="s">&quot;pitasc_library&quot;</span><span class="w"> </span><span class="na">file=</span><span class="s">&quot;models/skills.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="w">    </span><span class="nt">&lt;/models&gt;</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span><span class="w">    </span><span class="cm">&lt;!-- Create a project --&gt;</span>
+<span class="linenos"> 23</span><span class="w">    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;project&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span><span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;configuration&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 26</span><span class="w">            </span><span class="cm">&lt;!-- Use the default configuration with recommended settings --&gt;</span>
+<span class="linenos"> 27</span><span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;configuration&quot;</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;default_configuration&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 28</span><span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 29</span>
+<span class="linenos"> 30</span><span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;environment&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 31</span><span class="w">            </span><span class="cm">&lt;!-- Add a UR5 --&gt;</span>
+<span class="linenos"> 32</span><span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;robot_ur5&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 33</span><span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot_driver.max_velocity&quot;</span><span class="nt">&gt;</span>5.0<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 34</span><span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot_driver.max_acceleration&quot;</span><span class="nt">&gt;</span>10.0<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 35</span><span class="w">            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 36</span><span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span><span class="w">        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;applications&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="w">            </span><span class="cm">&lt;!-- Use a skill sequence as a container --&gt;</span>
+<span class="hll"><span class="linenos"> 41</span><span class="w">            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_sequence&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 42</span>
+<span class="linenos"> 43</span><span class="w">                </span><span class="cm">&lt;!-- Use the UR5 for this skill (and for its subskill) --&gt;</span>
+<span class="linenos"> 44</span><span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;robot&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;environment.robot_ur5&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 45</span>
+<span class="linenos"> 46</span><span class="w">                </span><span class="cm">&lt;!-- Add subskill(s) --&gt;</span>
+<span class="linenos"> 47</span><span class="w">                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;skills&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 48</span>
+<span class="linenos"> 49</span><span class="w">                    </span><span class="cm">&lt;!-- Move to target1 (lin) --&gt;</span>
+<span class="hll"><span class="linenos"> 50</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 51</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;tool_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 52</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_frame&quot;</span><span class="nt">&gt;</span>target1<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 53</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 54</span>
+<span class="linenos"> 55</span><span class="w">                    </span><span class="cm">&lt;!-- Move along several PTP waypoints and log the desired and measured joint states. --&gt;</span>
+<span class="hll"><span class="linenos"> 56</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_ptp_trajectory&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 57</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;waypoints&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 58</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;ptp_trajectory_waypoint&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 59</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_joint_state&quot;</span><span class="nt">&gt;</span>1.35815,<span class="w"> </span>-1.31344,<span class="w"> </span>1.94880,<span class="w"> </span>-2.2248,<span class="w"> </span>0.78459,<span class="w"> </span>-3.2196<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 60</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;blending_distances&quot;</span><span class="nt">&gt;</span>0.01,<span class="w"> </span>0.02,<span class="w"> </span>0.1,<span class="w">  </span>0.1,<span class="w">  </span>0.05,<span class="w"> </span>0.1<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 61</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;max_angular_velocity&quot;</span><span class="nt">&gt;</span>0.8<span class="nt">&lt;/member&gt;</span><span class="cm">&lt;!-- can be set; is valid for the distance to this waypoint --&gt;</span>
+<span class="linenos"> 62</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;max_angular_acceleration&quot;</span><span class="nt">&gt;</span>0.3<span class="nt">&lt;/member&gt;</span><span class="cm">&lt;!-- can be set; is valid for the distance to this waypoint and the blending --&gt;</span>
+<span class="linenos"> 63</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 64</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;ptp_trajectory_waypoint&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 65</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_joint_state&quot;</span><span class="nt">&gt;</span>1.39671,<span class="w"> </span>-1.4769,<span class="w"> </span>0.752554,<span class="w"> </span>-1.40487,<span class="w"> </span>0.115233,<span class="w"> </span>-3.26799<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 66</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;blending_distances&quot;</span><span class="nt">&gt;</span>0.01<span class="nt">&lt;/member&gt;</span><span class="w"> </span><span class="cm">&lt;!-- takes these blending distance for all joints --&gt;</span>
+<span class="linenos"> 67</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 68</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;ptp_trajectory_waypoint&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 69</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_joint_state&quot;</span><span class="nt">&gt;</span>1.2977,<span class="w"> </span>-1.53491,<span class="w"> </span>1.17162,<span class="w"> </span>-1.32425,<span class="w"> </span>-1.72469,<span class="w"> </span>-1.44901<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 70</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;max_angular_velocity&quot;</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 71</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 72</span><span class="w">                        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 73</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;max_angular_velocity&quot;</span><span class="nt">&gt;</span>0.6<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 74</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;max_angular_acceleration&quot;</span><span class="nt">&gt;</span>2.0<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 75</span>
+<span class="linenos"> 76</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;scripts&quot;</span><span class="nt">&gt;</span>
+<span class="hll"><span class="linenos"> 77</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_measurement_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 78</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;robot.robot_driver&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 79</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/skills/logs/ptp_trajectory_measured_pos.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 80</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;&lt;/member&gt;</span>
+<span class="linenos"> 81</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="hll"><span class="linenos"> 82</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;script_measurement_logger&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 83</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">reference_id=</span><span class="s">&quot;tasks.tracking.setpoint_generators&quot;</span><span class="nt">/&gt;</span>
+<span class="linenos"> 84</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;file_name&quot;</span><span class="nt">&gt;</span>{rospkg<span class="w"> </span>pitasc_common}/examples/skills/logs/ptp_trajectory_desired_pos.csv<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 85</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;filter&quot;</span><span class="nt">&gt;&lt;/member&gt;</span>
+<span class="linenos"> 86</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 87</span><span class="w">                        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 88</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="w">                    </span><span class="cm">&lt;!-- Move to target1 (lin) --&gt;</span>
+<span class="hll"><span class="linenos"> 91</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_lin&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 92</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;tool_frame&quot;</span><span class="nt">&gt;</span>tool<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 93</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_frame&quot;</span><span class="nt">&gt;</span>target1<span class="nt">&lt;/member&gt;</span>
+<span class="linenos"> 94</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="w">                    </span><span class="cm">&lt;!-- Move along several PTP waypoints, with higher speed. Notice the manual controller tuning --&gt;</span>
+<span class="hll"><span class="linenos"> 97</span><span class="w">                    </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;skill_ptp_trajectory&quot;</span><span class="nt">&gt;</span>
+</span><span class="linenos"> 98</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;waypoints&quot;</span><span class="nt">&gt;</span>
+<span class="linenos"> 99</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;ptp_trajectory_waypoint&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">100</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_joint_state&quot;</span><span class="nt">&gt;</span>1.35815,<span class="w"> </span>-1.31344,<span class="w"> </span>1.94880,<span class="w"> </span>-2.2248,<span class="w"> </span>0.78459,<span class="w"> </span>-3.2196<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">101</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;blending_distances&quot;</span><span class="nt">&gt;</span>0.1<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">102</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">103</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;ptp_trajectory_waypoint&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">104</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_joint_state&quot;</span><span class="nt">&gt;</span>1.39671,<span class="w"> </span>-1.4769,<span class="w"> </span>0.752554,<span class="w"> </span>-1.40487,<span class="w"> </span>0.115233,<span class="w"> </span>-3.26799<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">105</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;blending_distances&quot;</span><span class="nt">&gt;</span>0.3<span class="nt">&lt;/member&gt;</span><span class="w"> </span><span class="cm">&lt;!-- takes these blending distance for all joints --&gt;</span>
+<span class="linenos">106</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">107</span><span class="w">                            </span><span class="nt">&lt;clone</span><span class="w"> </span><span class="na">prototype=</span><span class="s">&quot;ptp_trajectory_waypoint&quot;</span><span class="nt">&gt;</span>
+<span class="linenos">108</span><span class="w">                                </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;target_joint_state&quot;</span><span class="nt">&gt;</span>1.2977,<span class="w"> </span>-1.53491,<span class="w"> </span>1.17162,<span class="w"> </span>-1.32425,<span class="w"> </span>-1.72469,<span class="w"> </span>-1.44901<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">109</span><span class="w">                            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">110</span><span class="w">                        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">111</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;max_angular_velocity&quot;</span><span class="nt">&gt;</span>3.0<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">112</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;max_angular_acceleration&quot;</span><span class="nt">&gt;</span>4.0<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">113</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;angular_controller_gain&quot;</span><span class="nt">&gt;</span>2.0<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">114</span><span class="w">                        </span><span class="nt">&lt;member</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;angular_ff_controller_gain&quot;</span><span class="nt">&gt;</span>0.75<span class="nt">&lt;/member&gt;</span>
+<span class="linenos">115</span><span class="w">                    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">116</span><span class="w">                </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span><span class="w">            </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">119</span>
+<span class="linenos">120</span><span class="w">        </span><span class="nt">&lt;/member&gt;</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span><span class="w">    </span><span class="nt">&lt;/clone&gt;</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span><span class="nt">&lt;/pitasc&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="position_pid_xml.html" class="btn btn-neutral float-left" title="position_pid.xml" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spherical_velocity_xml.html" class="btn btn-neutral float-right" title="spherical_velocity.xml" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Pitasc Team.
+      <span class="lastupdated">Last updated on Aug 29, 2025, 9:11:24 AM.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This example application shows the usage of user_confirm monitors. This monitor allows to wait for user input and to trigger events according to the input. Also see 'skill_user_confirm'
+-->
+
+<pitasc>
+
+    <models>
+        <include package="pitasc_library" file="models/pitasc.xml"/>
+        <include package="pitasc_library" file="models/skills.xml"/>
+
+        <include package="pitasc_library" file="universal_robots/ur.xml"/>
+    </models>
+
+    <clone prototype="project">
+
+        <member id="configuration">
+            <clone id="configuration" prototype="default_configuration"/>
+        </member>
+
+        <member id="environment">
+            <clone prototype="robot_ur5">
+                <member id="robot_driver.max_velocity">2.0</member>
+                <member id="robot_driver.max_acceleration">3.0</member>
+            </clone>
+        </member>
+
+        <member id="applications">
+            <clone prototype="skill_sequence">
+
+                <member id="robot" reference_id="environment.robot_ur5"/>
+
+                <!-- Skills -->
+                <member id="skills">
+
+                    <!-- needed, because pitasc does not create the robot publisher otherwise -->
+                    <clone prototype="skill_relative_ptp">
+                        <member id="relative_joint_state">0, 0, 0, 0, 0, 0</member>
+                    </clone>
+
+                    <!-- monitor sync fires when all sub monitors fired the correct event-->
+                    <clone id="idler" prototype="skill_idle">
+                        <member id="monitors">
+                            <clone prototype="monitor_sync">
+                                <member id="events">succeeded, test, succeeded</member>
+                                <member id="monitors">
+                                    <clone prototype="monitor_duration">
+                                        <member id="duration">1</member>
+                                    </clone>
+                                    <clone prototype="monitor_duration">
+                                        <member id="duration">3</member>
+                                        <member id="event">test</member>
+                                    </clone>
+                                    <clone prototype="monitor_duration">
+                                        <member id="duration">6</member>
+                                    </clone>
+                                </member>
+                            </clone>
+                        </member>
+                    </clone>
+
+                    <clone prototype="skill_counter_condition">
+                        <member id="repeat_target">idler</member>
+                        <member id="condition_target">next_skill</member>
+                        <member id="count">2</member>
+                    </clone>
+
+                    <!-- monitor sync fires when all sub monitors fired the correct event-->
+                    <clone id="next_skill" prototype="skill_idle">
+                        <member id="monitors">
+                            <clone prototype="monitor_sync">
+                                <member id="monitors">
+                                    <clone prototype="monitor_duration">
+                                        <member id="duration">1</member>
+                                    </clone>
+                                    <clone prototype="monitor_duration">
+                                        <member id="duration">2</member>
+                                    </clone>
+                                    <clone prototype="monitor_duration">
+                                        <member id="duration">3</member>
+                                    </clone>
+                                </member>
+                            </clone>
+                        </member>
+
+                    </clone>
+
+
+                </member>
+
+            </clone>
+        </member>
+
+    </clone>
+
+</pitasc>
